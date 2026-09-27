@@ -1,0 +1,32 @@
+@use './tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  hyphens: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--demo-bg);
+  color: var(--demo-fg);
+  font-family: var(--demo-font);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p,
+li {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}

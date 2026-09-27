@@ -1,0 +1,21 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+}
+
+.frame {
+  width: 100%;
+  max-width: 760px;
+  height: 800px;
+  border: 1px solid var(--demo-border);
+  border-radius: var(--demo-radius);
+}
+
+.section a {
+  color: var(--demo-fg);
+}
