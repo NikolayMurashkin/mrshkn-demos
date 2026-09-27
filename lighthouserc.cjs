@@ -1,4 +1,11 @@
+const { existsSync, readFileSync } = require('node:fs');
+const path = require('node:path');
+
 const app = process.env.LIGHTHOUSE_APP ?? 'template';
+
+/** Демо со своими страницами перечисляет их в `apps/<демо>/lighthouse.json`; шаблон и развернутые из него — главная и политика. */
+const pathsFile = path.join(__dirname, 'apps', app, 'lighthouse.json');
+const paths = existsSync(pathsFile) ? JSON.parse(readFileSync(pathsFile, 'utf8')).paths : ['/', '/privacy'];
 
 module.exports = {
   ci: {
@@ -6,7 +13,7 @@ module.exports = {
       startServerCommand: `DEMO_ENV=production NEXT_DIST_DIR=.next-production yarn workspace @mrshkn/demo-${app} start -p 3302`,
       startServerReadyPattern: 'Ready in',
       startServerReadyTimeout: 120000,
-      url: ['http://localhost:3302/', 'http://localhost:3302/privacy'],
+      url: paths.map((pathname) => `http://localhost:3302${pathname}`),
       numberOfRuns: 3,
     },
     assert: {

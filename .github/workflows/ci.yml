@@ -68,8 +68,32 @@ jobs:
           retention-days: 7
 
   lighthouse:
-    name: Lighthouse CI of a fresh demo
+    name: Lighthouse CI — ${{ matrix.app }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # ci-probe — демо, только что развернутое из шаблона: так проверяется сама команда; остальные — демо со своими страницами
+        app: [ci-probe, dental]
+    # страницы демо читают CMS: базу создают миграции при старте, контент — засев демо в пустую базу
+    env:
+      DATABASE_URL: postgres://demos:demos@localhost:5432/demos_lighthouse
+      PAYLOAD_SECRET: lighthouse
+      MIGRATE_ON_START: 'true'
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: demos
+          POSTGRES_PASSWORD: demos
+          POSTGRES_DB: demos_lighthouse
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v4
 
@@ -85,10 +109,10 @@ jobs:
       - name: Runner CPUs
         run: nproc
 
-      # меряется не шаблон, а демо, только что развернутое из него: так проверяется сама команда
-      - run: yarn demo:new ci-probe
+      - if: matrix.app == 'ci-probe'
+        run: yarn demo:new ci-probe
 
-      - run: yarn test:lighthouse ci-probe
+      - run: yarn test:lighthouse ${{ matrix.app }}
 
       - name: CPU class and score of each run
         if: ${{ !cancelled() }}
@@ -105,7 +129,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: lighthouse-report
+          name: lighthouse-report-${{ matrix.app }}
           path: .lighthouseci/
           include-hidden-files: true
           retention-days: 7

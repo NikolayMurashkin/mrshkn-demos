@@ -1,7 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { ru } from '@payloadcms/translations/languages/ru';
 import path from 'node:path';
-import { buildConfig, type CollectionConfig } from 'payload';
+import { buildConfig, type CollectionConfig, type Payload } from 'payload';
 import { Leads, Users } from './cms/collections';
 import type { DemoConfig } from './types';
 
@@ -14,9 +14,11 @@ type DemoCmsOptions = {
   migrations: ProdMigrations;
   /** Коллекции конкретного демо: врачи, меню, статьи. Пользователи и заявки есть у всех. */
   collections?: CollectionConfig[];
+  /** Запускается после подключения к базе и миграций: демо засевает здесь свой вымышленный контент. */
+  onInit?: (payload: Payload) => Promise<void>;
 };
 
-export const createDemoCmsConfig = ({ dirname, demo, migrations, collections = [] }: DemoCmsOptions) =>
+export const createDemoCmsConfig = ({ dirname, demo, migrations, collections = [], onInit }: DemoCmsOptions) =>
   buildConfig({
     admin: {
       user: Users.slug,
@@ -33,6 +35,7 @@ export const createDemoCmsConfig = ({ dirname, demo, migrations, collections = [
     }),
     graphQL: { disable: true },
     i18n: { fallbackLanguage: 'ru', supportedLanguages: { ru } },
+    onInit,
     secret: process.env.PAYLOAD_SECRET ?? '',
     telemetry: false,
     typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },

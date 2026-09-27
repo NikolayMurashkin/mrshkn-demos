@@ -197,4 +197,20 @@ describe('политика обработки данных', () => {
     expect(text).toContain('Яндекс Карт');
     expect(text).toContain('IP-адрес');
   });
+
+  it('с картой предупреждает, что Яндекс получает данные только после нажатия «Показать карту»', () => {
+    const text =
+      parse(
+        renderToStaticMarkup(
+          <PrivacyPolicy
+            withYandexReviews={false}
+            withYandexMap
+          />,
+        ),
+      ).textContent?.replace(/\u00a0/g, ' ') ?? '';
+
+    expect(text).toContain('только когда вы нажмете «Показать карту»');
+    expect(text).toContain('IP-адрес');
+    expect(text).toContain('рекламу');
+  });
 });

@@ -26,6 +26,13 @@ const config = [
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },
   },
+  {
+    // конфиг Lighthouse CI грузится через require и сам остается CommonJS
+    files: ['**/*.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 ];
 
 export default config;

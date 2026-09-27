@@ -1,2 +1,3 @@
 CREATE DATABASE demos_test;
 CREATE DATABASE demos_e2e;
+CREATE DATABASE demos_dental;
