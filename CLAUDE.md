@@ -43,8 +43,8 @@ tests/e2e/                Playwright по шаблону
 Имя — поддомен: латиница в нижнем регистре, цифры и дефис, с буквы, 2–30 знаков; занятые студией имена
 (`RESERVED_SLUGS` в `packages/core/src/consts.ts`) и существующие демо не проходят. Поддомен одноуровневый:
 wildcard-сертификат `*.mrshkn.com` покрывает один уровень (D24). Если меняется то, что заменяет скрипт
-(`"@mrshkn/demo-template"` в `package.json`, `slug: 'template'` в `demo.config.ts`), скрипт падает с ошибкой,
-а не разворачивает демо с чужим поддоменом.
+(`"@mrshkn/demo-template"` в `package.json`, `slug: 'template'` в `demo.config.ts`), скрипт падает с ошибкой
+и удаляет недоделанную копию, а не разворачивает демо с чужим поддоменом.
 
 Отраслевое демо меняет `demo.config.ts`, свои страницы в `src/app/(site)/`, токены и шрифты направления
 и добавляет свои коллекции в `createDemoCmsConfig({ collections })` — после этого новая миграция в своем
@@ -65,14 +65,17 @@ wildcard-сертификат `*.mrshkn.com` покрывает один уро�
 - **schema.org** — `buildBusinessJsonLd(DEMO)`, тип из `business.schemaType`; `<` в JSON-LD экранируется.
 - **Cookie** — уведомление с одной cookie `cookie_notice`; сервер читает ее и не рендерит уведомление
   вернувшемуся человеку, поэтому оно не мелькает после гидрации.
-- **Политика** `/privacy` — общий текст ядра: оператор — студия, дело вымышлено. Черновик до B34/B36.
+- **Политика** `/privacy` — общий текст ядра: оператор — студия, дело вымышлено. С `yandexOrgId` страница передает
+  `withYandexReviews` — в политике появляется абзац о виджете Яндекса (IP посетителя и cookie Яндекса). Черновик
+  до B34/B36.
 - **noindex** вне `DEMO_ENV=production`: meta robots, заголовок `X-Robots-Tag` на всех ответах (`proxy.ts`)
   и `robots.txt` с `Disallow: /`.
 - **Подсказки темы** Payload (Accept-CH, Critical-CH) оставлены только `/admin`: `withPayload` вешает их на все
   адреса, а Critical-CH на странице заставляет Chrome повторить первый запрос (`next.config.ts`).
 
 Компоненты ядра берут цвета, радиусы, тени и шрифт только из токенов `--demo-*`; `tests/unit/tokens.test.ts`
-падает, если в SCSS ядра литерал или если какое-то демо не задает токен, который ядро использует.
+падает, если в SCSS ядра цвет литералом (hex, `rgb`/`hsl`, именованный), `font-family`, `border-radius` или
+`box-shadow` не через `var(`, или если какое-то демо не задает токен, который ядро использует.
 
 ## Разработка
 
@@ -110,7 +113,15 @@ Lighthouse CI (`lighthouserc.cjs`): главная и `/privacy`, по три п
 `node apps/<slug>/server.js` на 3000 с `MIGRATE_ON_START=true`. Переменные при работе: `DATABASE_URL`,
 `PAYLOAD_SECRET`, `DEMO_ENV` (пусто — noindex), при желании `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_IDS`.
 Сертификат — общий wildcard `*.mrshkn.com` из Coolify; свой сертификат на имя демо не заводить: имя попало бы
-в журнал Certificate Transparency (D24). Порядок работы с сервером — `../docs/ops/coolify.md`.
+в журнал Certificate Transparency (D24). Порядок работы с сервером — `../docs/ops/coolify.md`, для демо —
+его раздел «Отраслевое демо из `mrshkn-demos`» (переменная сборки `APP=<slug>`, `DEMO_ENV`, имена секретов).
+
+Тесты и Lighthouse CI поднимают демо через `next start`, и Next пишет в лог `"next start" does not work with
+"output: standalone"`: предупреждение безвредно, но сьют проверяет `next start`, а не `node apps/<slug>/server.js`
+из образа. Правку `Dockerfile` или `next.config.ts` проверять сборкой и запуском образа руками:
+`docker build --build-arg APP=template -t mrshkn-demo-template:local .`, затем
+`docker run --rm -p 3303:3000 -e DATABASE_URL=postgres://demos:demos@host.docker.internal:5435/demos
+-e PAYLOAD_SECRET=local mrshkn-demo-template:local`.
 
 ## Конвенции
 

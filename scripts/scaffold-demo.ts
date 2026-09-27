@@ -1,4 +1,4 @@
-import { cpSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { DEMO_SLUG_PATTERN, RESERVED_SLUGS } from '../packages/core/src/consts.ts';
 
@@ -56,8 +56,14 @@ export const scaffoldDemo = ({ root, name }: ScaffoldOptions) => {
 
   cpSync(path.join(root, 'apps', TEMPLATE), target, { recursive: true, filter: isCopied });
 
-  replaceIn(path.join(target, 'package.json'), `"@mrshkn/demo-${TEMPLATE}"`, `"@mrshkn/demo-${name}"`);
-  replaceIn(path.join(target, 'src/demo.config.ts'), `slug: '${TEMPLATE}'`, `slug: '${name}'`);
+  // недоделанная копия с чужим поддоменом или именем пакета хуже, чем никакой: повтор команды ответил бы «уже есть»
+  try {
+    replaceIn(path.join(target, 'package.json'), `"@mrshkn/demo-${TEMPLATE}"`, `"@mrshkn/demo-${name}"`);
+    replaceIn(path.join(target, 'src/demo.config.ts'), `slug: '${TEMPLATE}'`, `slug: '${name}'`);
+  } catch (error) {
+    rmSync(target, { recursive: true, force: true });
+    throw error;
+  }
 
   return target;
 };

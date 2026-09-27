@@ -7,7 +7,7 @@ type YandexReviewsProps = {
 };
 
 /**
- * Отзывы берутся официальным виджетом Яндекс Карт по номеру организации: своих отзывов демо не пишет (D14).
+ * Отзывы берутся официальным виджетом Яндекс Карт по номеру организации: выдуманных отзывов в демо нет.
  * У вымышленного дела организации нет — тогда раздела нет совсем, а не пустой рамки.
  */
 export const YandexReviews = ({ title, orgId }: YandexReviewsProps) => {
@@ -33,10 +33,10 @@ export const YandexReviews = ({ title, orgId }: YandexReviewsProps) => {
       <iframe
         className={styles.frame}
         src={`https://yandex.ru/maps-reviews-widget/${orgId}?comments`}
-        title="Отзывы на Яндекс Картах"
+        title="Отзывы на&nbsp;Яндекс Картах"
         loading="lazy"
       />
-      <a href={`https://yandex.ru/maps/org/${orgId}/reviews/`}>Все отзывы на Яндекс Картах</a>
+      <a href={`https://yandex.ru/maps/org/${orgId}/reviews/`}>Все отзывы на&nbsp;Яндекс Картах</a>
     </section>
   );
 };

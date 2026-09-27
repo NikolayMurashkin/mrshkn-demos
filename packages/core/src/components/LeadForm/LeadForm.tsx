@@ -8,10 +8,9 @@ import styles from './LeadForm.module.scss';
 
 type LeadFormProps = {
   policyHref: string;
-  endpoint?: string;
 };
 
-export const LeadForm = ({ policyHref, endpoint = LEAD_ENDPOINT }: LeadFormProps) => {
+export const LeadForm = ({ policyHref }: LeadFormProps) => {
   const id = useId();
   const [status, setStatus] = useState<LeadFormStatus>('idle');
 
@@ -23,7 +22,7 @@ export const LeadForm = ({ policyHref, endpoint = LEAD_ENDPOINT }: LeadFormProps
     setStatus('sending');
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(LEAD_ENDPOINT, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
