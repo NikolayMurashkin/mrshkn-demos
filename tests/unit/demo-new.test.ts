@@ -92,6 +92,13 @@ describe('yarn demo:new <name>', () => {
     expect(read('apps/dental/src/demo.config.ts')).toBe('edited');
   });
 
+  it('если шаблон изменился и замена не прошла, недоделанного демо не остается', () => {
+    writeFileSync(path.join(root, 'apps/template/src/demo.config.ts'), "export const DEMO = { slug: 'renamed' };\n");
+
+    expect(() => scaffoldDemo({ root, name: 'dental' })).toThrow(/шаблон изменился/);
+    expect(existsSync(path.join(root, 'apps/dental'))).toBe(false);
+  });
+
   it('команда без имени завершается с ошибкой и подсказкой', () => {
     const result = spawnSync('yarn', ['demo:new'], { cwd: REPO_ROOT, encoding: 'utf8' });
 

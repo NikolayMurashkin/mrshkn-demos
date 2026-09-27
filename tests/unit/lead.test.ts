@@ -28,12 +28,12 @@ describe('заявка из формы демо', () => {
   });
 
   it.each([
-    ['без имени', { ...VALID, name: ' ' }],
-    ['без связи', { ...VALID, contact: '' }],
-    ['имя не строкой', { ...VALID, name: 42 }],
-    ['пустое тело', null],
-  ])('отказывает заявке %s', (_, input) => {
-    expect(parseLead(input, CONTEXT)).toEqual({ ok: false, reason: expect.stringMatching(/fields|consent/) });
+    ['без имени', { ...VALID, name: ' ' }, 'fields'],
+    ['без связи', { ...VALID, contact: '' }, 'fields'],
+    ['имя не строкой', { ...VALID, name: 42 }, 'fields'],
+    ['пустое тело', null, 'consent'],
+  ])('отказывает заявке %s', (_, input, reason) => {
+    expect(parseLead(input, CONTEXT)).toEqual({ ok: false, reason });
   });
 
   it('без согласия на обработку данных не принимает', () => {

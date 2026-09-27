@@ -1,5 +1,6 @@
 import { PrivacyPolicy } from '@mrshkn/demo-core/components/PrivacyPolicy';
 import type { Metadata } from 'next';
+import { DEMO } from '@/demo.config';
 import styles from '../page.module.scss';
 
 export const metadata: Metadata = {
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 const PrivacyPage = () => (
   <main className={styles.main}>
-    <PrivacyPolicy />
+    <PrivacyPolicy withYandexReviews={Boolean(DEMO.yandexOrgId)} />
   </main>
 );
 

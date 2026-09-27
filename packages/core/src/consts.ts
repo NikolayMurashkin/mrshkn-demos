@@ -4,7 +4,8 @@ export const STUDIO_URL = 'https://mrshkn.com';
 
 export const STUDIO_EMAIL = 'hello@mrshkn.com';
 
-/** Демо живут одноуровневыми поддоменами: wildcard-сертификат `*.mrshkn.com` покрывает ровно один уровень (D24). */
+/** Демо живут одноуровневыми поддоменами: wildcard-сертификат `*.mrshkn.com` покрывает ровно один уровень,
+ * а сертификат на конкретное имя попал бы в открытый журнал Certificate Transparency. */
 export const DEMO_DOMAIN = 'mrshkn.com';
 
 /** Имя поддомена: латиница в нижнем регистре, цифры и дефис, с буквы, до 30 знаков. */

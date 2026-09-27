@@ -4,6 +4,7 @@ import { CookieBanner } from '@mrshkn/demo-core/components/CookieBanner';
 import { DemoFooter } from '@mrshkn/demo-core/components/DemoFooter';
 import { JsonLd } from '@mrshkn/demo-core/components/JsonLd';
 import { LeadForm } from '@mrshkn/demo-core/components/LeadForm';
+import { PrivacyPolicy } from '@mrshkn/demo-core/components/PrivacyPolicy';
 import { YandexReviews } from '@mrshkn/demo-core/components/YandexReviews';
 import { HONEYPOT_FIELD, LEAD_FORM_ID, POLICY_HREF } from '@mrshkn/demo-core/consts';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -89,7 +90,7 @@ describe('отзывы с Яндекс Карт', () => {
 
     expect(frame?.getAttribute('src')).toBe('https://yandex.ru/maps-reviews-widget/1234567890?comments');
     expect(frame?.getAttribute('loading')).toBe('lazy');
-    expect(frame?.getAttribute('title')).toBeTruthy();
+    expect(frame?.getAttribute('title')).toBe('Отзывы на\u00a0Яндекс Картах');
     expect(section.querySelector('a[href="https://yandex.ru/maps/org/1234567890/reviews/"]')).not.toBeNull();
   });
 
@@ -127,7 +128,7 @@ describe('уведомление о cookie', () => {
     );
 
     expect(region.querySelector(`a[href="${POLICY_HREF}"]`)).not.toBeNull();
-    expect(region.querySelector('button')?.textContent).toBeTruthy();
+    expect(region.querySelector('button')?.textContent).toBe('Понятно');
   });
 
   it('после закрытия не показывается', () => {
@@ -179,5 +180,21 @@ describe('форма заявки', () => {
 
     expect(trap?.getAttribute('tabindex')).toBe('-1');
     expect(trap?.closest('[aria-hidden="true"]')).not.toBeNull();
+  });
+});
+
+describe('политика обработки данных', () => {
+  it('без виджета отзывов говорит, что сторонних сервисов на сайте нет', () => {
+    const text = parse(renderToStaticMarkup(<PrivacyPolicy withYandexReviews={false} />)).textContent ?? '';
+
+    expect(text).not.toContain('Яндекс');
+    expect(text).toContain('Аналитики и\u00a0рекламных счетчиков на\u00a0сайте нет');
+  });
+
+  it('с виджетом отзывов предупреждает, что его загружает Яндекс со своими cookie', () => {
+    const text = parse(renderToStaticMarkup(<PrivacyPolicy withYandexReviews />)).textContent ?? '';
+
+    expect(text).toContain('Яндекс Карт');
+    expect(text).toContain('IP-адрес');
   });
 });

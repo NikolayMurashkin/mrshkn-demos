@@ -2,10 +2,7 @@ import { TELEGRAM_API_FALLBACK } from '../consts';
 
 const envOf = (name: string) => process.env[name]?.trim() ?? '';
 
-/**
- * Уведомление о заявке в Telegram. Без бота и чатов демо просто хранит заявку в CMS — это нормальный режим,
- * а не ошибка; `false` значит «не настроено».
- */
+/** Уведомление о заявке в Telegram. Без бота и чатов демо просто хранит заявку в CMS — это нормальный режим, а не ошибка. */
 export const notifyTelegram = async (text: string) => {
   const token = envOf('TELEGRAM_BOT_TOKEN');
   const chats = envOf('TELEGRAM_CHAT_IDS')
@@ -14,7 +11,7 @@ export const notifyTelegram = async (text: string) => {
     .filter(Boolean);
 
   if (!token || !chats.length) {
-    return false;
+    return;
   }
 
   const api = envOf('TELEGRAM_API_URL') || TELEGRAM_API_FALLBACK;
@@ -32,6 +29,4 @@ export const notifyTelegram = async (text: string) => {
       }
     }),
   );
-
-  return true;
 };

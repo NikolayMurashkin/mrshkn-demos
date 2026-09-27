@@ -61,6 +61,14 @@ test.describe('шаблон демо', () => {
     await expect(notice).toHaveCount(0);
   });
 
+  test('закрытое уведомление о cookie сервер не отдает вовсе — оно не мелькает до гидрации', async ({ request }) => {
+    const fresh = await (await request.get('/')).text();
+    const returning = await (await request.get('/', { headers: { cookie: 'cookie_notice=1' } })).text();
+
+    expect(fresh).toContain('Уведомление о cookie');
+    expect(returning).not.toContain('Уведомление о cookie');
+  });
+
   test('без Mini App кнопка записи ведет к форме заявки', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Записаться' }).click();

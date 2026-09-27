@@ -1,7 +1,7 @@
 import { createServer, type Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
 
-export type TelegramCall = {
+type TelegramCall = {
   path: string;
   body: { chat_id: string; text: string };
 };

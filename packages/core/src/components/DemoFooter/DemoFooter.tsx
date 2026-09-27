@@ -7,7 +7,7 @@ type DemoFooterProps = {
   children?: ReactNode;
 };
 
-/** Подпись «Демо-проект студии» — обязательная часть каждого демо (D15), поэтому она не настраивается. */
+/** Подпись «Демо-проект студии» — обязательная часть каждого демо, поэтому она не настраивается. */
 export const DemoFooter = ({ policyHref, children }: DemoFooterProps) => (
   <footer className={styles.footer}>
     <div className={styles.inner}>

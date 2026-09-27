@@ -1,11 +1,16 @@
 import { STUDIO_EMAIL, STUDIO_NAME, STUDIO_URL } from '../../consts';
 import styles from './PrivacyPolicy.module.scss';
 
+type PrivacyPolicyProps = {
+  /** На сайте есть виджет отзывов Яндекс Карт: его загружает Яндекс, и политика должна об этом сказать. */
+  withYandexReviews: boolean;
+};
+
 /**
  * Общая для всех демо политика: дело в демо вымышлено, а заявки с формы получает студия. Текст — черновик
- * до пакета документов студии (B34) и вычитки юристом (B36).
+ * до пакета документов студии и вычитки юристом.
  */
-export const PrivacyPolicy = () => (
+export const PrivacyPolicy = ({ withYandexReviews }: PrivacyPolicyProps) => (
   <article className={styles.policy}>
     <h1>Политика обработки персональных данных</h1>
     <p>
@@ -38,6 +43,12 @@ export const PrivacyPolicy = () => (
       в&nbsp;панель управления сайтом, ставится еще cookie входа. Аналитики и&nbsp;рекламных счетчиков на&nbsp;сайте
       нет.
     </p>
+    {withYandexReviews && (
+      <p>
+        Отзывы на&nbsp;странице показывает виджет Яндекс Карт. Его загружает Яндекс: он получает ваш IP-адрес
+        и&nbsp;может ставить свои cookie по&nbsp;собственным правилам.
+      </p>
+    )}
     <h2>Ваши права</h2>
     <p>
       Напишите на&nbsp;<a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>&nbsp;— расскажем, какие данные о&nbsp;вас

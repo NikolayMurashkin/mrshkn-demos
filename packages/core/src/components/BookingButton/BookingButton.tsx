@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import styles from './BookingButton.module.scss';
 
 type BookingButtonProps = {
-  /** Якорь формы заявки на странице: запись до появления Mini App (B24). */
+  /** Якорь формы заявки на странице: запись, пока у демо нет Mini App «Запись». */
   formHref: string;
   miniAppUrl?: string;
   children: ReactNode;
