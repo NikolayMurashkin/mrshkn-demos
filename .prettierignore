@@ -1,0 +1,11 @@
+.next
+.next-*
+.lighthouseci
+node_modules
+playwright-report
+test-results
+.yarn
+yarn.lock
+apps/*/src/app/(payload)
+apps/*/src/payload-types.ts
+apps/*/src/migrations

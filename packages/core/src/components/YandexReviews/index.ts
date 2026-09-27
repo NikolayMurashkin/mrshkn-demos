@@ -1,0 +1,1 @@
+export { YandexReviews } from './YandexReviews';

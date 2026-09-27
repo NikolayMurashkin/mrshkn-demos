@@ -1,0 +1,20 @@
+.policy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.policy h1,
+.policy h2,
+.policy p {
+  margin: 0;
+}
+
+.policy h2 {
+  margin-top: 12px;
+}
+
+.policy a {
+  color: var(--demo-fg);
+}

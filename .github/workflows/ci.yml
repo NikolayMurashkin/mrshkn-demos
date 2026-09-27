@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Lint, types, unit, integration and e2e
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: demos
+          POSTGRES_PASSWORD: demos
+          POSTGRES_DB: demos_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --immutable
+
+      - run: yarn typecheck
+
+      - run: yarn lint
+
+      - run: yarn format:check
+
+      - run: yarn test:unit
+
+      - run: yarn test:integration
+        env:
+          TEST_DATABASE_URL: postgres://demos:demos@localhost:5432/demos_test
+
+      - name: E2E database
+        run: psql postgres://demos:demos@localhost:5432/demos_test -c 'CREATE DATABASE demos_e2e'
+
+      - run: yarn playwright install --with-deps chromium
+
+      - run: yarn test:e2e
+        env:
+          E2E_DATABASE_URL: postgres://demos:demos@localhost:5432/demos_e2e
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse CI of a fresh demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --immutable
+
+      - name: Runner CPUs
+        run: nproc
+
+      # меряется не шаблон, а демо, только что развернутое из него: так проверяется сама команда
+      - run: yarn demo:new ci-probe
+
+      - run: yarn test:lighthouse ci-probe
+
+      - name: CPU class and score of each run
+        if: ${{ !cancelled() }}
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            for (const file of fs.readdirSync(".lighthouseci").filter((name) => /^lhr-.*\.json$/.test(name))) {
+              const lhr = JSON.parse(fs.readFileSync(`.lighthouseci/${file}`, "utf8"));
+              const tbt = Math.round(lhr.audits["total-blocking-time"].numericValue);
+              console.log(lhr.finalDisplayedUrl, "benchmarkIndex", lhr.environment.benchmarkIndex, "performance", lhr.categories.performance.score, "TBT", tbt);
+            }
+          '
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          include-hidden-files: true
+          retention-days: 7
