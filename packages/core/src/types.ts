@@ -1,5 +1,10 @@
 import type { SanitizedConfig } from 'payload';
 
+export type MapPoint = {
+  latitude: number;
+  longitude: number;
+};
+
 export type DemoAddress = {
   streetAddress: string;
   addressLocality: string;
@@ -18,6 +23,8 @@ export type DemoBusiness = {
   address?: DemoAddress;
   /** Часы работы в формате schema.org: `Mo-Fr 09:00-20:00`. */
   openingHours?: string[];
+  /** Точка на карте: метка виджета карты и координаты в schema.org. */
+  geo?: MapPoint;
 };
 
 export type DemoConfig = {
@@ -30,6 +37,15 @@ export type DemoConfig = {
   miniAppUrl?: string;
   /** Номер организации на Яндекс Картах; без него раздела отзывов нет. */
   yandexOrgId?: string;
+};
+
+/** Отзыв вымышленного пациента вымышленного дела: только текст и подпись, без фото и оценок. */
+export type DemoReview = {
+  /** Имя и первая буква фамилии: «Ирина С.». */
+  author: string;
+  text: string;
+  /** О чем отзыв: услуга или врач. */
+  subject?: string | null;
 };
 
 export type Lead = {

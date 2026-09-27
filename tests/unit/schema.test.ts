@@ -35,6 +35,15 @@ describe('schema.org демо', () => {
     });
   });
 
+  it('кладет точку на карте в geo', () => {
+    const data = buildBusinessJsonLd({
+      ...DEMO,
+      business: { ...DEMO.business, geo: { latitude: 54.7518, longitude: 20.4705 } },
+    });
+
+    expect(data.geo).toEqual({ '@type': 'GeoCoordinates', latitude: 54.7518, longitude: 20.4705 });
+  });
+
   it('не пишет пустых полей', () => {
     const data = buildBusinessJsonLd({
       ...DEMO,

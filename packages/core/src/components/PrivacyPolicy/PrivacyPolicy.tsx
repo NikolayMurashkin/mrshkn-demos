@@ -4,13 +4,15 @@ import styles from './PrivacyPolicy.module.scss';
 type PrivacyPolicyProps = {
   /** На сайте есть виджет отзывов Яндекс Карт: его загружает Яндекс, и политика должна об этом сказать. */
   withYandexReviews: boolean;
+  /** На сайте есть карта Яндекса, которая грузится по нажатию «Показать карту». */
+  withYandexMap?: boolean;
 };
 
 /**
  * Общая для всех демо политика: дело в демо вымышлено, а заявки с формы получает студия. Текст — черновик
  * до пакета документов студии и вычитки юристом.
  */
-export const PrivacyPolicy = ({ withYandexReviews }: PrivacyPolicyProps) => (
+export const PrivacyPolicy = ({ withYandexReviews, withYandexMap = false }: PrivacyPolicyProps) => (
   <article className={styles.policy}>
     <h1>Политика обработки персональных данных</h1>
     <p>
@@ -47,6 +49,13 @@ export const PrivacyPolicy = ({ withYandexReviews }: PrivacyPolicyProps) => (
       <p>
         Отзывы на&nbsp;странице показывает виджет Яндекс Карт. Его загружает Яндекс: он получает ваш IP-адрес
         и&nbsp;может ставить свои cookie по&nbsp;собственным правилам.
+      </p>
+    )}
+    {withYandexMap && (
+      <p>
+        Карту на&nbsp;странице показывают Яндекс Карты, и&nbsp;загружается она, только когда вы&nbsp;нажмете «Показать
+        карту». После этого Яндекс получает ваш IP-адрес, может ставить свои cookie, показывать внутри карты рекламу
+        и&nbsp;собирать статистику по&nbsp;собственным правилам.
       </p>
     )}
     <h2>Ваши права</h2>
