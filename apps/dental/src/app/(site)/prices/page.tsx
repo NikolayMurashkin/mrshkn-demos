@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { typograph } from '@mrshkn/demo-core/typograph';
 import Link from 'next/link';
 import { PageIntro } from '@/components/PageIntro';
 import { PriceTable } from '@/components/PriceTable';
@@ -20,7 +21,7 @@ const PricesPage = async () => {
       <PageIntro
         label="Прайс"
         title="Цены"
-        lead="Цены в&nbsp;рублях. После осмотра врач составляет план лечения с&nbsp;итоговой суммой, и&nbsp;без вашего согласия она не&nbsp;меняется."
+        lead="Цены в&nbsp;рублях. После осмотра врач составляет план лечения с&nbsp;итоговой суммой, и&nbsp;без&nbsp;вашего согласия она не&nbsp;меняется."
       />
       <Section
         id="price-list"
@@ -37,7 +38,7 @@ const PricesPage = async () => {
                 href={`/services/${service.slug}`}
                 prefetch={false}
               >
-                {service.title}
+                {typograph(service.title)}
               </Link>
             </h2>
             <PriceTable

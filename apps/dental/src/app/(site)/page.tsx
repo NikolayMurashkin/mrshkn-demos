@@ -24,7 +24,7 @@ const HomePage = async () => {
         aria-labelledby="hero-title"
       >
         <p className={styles.heroLabel}>
-          <span>01 — {CLINIC_KIND}</span>
+          <span>01&nbsp;— {CLINIC_KIND}</span>
           {address && <span className={styles.accent}>{addressText(address)}</span>}
         </p>
         <div className={styles.heroBody}>
@@ -56,7 +56,7 @@ const HomePage = async () => {
       </section>
       <ul
         className={styles.facts}
-        aria-label="Коротко о клинике"
+        aria-label="Коротко о&nbsp;клинике"
       >
         {FACTS.map((fact) => (
           <li
@@ -71,7 +71,7 @@ const HomePage = async () => {
       </ul>
       <Section
         id="services"
-        label="02 — Услуги"
+        label="02&nbsp;— Услуги"
         title="Услуги и&nbsp;цены"
       >
         <ServiceList services={services} />
@@ -85,14 +85,14 @@ const HomePage = async () => {
       </Section>
       <Section
         id="doctors"
-        label="03 — Врачи"
+        label="03&nbsp;— Врачи"
         title="Врачи"
       >
         <DoctorCards doctors={doctors} />
       </Section>
       <Section
         id="reviews"
-        label="04 — Отзывы"
+        label="04&nbsp;— Отзывы"
       >
         <DemoReviews
           title="Отзывы пациентов"
@@ -101,14 +101,14 @@ const HomePage = async () => {
       </Section>
       <Section
         id="license"
-        label="05 — Лицензия"
+        label="05&nbsp;— Лицензия"
         title="Лицензия"
       >
         <LicenseInfo />
       </Section>
       <Section
         id={CONTACTS_ID}
-        label="06 — Контакты"
+        label="06&nbsp;— Контакты"
         title="Контакты"
       >
         <Contacts />

@@ -41,7 +41,7 @@ export const Contacts = () => {
       {geo && (
         <MapEmbed
           point={geo}
-          label={`${name} на карте`}
+          label={`${name} на карте`}
         />
       )}
     </div>

@@ -6,7 +6,7 @@ import { getDoctors } from '@/cms/queries';
 
 export const metadata: Metadata = {
   title: 'Врачи',
-  description: 'Врачи стоматологии: терапевт, хирурги, ортопед, ортодонт, детский стоматолог и гигиенист.',
+  description: 'Врачи стоматологии: терапевт, хирурги, ортопед, ортодонт, детский стоматолог и гигиенист.',
 };
 
 const DoctorsPage = async () => {

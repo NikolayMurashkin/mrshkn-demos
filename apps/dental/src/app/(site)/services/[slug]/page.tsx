@@ -36,7 +36,7 @@ const ServicePage = async ({ params }: ServicePageProps) => {
       <PageIntro
         label="Услуга"
         note={formatPrice(service.priceFrom, true)}
-        title={service.title}
+        title={typograph(service.title)}
         lead={typograph(service.summary)}
       >
         <BookingButton

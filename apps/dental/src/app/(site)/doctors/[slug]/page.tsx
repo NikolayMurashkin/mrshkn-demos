@@ -1,6 +1,6 @@
 import { BookingButton } from '@mrshkn/demo-core/components/BookingButton';
 import { LEAD_FORM_ID } from '@mrshkn/demo-core/consts';
-import { paragraphs } from '@mrshkn/demo-core/typograph';
+import { paragraphs, typograph } from '@mrshkn/demo-core/typograph';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PageIntro } from '@/components/PageIntro';
@@ -35,7 +35,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
     <>
       <PageIntro
         label="Врач"
-        note={doctor.position}
+        note={typograph(doctor.position)}
         title={doctor.name}
         lead={practiceSinceText(doctor.practiceSince)}
       >
@@ -48,8 +48,8 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
       </PageIntro>
       <Section
         id="about"
-        label="О враче"
-        title="О враче"
+        label="О&nbsp;враче"
+        title="О&nbsp;враче"
       >
         <div className={styles.text}>
           {paragraphs(doctor.about).map((paragraph) => (
@@ -65,7 +65,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
         >
           <ul className={styles.list}>
             {doctor.education?.map(({ id, item }) => (
-              <li key={id ?? item}>{item}</li>
+              <li key={id ?? item}>{typograph(item)}</li>
             ))}
           </ul>
         </Section>
