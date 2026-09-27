@@ -1,3 +1,4 @@
+import { typograph } from '@mrshkn/demo-core/typograph';
 import Link from 'next/link';
 import { initialsOf, practiceSinceText } from '@/lib/format';
 import type { Doctor } from '@/payload-types';
@@ -21,7 +22,7 @@ export const DoctorCards = ({ doctors }: DoctorCardsProps) => (
         >
           {initialsOf(doctor.name)}
         </span>
-        <p className={styles.position}>{doctor.position}</p>
+        <p className={styles.position}>{typograph(doctor.position)}</p>
         <h3 className={styles.name}>
           <Link
             href={`/doctors/${doctor.slug}`}

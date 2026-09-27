@@ -27,7 +27,7 @@ export const ServiceList = ({ services }: ServiceListProps) => (
           href={`/services/${service.slug}`}
           prefetch={false}
         >
-          {service.title}
+          {typograph(service.title)}
         </Link>
         <p className={styles.summary}>{typograph(service.summary)}</p>
         <p className={styles.price}>{formatPrice(service.priceFrom, true)}</p>

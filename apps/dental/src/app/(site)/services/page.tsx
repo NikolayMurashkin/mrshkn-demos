@@ -8,7 +8,7 @@ import styles from '../content.module.scss';
 
 export const metadata: Metadata = {
   title: 'Услуги',
-  description: 'Лечение зубов, гигиена, имплантация, протезирование, исправление прикуса, удаление и детский прием.',
+  description: 'Лечение зубов, гигиена, имплантация, протезирование, исправление прикуса, удаление и детский прием.',
 };
 
 const ServicesPage = async () => {
