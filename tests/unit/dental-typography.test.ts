@@ -11,8 +11,11 @@ const SRC = path.resolve(import.meta.dirname, '../../apps/dental/src');
  */
 const SKIPPED = ['payload-types.ts', 'migrations', '(payload)', 'seed', 'collections'];
 
-/** Короткое слово, за которым обычный пробел, а не неразрывный: «в плане», «и зачем». */
-const LOOSE_SHORT_WORD = new RegExp(`(?<![а-яё])(${SHORT_WORDS.join('|')}) (?=\\S)`, 'iu');
+/**
+ * Короткое слово, за которым обычный пробел, а не неразрывный: «в плане», «и зачем». В тексте JSX пробелом
+ * становится и перенос строки после слова, и `{' '}`.
+ */
+const LOOSE_SHORT_WORD = new RegExp(`(?<![а-яё])(${SHORT_WORDS.join('|')})( (?=\\S)|$|\\{' '\\})`, 'iu');
 
 const LOOSE_DASH = / —/;
 
