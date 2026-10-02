@@ -42,6 +42,7 @@ tests/e2e/                Playwright по шаблону
 ## Новое демо
 
 `yarn demo:new <slug>`: копирует `apps/template` в `apps/<slug>` без сборок, зависимостей, отчетов, медиатеки и `.env`; переименовывает пакет в `@mrshkn/demo-<slug>` и поддомен в `demo.config.ts`; `yarn install` (новый workspace; на CI установка immutable по умолчанию → `--no-immutable`).
+
 - Имя = поддомен: латиница в нижнем регистре, цифры, дефис, с буквы, 2–30 знаков. Отказ: занятые студией (`RESERVED_SLUGS` в `packages/core/src/consts.ts`) и существующие демо.
 - Поддомен одноуровневый: wildcard-сертификат `*.mrshkn.com` покрывает один уровень (D24).
 - Изменены строки, которые заменяет скрипт (`"@mrshkn/demo-template"` в `package.json`, `slug: 'template'` в `demo.config.ts`) → скрипт падает и удаляет недоделанную копию, а не разворачивает демо с чужим поддоменом.
@@ -91,6 +92,7 @@ yarn test:lighthouse [slug]            сборка демо с DEMO_ENV=product
 ```
 
 Lighthouse CI (`lighthouserc.cjs`):
+
 - Страницы — из `apps/<slug>/lighthouse.json` (у «Клиники» главная, страница врача, страница услуги); без файла — главная и `/privacy`.
 - Три прогона после одного прогревочного, `aggregationMethod: 'pessimistic'`: каждая категория (performance, accessibility, best practices, SEO) ≥ 0,9 в каждом прогоне.
 - CI-матрица: `ci-probe` (демо, только что развернутое `yarn demo:new ci-probe`: так проверяется сама команда) и демо со своими страницами. У каждого своя база Postgres; схема — миграции при старте (`MIGRATE_ON_START`), контент — засев.
@@ -120,7 +122,8 @@ Lighthouse CI (`lighthouserc.cjs`):
 ## Деплой
 
 Образ один на все демо: `docker build --build-arg APP=<slug> .` собирает `apps/<slug>` в standalone, запускает `node apps/<slug>/server.js` на 3000 с `MIGRATE_ON_START=true`. Переменные при работе: `DATABASE_URL`, `PAYLOAD_SECRET`, `DEMO_ENV` (пусто — noindex), опционально `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_IDS`.
-Сертификат — общий wildcard `*.mrshkn.com` из Coolify; свой на имя демо не заводить: имя попадет в журнал Certificate Transparency (D24). Работа с сервером — `../docs/ops/coolify.md`, для демо — раздел «Отраслевое демо из `mrshkn-demos`» (переменная сборки `APP=<slug>`, `DEMO_ENV`, имена секретов).
+Сервер образы не собирает (D41). Пуш в `main` → джобы `apps` и `image` в `ci.yml`: после зеленого `checks` (Lighthouse не ждут) по образу на каждую папку `apps/<slug>` — `ghcr.io/nikolaymurashkin/mrshkn-demo-<slug>:<sha коммита>` (пакеты приватные). Демо со стендом выкатывается: slug → UUID приложения Coolify в переменной репозитория `COOLIFY_APPS` (JSON), джоб ставит приложению тег коммита через API (секрет `COOLIFY_TOKEN`) и ждет `finished`. Демо без строки в `COOLIFY_APPS` только собирается.
+Сертификат — общий wildcard `*.mrshkn.com` из Coolify; свой на имя демо не заводить: имя попадет в журнал Certificate Transparency (D24). Работа с сервером — `../docs/ops/coolify.md`, для демо — раздел «Отраслевое демо из `mrshkn-demos`» (приложение Docker Image, `COOLIFY_APPS`, `DEMO_ENV`, имена секретов).
 
 Тесты и Lighthouse CI поднимают демо через `next start` (лог `"next start" does not work with "output: standalone"` безвреден), т.е. сьют проверяет `next start`, а не `node apps/<slug>/server.js` из образа. Поэтому правку `Dockerfile` или `next.config.ts` проверять сборкой и запуском образа руками:
 `docker build --build-arg APP=template -t mrshkn-demo-template:local .`, затем
