@@ -1,0 +1,31 @@
+@use '../../../styles/media';
+@use '../../../styles/type';
+
+.page {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin: var(--space-40) var(--s-gutter) 0;
+  padding-top: 20px;
+  border-top: var(--border-width-strong) solid var(--ink);
+}
+
+.mark {
+  @include type.kicker;
+
+  grid-column: span 3;
+  color: var(--muted);
+}
+
+.text {
+  grid-column: 4 / -1;
+  min-width: 0;
+}
+
+@include media.max-1080 {
+  .mark,
+  .text {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,7 +1,10 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  border-bottom: 1px solid var(--demo-border);
+  border-bottom: var(--border-width) solid var(--ink);
 }
 
 .caption {
@@ -13,34 +16,59 @@
   white-space: nowrap;
 }
 
-.row {
-  border-top: 1px solid var(--demo-border);
+.head {
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+.headName,
+.headPrice {
+  @include type.kicker;
+
+  padding: 0 0 var(--space-12);
+  color: var(--muted);
+}
+
+.headName {
+  text-align: left;
+}
+
+.headPrice {
+  padding-left: var(--space-24);
+  text-align: right;
+}
+
+.row + .row {
+  border-top: var(--border-width) solid var(--line);
 }
 
 .name {
-  padding: 16px 24px 16px 0;
+  @include type.backend-text;
+
+  padding: 20px var(--space-24) 20px 0;
+  font-size: var(--font-size-prose);
   font-weight: 400;
+  line-height: 1.45;
   text-align: left;
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
 .price {
-  padding: 16px 0;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
+  @include type.price;
+
+  padding: 20px 0;
   text-align: right;
   white-space: nowrap;
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
-@media (max-width: 767px) {
+@include media.max-720 {
   .name {
-    padding: 14px 16px 14px 0;
-    font-size: 16px;
+    padding: var(--space-16) var(--space-16) var(--space-16) 0;
+    font-size: var(--font-size-body);
   }
 
   .price {
-    padding: 14px 0;
-    font-size: 16px;
+    padding: var(--space-16) 0;
+    font-size: 18px;
   }
 }

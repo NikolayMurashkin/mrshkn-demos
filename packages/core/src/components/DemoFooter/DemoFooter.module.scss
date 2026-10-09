@@ -1,19 +1,15 @@
 .footer {
-  margin-top: auto;
-  padding: 32px 0;
-  border-top: 1px solid var(--demo-border);
-  background: var(--demo-surface);
+  margin: 0 var(--demo-gutter);
+  padding: 24px 0 32px;
   color: var(--demo-muted);
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: var(--demo-content-width);
-  margin: 0 auto;
-  padding: 0 var(--demo-gutter);
+  gap: 24px;
 }
 
 .meta {
@@ -23,10 +19,32 @@
   gap: 8px 24px;
 }
 
+.inner > * + .meta {
+  padding-top: 16px;
+  border-top: var(--demo-border-width) solid var(--demo-border);
+}
+
 .mark {
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .footer a {
   color: var(--demo-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color var(--demo-duration) var(--demo-ease);
+}
+
+.footer a:hover,
+.footer a:active {
+  color: var(--demo-accent-ink);
+  text-decoration-thickness: 2px;
+}
+
+.footer a:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
 }

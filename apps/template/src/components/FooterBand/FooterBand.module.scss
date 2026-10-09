@@ -1,0 +1,127 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.band {
+  counter-increment: section;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin-top: var(--space-96);
+  padding: var(--space-56) var(--s-gutter) 64px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.band :focus-visible {
+  outline-color: var(--accent-contrast);
+}
+
+.aside {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.index {
+  @include type.index;
+}
+
+.index::before {
+  content: counter(section, decimal-leading-zero);
+}
+
+.mark {
+  @include type.kicker;
+  @include type.backend-text;
+
+  color: var(--accent-contrast-soft);
+}
+
+.main {
+  grid-column: 4 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  min-width: 0;
+}
+
+.title {
+  @include type.footer-title;
+
+  overflow-wrap: break-word;
+}
+
+.lead {
+  @include type.lead;
+  @include type.backend-text;
+
+  max-width: 40ch;
+  color: var(--accent-contrast-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16) var(--space-24);
+  margin-top: var(--space-16);
+}
+
+.cta {
+  @include button.base;
+  @include button.lg;
+  @include button.on-accent;
+
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  min-height: 64px;
+  padding-block: var(--space-16);
+  line-height: 1.25;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@include media.max-1080 {
+  .aside {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-8) 20px;
+  }
+
+  .index {
+    font-size: 56px;
+  }
+
+  .main {
+    grid-column: 1 / -1;
+  }
+}
+
+@include media.max-720 {
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@include media.max-480 {
+  .band {
+    padding: 48px var(--s-gutter);
+  }
+
+  .actions {
+    align-items: stretch;
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

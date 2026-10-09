@@ -9,9 +9,26 @@ type PriceTableProps = {
   prices: Service['prices'];
 };
 
+/** Прайс услуги таблицей с заголовками колонок; вид — строки PlanRow DS: шапка кикером, линии между строками. */
 export const PriceTable = ({ caption, prices }: PriceTableProps) => (
   <table className={styles.table}>
     <caption className={styles.caption}>{caption}</caption>
+    <thead>
+      <tr className={styles.head}>
+        <th
+          className={styles.headName}
+          scope="col"
+        >
+          Услуга
+        </th>
+        <th
+          className={styles.headPrice}
+          scope="col"
+        >
+          Цена
+        </th>
+      </tr>
+    </thead>
     <tbody>
       {prices.map((row, index) => (
         <tr

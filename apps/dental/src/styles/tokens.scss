@@ -1,33 +1,116 @@
+@use './media';
+
 :root {
-  --demo-bg: #ffffff;
-  --demo-fg: #0a0a0b;
-  --demo-muted: #5f5f66;
-  --demo-surface: #f3f3f5;
-  --demo-border: #e2e2e6;
-  --demo-border-strong: #0a0a0b;
-  --demo-accent: #0a0a0b;
-  --demo-accent-hover: #1a3ee8;
-  --demo-accent-fg: #ffffff;
-  --demo-danger: #b42318;
-  --demo-focus: #1a3ee8;
-  --demo-shadow: none;
-  --demo-radius: 0;
-  --demo-font: var(--font-geologica), 'Helvetica Neue', Arial, sans-serif;
-  --demo-content-width: 1440px;
-  --demo-gutter: 64px;
-  --clinic-accent: #1a3ee8;
-  --clinic-grid-gap: 24px;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f3f3f5;
+  --ink: #0a0a0b;
+  --ink-inverse: #ffffff;
+  --muted: #5f5f66;
+  --line: #e2e2e6;
+  --line-strong: #85858e;
+  --accent: #1a3ee8;
+  --accent-ink: #1a3ee8;
+  --accent-contrast: #ffffff;
+  --accent-contrast-soft: #d3dbff;
+
+  --font-display: 'Geologica', 'Geologica Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'Geologica', 'Geologica Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-hero-title: clamp(44px, 9.4vw, 136px);
+  --font-size-index: clamp(56px, 8.4vw, 120px);
+  --font-size-footer-title: clamp(44px, 8.4vw, 120px);
+  --font-size-section-title: clamp(36px, 6.2vw, 88px);
+  --font-size-page-title: clamp(36px, 6.2vw, 88px);
+  --font-size-numeral: clamp(44px, 4.4vw, 64px);
+  --font-size-metric: clamp(26px, 2.4vw, 36px);
+  --font-size-plan-name: clamp(20px, 2vw, 28px);
+  --font-size-card-title: 24px;
+  --font-size-price: 22px;
+  --font-size-wordmark: 22px;
+  --font-size-lead: clamp(17px, 1.5vw, 21px);
+  --font-size-prose: 17px;
+  --font-size-body: 16px;
+  --font-size-button: 15px;
+  --font-size-small: 14px;
+  --font-size-kicker: 12px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-96: 96px;
+
+  --s-gutter: clamp(20px, 4.5vw, 64px);
+
+  --radius-control: 0;
+  --shadow-floating: none;
+  --border-width: 1px;
+  --border-width-strong: 2px;
+
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-guide: 600ms;
+  --duration-reveal: 800ms;
+  --duration-stagger: 60ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--surface);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--line-strong);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-strong);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-strong);
+  --demo-radius: var(--radius-control);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-display);
+  --demo-control-height: 54px;
+  --demo-control-height-sm: 44px;
+  --demo-button-padding-x: 24px;
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 500;
+  --demo-label-size: var(--font-size-kicker);
+  --demo-label-weight: 500;
+  --demo-label-tracking: 0.12em;
+  --demo-label-case: uppercase;
+  --demo-title-size: var(--font-size-section-title);
+  --demo-title-weight: 700;
+  --demo-title-leading: 0.95;
+  --demo-title-tracking: -0.04em;
+  --demo-section-gap: var(--space-56);
+  --demo-gutter: var(--s-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-in-out);
+  --demo-ease-move: var(--ease-out);
 }
 
-@media (max-width: 1279px) {
+@include media.max-720 {
   :root {
-    --demo-gutter: 32px;
+    --demo-section-gap: var(--space-40);
   }
 }
 
-@media (max-width: 767px) {
+@include media.max-480 {
   :root {
-    --demo-gutter: 16px;
-    --clinic-grid-gap: 16px;
+    --font-size-page-title: clamp(29px, 6.2vw, 88px);
   }
 }

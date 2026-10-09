@@ -38,6 +38,7 @@ const ServicePage = async ({ params }: ServicePageProps) => {
         note={formatPrice(service.priceFrom, true)}
         title={typograph(service.title)}
         lead={typograph(service.summary)}
+        back={{ href: '/services', label: 'Все услуги' }}
       >
         <BookingButton
           formHref={`#${LEAD_FORM_ID}`}
@@ -58,7 +59,7 @@ const ServicePage = async ({ params }: ServicePageProps) => {
       </Section>
       <Section
         id="about"
-        label="Как проходит"
+        label="Лечение"
         title="Как проходит лечение"
       >
         <div className={styles.text}>
@@ -72,6 +73,7 @@ const ServicePage = async ({ params }: ServicePageProps) => {
           id="doctors"
           label="Врачи"
           title="Кто ведет"
+          wide
         >
           <DoctorCards doctors={doctors} />
         </Section>

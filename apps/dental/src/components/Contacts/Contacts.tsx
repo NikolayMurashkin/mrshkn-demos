@@ -39,10 +39,12 @@ export const Contacts = () => {
         </div>
       </dl>
       {geo && (
-        <MapEmbed
-          point={geo}
-          label={`${name} на карте`}
-        />
+        <div className={styles.map}>
+          <MapEmbed
+            point={geo}
+            label={`${name} на карте`}
+          />
+        </div>
       )}
     </div>
   );

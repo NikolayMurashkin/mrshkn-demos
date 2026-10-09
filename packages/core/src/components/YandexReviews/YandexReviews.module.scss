@@ -1,21 +1,41 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--demo-section-gap);
+  min-width: 0;
 }
 
 .title {
   margin: 0;
+  font-family: var(--demo-font-display);
+  font-size: var(--demo-title-size);
+  font-weight: var(--demo-title-weight);
+  line-height: var(--demo-title-leading);
+  letter-spacing: var(--demo-title-tracking);
+  overflow-wrap: break-word;
 }
 
 .frame {
   width: 100%;
   max-width: 760px;
   height: 800px;
-  border: 1px solid var(--demo-border);
+  border: var(--demo-border-width) solid var(--demo-border);
   border-radius: var(--demo-radius);
 }
 
 .section a {
+  align-self: flex-start;
   color: var(--demo-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.section a:hover {
+  color: var(--demo-accent-ink);
+}
+
+.section a:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
 }

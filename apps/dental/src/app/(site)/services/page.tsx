@@ -23,7 +23,7 @@ const ServicesPage = async () => {
       />
       <Section
         id="services"
-        label="Все услуги"
+        label="Список"
       >
         <ServiceList services={services} />
         <p className={styles.note}>

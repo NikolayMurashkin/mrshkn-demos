@@ -5,7 +5,10 @@ import { demoUrl, robotsMetadata } from '@mrshkn/demo-core/demo';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import type { ReactNode } from 'react';
+import { FooterBand } from '@/components/FooterBand';
+import { Header } from '@/components/Header';
 import { DEMO } from '@/demo.config';
+import { geologica } from '@/styles/fonts';
 import '@/styles/globals.scss';
 
 type SiteLayoutProps = {
@@ -23,9 +26,14 @@ const SiteLayout = async ({ children }: SiteLayoutProps) => {
   const noticeClosed = (await cookies()).has(CONSENT_COOKIE);
 
   return (
-    <html lang="ru">
+    <html
+      lang="ru"
+      className={geologica.className}
+    >
       <body>
+        <Header />
         {children}
+        <FooterBand />
         <DemoFooter policyHref={POLICY_HREF} />
         <CookieBanner
           policyHref={POLICY_HREF}

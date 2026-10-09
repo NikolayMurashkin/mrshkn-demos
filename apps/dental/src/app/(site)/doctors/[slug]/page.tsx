@@ -38,6 +38,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
         note={typograph(doctor.position)}
         title={doctor.name}
         lead={practiceSinceText(doctor.practiceSince)}
+        back={{ href: '/doctors', label: 'Все врачи' }}
       >
         <BookingButton
           formHref={`#${LEAD_FORM_ID}`}
@@ -48,7 +49,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
       </PageIntro>
       <Section
         id="about"
-        label="О&nbsp;враче"
+        label="Профиль"
         title="О&nbsp;враче"
       >
         <div className={styles.text}>

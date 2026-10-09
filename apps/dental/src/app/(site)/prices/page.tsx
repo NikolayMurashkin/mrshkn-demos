@@ -19,34 +19,36 @@ const PricesPage = async () => {
   return (
     <>
       <PageIntro
-        label="Прайс"
+        label="Цены"
         title="Цены"
         lead="Цены в&nbsp;рублях. После осмотра врач составляет план лечения с&nbsp;итоговой суммой, и&nbsp;без&nbsp;вашего согласия она не&nbsp;меняется."
       />
       <Section
         id="price-list"
-        label="Прайс по&nbsp;услугам"
+        label="Прайс"
       >
-        {services.map((service) => (
-          <div
-            key={service.id}
-            className={styles.group}
-            id={service.slug}
-          >
-            <h2 className={styles.groupTitle}>
-              <Link
-                href={`/services/${service.slug}`}
-                prefetch={false}
-              >
-                {typograph(service.title)}
-              </Link>
-            </h2>
-            <PriceTable
-              caption={`Цены: ${service.title}`}
-              prices={service.prices}
-            />
-          </div>
-        ))}
+        <div className={styles.groups}>
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className={styles.group}
+              id={service.slug}
+            >
+              <h2 className={styles.groupTitle}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  prefetch={false}
+                >
+                  {typograph(service.title)}
+                </Link>
+              </h2>
+              <PriceTable
+                caption={`Цены: ${service.title}`}
+                prices={service.prices}
+              />
+            </div>
+          ))}
+        </div>
       </Section>
     </>
   );

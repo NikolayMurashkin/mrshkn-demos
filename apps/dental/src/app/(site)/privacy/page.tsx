@@ -9,10 +9,13 @@ export const metadata: Metadata = {
 
 const PrivacyPage = () => (
   <div className={styles.policy}>
-    <PrivacyPolicy
-      withYandexReviews={Boolean(DEMO.yandexOrgId)}
-      withYandexMap={Boolean(DEMO.business.geo)}
-    />
+    <p className={styles.policyMark}>Документ</p>
+    <div className={styles.policyText}>
+      <PrivacyPolicy
+        withYandexReviews={Boolean(DEMO.yandexOrgId)}
+        withYandexMap={Boolean(DEMO.business.geo)}
+      />
+    </div>
   </div>
 );
 

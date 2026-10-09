@@ -12,6 +12,9 @@ export const NAV = [
   { href: '/#contacts', label: 'Контакты' },
 ];
 
+/** Двенадцать направляющих сетки на первом экране. */
+export const GUIDES = Array.from({ length: 12 }, (_, index) => index);
+
 export const HERO = {
   title: 'Лечим зубы точно по плану',
   lead: 'Сначала снимок и план лечения с ценой, потом работа. Сумма в плане не меняется без вашего согласия.',
@@ -48,3 +51,10 @@ export const DIRECTIONS_TEXT = 'Вход с улицы, у входа три �
 export const MEDICAL_WARNING = 'Имеются противопоказания. Необходима консультация специалиста.';
 
 export const CONTACTS_ID = 'contacts';
+
+/** Плита над подвалом: вопрос, приглашение и звонок в клинику. */
+export const BAND = {
+  label: 'Звонок',
+  title: 'Остались вопросы?',
+  lead: 'Позвоните\u00a0— администратор ответит в\u00a0часы работы клиники.',
+};

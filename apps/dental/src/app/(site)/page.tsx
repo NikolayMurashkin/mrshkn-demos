@@ -2,13 +2,14 @@ import { BookingButton } from '@mrshkn/demo-core/components/BookingButton';
 import { DemoReviews } from '@mrshkn/demo-core/components/DemoReviews';
 import { LEAD_FORM_ID } from '@mrshkn/demo-core/consts';
 import Link from 'next/link';
+import { Arrow } from '@/components/Arrow';
 import { Contacts } from '@/components/Contacts';
 import { DoctorCards } from '@/components/DoctorCards';
 import { LicenseInfo } from '@/components/LicenseInfo';
 import { Section } from '@/components/Section';
 import { ServiceList } from '@/components/ServiceList';
 import { getDoctors, getReviews, getServices } from '@/cms/queries';
-import { CLINIC_KIND, CONTACTS_ID, FACTS, HERO } from '@/consts';
+import { CLINIC_KIND, CONTACTS_ID, FACTS, GUIDES, HERO, HOURS_TEXT } from '@/consts';
 import { DEMO } from '@/demo.config';
 import { addressText } from '@/lib/format';
 import styles from './page.module.scss';
@@ -23,18 +24,32 @@ const HomePage = async () => {
         className={styles.hero}
         aria-labelledby="hero-title"
       >
-        <p className={styles.heroLabel}>
-          <span>01&nbsp;— {CLINIC_KIND}</span>
-          {address && <span className={styles.accent}>{addressText(address)}</span>}
-        </p>
-        <div className={styles.heroBody}>
+        <div
+          className={styles.guides}
+          aria-hidden="true"
+        >
+          {GUIDES.map((guide) => (
+            <span key={guide} />
+          ))}
+        </div>
+        <div className={styles.aside}>
+          <span
+            className={styles.index}
+            aria-hidden="true"
+          />
+          <p className={styles.mark}>{CLINIC_KIND}</p>
+          {address && <p className={styles.location}>{addressText(address)}</p>}
+          <p className={styles.hours}>{HOURS_TEXT}</p>
+        </div>
+        <div className={styles.heroMain}>
           <h1
             className={styles.title}
             id="hero-title"
           >
             {HERO.title}
+            <span className={styles.dot}>.</span>
           </h1>
-          <div className={styles.heroRow}>
+          <div className={styles.row}>
             <p className={styles.lead}>{HERO.lead}</p>
             <div className={styles.actions}>
               <BookingButton
@@ -53,6 +68,10 @@ const HomePage = async () => {
             </div>
           </div>
         </div>
+        <span
+          className={styles.rule}
+          aria-hidden="true"
+        />
       </section>
       <ul
         className={styles.facts}
@@ -71,7 +90,7 @@ const HomePage = async () => {
       </ul>
       <Section
         id="services"
-        label="02&nbsp;— Услуги"
+        label="Услуги"
         title="Услуги и&nbsp;цены"
       >
         <ServiceList services={services} />
@@ -81,18 +100,20 @@ const HomePage = async () => {
           prefetch={false}
         >
           Полный прайс
+          <Arrow />
         </Link>
       </Section>
       <Section
         id="doctors"
-        label="03&nbsp;— Врачи"
+        label="Врачи"
         title="Врачи"
+        wide
       >
         <DoctorCards doctors={doctors} />
       </Section>
       <Section
         id="reviews"
-        label="04&nbsp;— Отзывы"
+        label="Отзывы"
       >
         <DemoReviews
           title="Отзывы пациентов"
@@ -101,14 +122,14 @@ const HomePage = async () => {
       </Section>
       <Section
         id="license"
-        label="05&nbsp;— Лицензия"
+        label="Лицензия"
         title="Лицензия"
       >
         <LicenseInfo />
       </Section>
       <Section
         id={CONTACTS_ID}
-        label="06&nbsp;— Контакты"
+        label="Контакты"
         title="Контакты"
       >
         <Contacts />

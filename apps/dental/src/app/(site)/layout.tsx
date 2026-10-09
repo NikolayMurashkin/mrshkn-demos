@@ -9,6 +9,7 @@ import { cookies } from 'next/headers';
 import type { ReactNode } from 'react';
 import { BookingSection } from '@/components/BookingSection';
 import { ClinicFooter } from '@/components/ClinicFooter';
+import { FooterBand } from '@/components/FooterBand';
 import { Header } from '@/components/Header';
 import { DEMO } from '@/demo.config';
 import { geologica } from '@/styles/fonts';
@@ -32,7 +33,7 @@ const SiteLayout = async ({ children }: SiteLayoutProps) => {
   return (
     <html
       lang="ru"
-      className={geologica.variable}
+      className={geologica.className}
     >
       <body>
         <JsonLd data={buildBusinessJsonLd(DEMO)} />
@@ -41,6 +42,7 @@ const SiteLayout = async ({ children }: SiteLayoutProps) => {
           {children}
           <BookingSection />
         </main>
+        <FooterBand />
         <DemoFooter policyHref={POLICY_HREF}>
           <ClinicFooter />
         </DemoFooter>

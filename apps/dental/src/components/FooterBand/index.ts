@@ -1,0 +1,1 @@
+export { FooterBand } from './FooterBand';

@@ -1,20 +1,68 @@
 .policy {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 720px;
+  gap: 16px;
+  counter-reset: policy;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 .policy h1,
 .policy h2,
 .policy p {
   margin: 0;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.policy h1 {
+  margin-bottom: 40px;
+  font-family: var(--demo-font-display);
+  font-size: var(--demo-title-size);
+  font-weight: var(--demo-title-weight);
+  line-height: var(--demo-title-leading);
+  letter-spacing: var(--demo-title-tracking);
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .policy h2 {
-  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+  max-width: 68ch;
+  margin-top: 24px;
+  counter-increment: policy;
+  font-family: var(--demo-font-display);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.policy h2::before {
+  content: counter(policy) '.';
+  color: var(--demo-accent-ink);
+  font-weight: 300;
+}
+
+.policy p {
+  max-width: 68ch;
 }
 
 .policy a {
   color: var(--demo-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color var(--demo-duration) var(--demo-ease);
+}
+
+.policy a:hover {
+  color: var(--demo-accent-ink);
+  text-decoration-thickness: 2px;
+}
+
+.policy a:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
 }

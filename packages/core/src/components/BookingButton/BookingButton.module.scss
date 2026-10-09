@@ -2,20 +2,56 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 12px 24px;
+  gap: 16px;
+  max-width: 100%;
+  height: var(--demo-control-height);
+  padding: 0 var(--demo-button-padding-x);
+  border: var(--demo-border-width) solid var(--demo-fg);
   border-radius: var(--demo-radius);
-  background: var(--demo-accent);
-  color: var(--demo-accent-fg);
-  font-weight: 600;
+  background: var(--demo-fg);
+  color: var(--demo-fg-inverse);
+  font-size: var(--demo-button-font-size);
+  font-weight: var(--demo-button-font-weight);
+  line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--demo-duration) var(--demo-ease),
+    background-color var(--demo-duration) var(--demo-ease),
+    border-color var(--demo-duration) var(--demo-ease);
 }
 
-.button:hover {
-  background: var(--demo-accent-hover);
+.button::after {
+  content: '';
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='square'%3E%3Cpath d='M4 12h15M13 6l6 6-6 6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transition: transform var(--demo-duration-move) var(--demo-ease-move);
+}
+
+.button:hover,
+.button:active {
+  border-color: var(--demo-accent);
+  background: var(--demo-accent);
+  color: var(--demo-accent-fg);
+}
+
+.button:hover::after,
+.button:active::after {
+  transform: translateX(4px);
 }
 
 .button:focus-visible {
-  outline: 3px solid var(--demo-focus);
-  outline-offset: 2px;
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::after {
+    transition: none;
+  }
 }

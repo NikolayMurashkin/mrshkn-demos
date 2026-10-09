@@ -1,3 +1,4 @@
 {
-  "paths": ["/", "/doctors/lisitsyna", "/services/implants"]
+  "paths": ["/", "/doctors/lisitsyna", "/services/implants"],
+  "minScores": { "accessibility": 1 }
 }

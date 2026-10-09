@@ -1,74 +1,104 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
 .text {
+  @include type.prose;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  max-width: 760px;
-  font-size: 19px;
-}
-
-.text p {
-  margin: 0;
+  gap: var(--space-16);
+  max-width: 68ch;
 }
 
 .list {
+  @include type.prose;
+
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: var(--space-8);
+  max-width: 68ch;
 }
 
 .list li {
-  padding: 14px 0;
-  border-top: 1px solid var(--demo-border);
+  position: relative;
+  padding-left: 20px;
 }
 
-.list li:last-child {
-  border-bottom: 1px solid var(--demo-border);
+.list li::before {
+  content: '';
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 10px;
+  height: var(--border-width-strong);
+  background: var(--ink);
 }
 
 .note {
-  width: 100%;
-  max-width: 760px;
-  margin: 0;
-  color: var(--demo-muted);
+  @include type.small;
+  @include type.backend-text;
+
+  max-width: 56ch;
+  color: var(--muted);
+}
+
+.note a {
+  @include button.link;
+
+  color: var(--ink);
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-72);
 }
 
 .group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  scroll-margin-top: 24px;
+  gap: var(--space-24);
 }
 
 .groupTitle {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  @include type.plan-name;
+  @include type.backend-text;
 }
 
 .groupTitle a {
-  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-in-out);
 }
 
-.groupTitle a:hover {
-  color: var(--clinic-accent);
-}
-
-@media (max-width: 767px) {
-  .text {
-    font-size: 17px;
-  }
-
-  .groupTitle {
-    font-size: 21px;
-  }
+.groupTitle a:hover,
+.groupTitle a:active {
+  color: var(--accent-ink);
 }
 
 .policy {
-  padding: 64px 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-24);
+  margin: var(--space-40) var(--s-gutter) 0;
+  padding-top: 20px;
+  border-top: var(--border-width-strong) solid var(--ink);
+}
+
+.policyMark {
+  @include type.kicker;
+
+  grid-column: span 3;
+  color: var(--muted);
+}
+
+.policyText {
+  grid-column: 4 / -1;
+  min-width: 0;
+}
+
+@include media.max-1080 {
+  .policyMark,
+  .policyText {
+    grid-column: 1 / -1;
+  }
 }

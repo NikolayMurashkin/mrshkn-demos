@@ -61,4 +61,23 @@ describe('Lighthouse CI', () => {
     expect(pathsOf(loadConfig())).toEqual(['/', '/privacy']);
     expect(pathsOf(loadConfig('ci-probe'))).toEqual(['/', '/privacy']);
   });
+
+  it('демо «Клиника»: accessibility каждого прогона равна 100, performance не ниже 90', () => {
+    const { collect, assert } = loadConfig('dental').ci;
+    const [performanceLevel, { minScore: performanceMinScore }] = assert.assertions['categories:performance'];
+
+    expect(collect.numberOfRuns).toBe(3);
+    expect(assert.aggregationMethod).toBe('pessimistic');
+    expect(assert.assertions['categories:accessibility']).toEqual(['error', { minScore: 1 }]);
+    expect(performanceLevel).toBe('error');
+    expect(performanceMinScore).toBeGreaterThanOrEqual(0.9);
+  });
+
+  it('шаблон и развернутые из него демо: порог accessibility прежний — 90', () => {
+    expect(loadConfig().ci.assert.assertions['categories:accessibility']).toEqual(['error', { minScore: 0.9 }]);
+    expect(loadConfig('ci-probe').ci.assert.assertions['categories:accessibility']).toEqual([
+      'error',
+      { minScore: 0.9 },
+    ]);
+  });
 });

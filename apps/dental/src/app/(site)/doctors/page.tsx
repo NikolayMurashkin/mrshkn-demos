@@ -21,7 +21,8 @@ const DoctorsPage = async () => {
       />
       <Section
         id="doctors"
-        label="Все врачи"
+        label="Список"
+        wide
       >
         <DoctorCards doctors={doctors} />
       </Section>

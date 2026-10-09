@@ -2,9 +2,8 @@
   display: flex;
   min-width: 0;
   height: 420px;
-  border: 1px solid var(--demo-border);
   border-radius: var(--demo-radius);
-  background: var(--demo-surface);
+  background: var(--demo-surface-soft);
   overflow: hidden;
 }
 
@@ -15,36 +14,47 @@
   justify-content: center;
   gap: 12px;
   width: 100%;
-  padding: 16px;
+  padding: 24px;
   text-align: center;
 }
 
 .button {
-  min-height: 48px;
-  padding: 12px 24px;
-  border: 1px solid var(--demo-fg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  height: var(--demo-control-height);
+  padding: 0 var(--demo-button-padding-x);
+  border: var(--demo-border-width) solid var(--demo-fg);
   border-radius: var(--demo-radius);
-  background: var(--demo-bg);
+  background: transparent;
   color: var(--demo-fg);
   font: inherit;
-  font-weight: 600;
+  font-size: var(--demo-button-font-size);
+  font-weight: var(--demo-button-font-weight);
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
+  transition:
+    color var(--demo-duration) var(--demo-ease),
+    border-color var(--demo-duration) var(--demo-ease);
 }
 
-.button:hover {
-  border-color: var(--demo-accent-hover);
-  color: var(--demo-accent-hover);
+.button:hover,
+.button:active {
+  border-color: var(--demo-accent-ink);
+  color: var(--demo-accent-ink);
 }
 
 .button:focus-visible {
-  outline: 3px solid var(--demo-focus);
-  outline-offset: 2px;
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
 }
 
 .note {
   margin: 0;
   color: var(--demo-muted);
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .widget {
@@ -53,8 +63,14 @@
   border: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 720px) {
   .map {
     height: 320px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }

@@ -1,52 +1,82 @@
 .banner {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 10;
   display: flex;
   align-items: center;
   gap: 16px;
   max-width: 480px;
-  padding: 16px;
-  border: 1px solid var(--demo-border);
+  padding: 16px 20px;
+  border: var(--demo-border-width) solid var(--demo-fg);
   border-radius: var(--demo-radius);
   background: var(--demo-bg);
   color: var(--demo-fg);
   box-shadow: var(--demo-shadow);
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .text {
   margin: 0;
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .text a {
   color: var(--demo-fg);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.text a:hover,
+.text a:active {
+  color: var(--demo-accent-ink);
+  text-decoration-thickness: 2px;
+}
+
+.text a:focus-visible,
+.button:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
 }
 
 .button {
   flex-shrink: 0;
-  min-height: 44px;
-  padding: 8px 16px;
-  border: 0;
+  height: var(--demo-control-height-sm);
+  padding: 0 18px;
+  border: var(--demo-border-width) solid var(--demo-fg);
   border-radius: var(--demo-radius);
-  background: var(--demo-accent);
-  color: var(--demo-accent-fg);
+  background: transparent;
+  color: var(--demo-fg);
   font: inherit;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: var(--demo-button-font-weight);
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
+  transition:
+    color var(--demo-duration) var(--demo-ease),
+    border-color var(--demo-duration) var(--demo-ease);
 }
 
-.button:focus-visible {
-  outline: 3px solid var(--demo-focus);
-  outline-offset: 2px;
+.button:hover,
+.button:active {
+  border-color: var(--demo-accent-ink);
+  color: var(--demo-accent-ink);
 }
 
-@media (max-width: 559px) {
+@media (max-width: 480px) {
   .banner {
-    left: 16px;
+    left: max(16px, env(safe-area-inset-left));
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
   }
 }
