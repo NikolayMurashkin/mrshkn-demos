@@ -73,6 +73,22 @@ describe('Lighthouse CI', () => {
     expect(performanceMinScore).toBeGreaterThanOrEqual(0.9);
   });
 
+  it('демо «Автосервис» меряется на /ru и /en: три прогона, каждая категория ≥ 0,9', () => {
+    const config = loadConfig('auto');
+    const { collect, assert } = config.ci;
+
+    expect(pathsOf(config)).toEqual(['/ru', '/en']);
+    expect(collect.numberOfRuns).toBe(3);
+    expect(assert.aggregationMethod).toBe('pessimistic');
+
+    for (const category of ['performance', 'accessibility', 'best-practices', 'seo']) {
+      const [level, { minScore }] = assert.assertions[`categories:${category}`];
+
+      expect(level, category).toBe('error');
+      expect(minScore, category).toBeGreaterThanOrEqual(0.9);
+    }
+  });
+
   it('шаблон и развернутые из него демо: порог accessibility прежний — 90', () => {
     expect(loadConfig().ci.assert.assertions['categories:accessibility']).toEqual(['error', { minScore: 0.9 }]);
     expect(loadConfig('ci-probe').ci.assert.assertions['categories:accessibility']).toEqual([

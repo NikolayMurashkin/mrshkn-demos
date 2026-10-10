@@ -74,7 +74,7 @@ jobs:
       fail-fast: false
       matrix:
         # ci-probe — демо, только что развернутое из шаблона: так проверяется сама команда; остальные — демо со своими страницами
-        app: [ci-probe, dental]
+        app: [ci-probe, dental, auto]
     # страницы демо читают CMS: базу создают миграции при старте, контент — засев демо в пустую базу
     env:
       DATABASE_URL: postgres://demos:demos@localhost:5432/demos_lighthouse

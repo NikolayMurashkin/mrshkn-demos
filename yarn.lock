@@ -1615,6 +1615,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mrshkn/demo-auto@workspace:apps/auto":
+  version: 0.0.0-use.local
+  resolution: "@mrshkn/demo-auto@workspace:apps/auto"
+  dependencies:
+    "@mrshkn/demo-core": "workspace:*"
+    "@payloadcms/db-postgres": "npm:3.90.2"
+    "@payloadcms/next": "npm:3.90.2"
+    "@payloadcms/translations": "npm:3.90.2"
+    graphql: "npm:^16.8.1"
+    next: "npm:16.3.5"
+    payload: "npm:3.90.2"
+    react: "npm:19.3.0"
+    react-dom: "npm:19.3.0"
+  languageName: unknown
+  linkType: soft
+
 "@mrshkn/demo-core@workspace:*, @mrshkn/demo-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@mrshkn/demo-core@workspace:packages/core"

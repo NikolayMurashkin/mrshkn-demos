@@ -1,3 +1,5 @@
+import type { DemoLang } from './types';
+
 export const STUDIO_NAME = 'MRSHKN';
 
 export const STUDIO_URL = 'https://mrshkn.com';
@@ -41,6 +43,12 @@ export const CONTACT_MAX_LENGTH = 120;
 
 export const COMMENT_MAX_LENGTH = 2000;
 
+/** Поле связи по языку: на русском — телефон или ник в Telegram, на английском — телефон или почта, без «tel». */
+export const CONTACT_INPUT: Record<DemoLang, { autoComplete: string; spellCheck?: boolean }> = {
+  ru: { autoComplete: 'tel' },
+  en: { autoComplete: 'on', spellCheck: false },
+};
+
 export const LEAD_RATE_LIMIT = { limit: 10, windowMs: 10 * 60 * 1000 };
 
 /** Сколько адресов помнит лимитер, прежде чем выбросить протухшие. */
@@ -50,8 +58,20 @@ export const TELEGRAM_API_FALLBACK = 'https://api.telegram.org';
 
 export const YANDEX_ORG_ID_PATTERN = /^\d+$/;
 
-/** Подпись вымышленного отзыва: имя и первая буква фамилии, кириллицей — «Ирина С.», «Анна-Мария К.». */
-export const REVIEW_AUTHOR_PATTERN = /^[А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)? [А-ЯЁ]\.$/;
+/**
+ * Подпись вымышленного отзыва: имя и первая буква фамилии — кириллицей на русском («Ирина С.», «Анна-Мария К.»),
+ * латиницей на английском («Emily R.», «Mary-Jane K.»).
+ */
+export const REVIEW_AUTHOR_PATTERNS: Record<DemoLang, RegExp> = {
+  ru: /^[А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)? [А-ЯЁ]\.$/,
+  en: /^[A-Z][a-z]+(?:-[A-Z][a-z]+)? [A-Z]\.$/,
+};
+
+/** Подсказка редактору, когда подпись не прошла проверку: админка на русском, пример — на языке отзыва. */
+export const REVIEW_AUTHOR_HINTS: Record<DemoLang, string> = {
+  ru: 'Имя и первая буква фамилии кириллицей: «Ирина С.»',
+  en: 'Имя и первая буква фамилии латиницей: «Emily R.»',
+};
 
 /** Виджет Яндекс Карт без ключа API: встает iframe'ом и сам грузит все, что ему нужно. */
 export const MAP_WIDGET_URL = 'https://yandex.ru/map-widget/v1/';

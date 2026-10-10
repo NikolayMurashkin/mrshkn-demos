@@ -1,18 +1,27 @@
 'use client';
 
 import { useId, useState, type FormEvent } from 'react';
-import { COMMENT_MAX_LENGTH, CONTACT_MAX_LENGTH, HONEYPOT_FIELD, LEAD_ENDPOINT, NAME_MAX_LENGTH } from '../../consts';
-import type { LeadFormStatus } from '../../types';
-import { STATUS_TEXT } from './consts';
+import {
+  COMMENT_MAX_LENGTH,
+  CONTACT_INPUT,
+  CONTACT_MAX_LENGTH,
+  HONEYPOT_FIELD,
+  LEAD_ENDPOINT,
+  NAME_MAX_LENGTH,
+} from '../../consts';
+import { CORE_TEXTS } from '../../texts';
+import type { DemoLang, LeadFormStatus } from '../../types';
 import styles from './LeadForm.module.scss';
 
 type LeadFormProps = {
   policyHref: string;
+  lang?: DemoLang;
 };
 
-export const LeadForm = ({ policyHref }: LeadFormProps) => {
+export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
   const id = useId();
   const [status, setStatus] = useState<LeadFormStatus>('idle');
+  const texts = CORE_TEXTS[lang].leadForm;
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,7 +61,7 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
         className={styles.done}
         role="status"
       >
-        {STATUS_TEXT.sent}
+        {texts.sent}
       </p>
     );
   }
@@ -66,7 +75,7 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
         className={styles.label}
         htmlFor={`${id}-name`}
       >
-        Имя
+        {texts.name}
       </label>
       <input
         className={styles.input}
@@ -80,13 +89,14 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
         className={styles.label}
         htmlFor={`${id}-contact`}
       >
-        Телефон или ник в&nbsp;Telegram
+        {texts.contact}
       </label>
       <input
         className={styles.input}
         id={`${id}-contact`}
         name="contact"
-        autoComplete="tel"
+        autoComplete={CONTACT_INPUT[lang].autoComplete}
+        spellCheck={CONTACT_INPUT[lang].spellCheck}
         maxLength={CONTACT_MAX_LENGTH}
         required
       />
@@ -94,7 +104,7 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
         className={styles.label}
         htmlFor={`${id}-comment`}
       >
-        Комментарий
+        {texts.comment}
       </label>
       <textarea
         className={styles.input}
@@ -121,7 +131,8 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
           required
         />
         <label htmlFor={`${id}-consent`}>
-          Соглашаюсь на&nbsp;обработку персональных данных по&nbsp;<a href={policyHref}>политике</a>
+          {texts.consent}
+          <a href={policyHref}>{texts.consentLink}</a>
         </label>
       </div>
       <button
@@ -129,13 +140,13 @@ export const LeadForm = ({ policyHref }: LeadFormProps) => {
         type="submit"
         disabled={status === 'sending'}
       >
-        {status === 'sending' ? 'Отправляем…' : 'Отправить заявку'}
+        {status === 'sending' ? texts.sending : texts.submit}
       </button>
       <p
         className={styles.status}
         role="status"
       >
-        {status === 'invalid' || status === 'failed' ? STATUS_TEXT[status] : ''}
+        {status === 'invalid' || status === 'failed' ? texts[status] : ''}
       </p>
     </form>
   );

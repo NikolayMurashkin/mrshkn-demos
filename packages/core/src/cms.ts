@@ -1,7 +1,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { ru } from '@payloadcms/translations/languages/ru';
 import path from 'node:path';
-import { buildConfig, type CollectionConfig, type Payload } from 'payload';
+import { buildConfig, type CollectionConfig, type Config, type Payload } from 'payload';
 import { Leads, Users } from './cms/collections';
 import type { DemoConfig } from './types';
 
@@ -16,9 +16,18 @@ type DemoCmsOptions = {
   collections?: CollectionConfig[];
   /** Запускается после подключения к базе и миграций: демо засевает здесь свой вымышленный контент. */
   onInit?: (payload: Payload) => Promise<void>;
+  /** Языки контента двуязычного демо; без них поля CMS одноязычные, как у шаблона. */
+  localization?: Config['localization'];
 };
 
-export const createDemoCmsConfig = ({ dirname, demo, migrations, collections = [], onInit }: DemoCmsOptions) =>
+export const createDemoCmsConfig = ({
+  dirname,
+  demo,
+  migrations,
+  collections = [],
+  onInit,
+  localization,
+}: DemoCmsOptions) =>
   buildConfig({
     admin: {
       user: Users.slug,
@@ -35,6 +44,7 @@ export const createDemoCmsConfig = ({ dirname, demo, migrations, collections = [
     }),
     graphQL: { disable: true },
     i18n: { fallbackLanguage: 'ru', supportedLanguages: { ru } },
+    ...(localization && { localization }),
     onInit,
     secret: process.env.PAYLOAD_SECRET ?? '',
     telemetry: false,

@@ -1,0 +1,30 @@
+@use '../../../../styles/media';
+@use '../../../../styles/type';
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  gap: 32px;
+  flex: 1;
+  width: 100%;
+  max-width: var(--demo-content-width);
+  margin: 0 auto;
+  padding: 56px var(--demo-gutter) var(--auto-section-space);
+}
+
+.mark {
+  @include type.ui(600, 14px, 1.2);
+  color: var(--demo-muted);
+}
+
+.text {
+  min-width: 0;
+}
+
+@include media.max-1023 {
+  .page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding-top: 32px;
+  }
+}

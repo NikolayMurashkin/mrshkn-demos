@@ -2,20 +2,25 @@
 
 import { useState } from 'react';
 import { CONSENT_COOKIE, CONSENT_MAX_AGE } from '../../consts';
+import { CORE_TEXTS } from '../../texts';
+import type { DemoLang } from '../../types';
 import styles from './CookieBanner.module.scss';
 
 type CookieBannerProps = {
   policyHref: string;
   /** Сервер читает cookie и рендерит уведомление сразу, без вспышки после гидрации. */
   initiallyVisible: boolean;
+  lang?: DemoLang;
 };
 
-export const CookieBanner = ({ policyHref, initiallyVisible }: CookieBannerProps) => {
+export const CookieBanner = ({ policyHref, initiallyVisible, lang = 'ru' }: CookieBannerProps) => {
   const [visible, setVisible] = useState(initiallyVisible);
 
   if (!visible) {
     return null;
   }
+
+  const texts = CORE_TEXTS[lang].cookie;
 
   const close = () => {
     document.cookie = `${CONSENT_COOKIE}=1; max-age=${CONSENT_MAX_AGE}; path=/; samesite=lax`;
@@ -25,18 +30,18 @@ export const CookieBanner = ({ policyHref, initiallyVisible }: CookieBannerProps
   return (
     <section
       className={styles.banner}
-      aria-label="Уведомление о cookie"
+      aria-label={texts.label}
     >
       <p className={styles.text}>
-        Мы используем cookie, чтобы сайт работал. Подробнее&nbsp;— в&nbsp;
-        <a href={policyHref}>политике обработки данных</a>.
+        {texts.text}
+        <a href={policyHref}>{texts.link}</a>.
       </p>
       <button
         className={styles.button}
         type="button"
         onClick={close}
       >
-        Понятно
+        {texts.close}
       </button>
     </section>
   );

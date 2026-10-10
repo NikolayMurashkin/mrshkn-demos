@@ -1,0 +1,76 @@
+@use './media';
+
+:root {
+  color-scheme: dark;
+
+  --demo-bg: #0e1b2a;
+  --demo-surface: #142739;
+  --demo-surface-soft: #18304a;
+  --demo-fg: #e5eef6;
+  --demo-fg-inverse: #0e1b2a;
+  --demo-muted: #93aac0;
+  --demo-border: #233a52;
+  --demo-border-strong: #56769a;
+  --demo-accent: #ffb020;
+  --demo-accent-hover: #ffc555;
+  --demo-accent-fg: #1d1404;
+  --demo-accent-ink: #ffb020;
+  --demo-danger: #ff8a73;
+  --demo-focus: #8fd2ff;
+  --auto-xray: #a9d9ff;
+  --auto-film-deep: #060b12;
+
+  --demo-font: 'Sofia Sans', 'Arial Narrow', Arial, sans-serif;
+  --demo-font-display: 'Sofia Sans Extra Condensed', 'Arial Narrow', Arial, sans-serif;
+  --auto-font-display: 'Sofia Sans Extra Condensed', 'Arial Narrow', Arial, sans-serif;
+  --auto-font-ui: 'Sofia Sans Semi Condensed', 'Sofia Sans', 'Arial Narrow', Arial, sans-serif;
+
+  --demo-radius: 3px;
+  --auto-radius-dot: 50%;
+
+  --demo-shadow: 0 24px 56px rgb(3 9 16 / 0.55);
+  --auto-glow-lamp: 0 0 16px rgb(255 176 32 / 0.55);
+  --auto-glow-xray: 0 0 18px rgb(169 217 255 / 0.4);
+
+  --demo-content-width: 1440px;
+  --demo-gutter: 32px;
+
+  --demo-border-width: 1px;
+  --demo-border-width-strong: 2px;
+  --demo-focus-width: 2px;
+  --demo-focus-offset: 2px;
+  --demo-field-focus-offset: 2px;
+
+  --demo-control-height: 52px;
+  --demo-control-height-sm: 44px;
+  --demo-button-padding-x: 20px;
+  --demo-button-font-size: 18px;
+  --demo-button-font-weight: 700;
+
+  --demo-label-size: 14px;
+  --demo-label-weight: 600;
+  --demo-label-tracking: 0.02em;
+  --demo-label-case: none;
+
+  --demo-title-size: clamp(46px, 5vw, 64px);
+  --demo-title-weight: 800;
+  --demo-title-leading: 0.92;
+  --demo-title-tracking: 0.005em;
+  --demo-section-gap: 40px;
+
+  --demo-duration: 160ms;
+  --demo-duration-move: 240ms;
+  --demo-ease: ease;
+  --demo-ease-move: cubic-bezier(0.2, 0.7, 0, 1);
+
+  --auto-stage-height: clamp(280px, 52svh, 520px);
+  --auto-section-space: 96px;
+}
+
+@include media.max-767 {
+  :root {
+    --demo-gutter: 16px;
+    --demo-section-gap: 28px;
+    --auto-section-space: 64px;
+  }
+}

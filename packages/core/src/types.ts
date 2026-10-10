@@ -76,3 +76,6 @@ export type LeadRouteOptions = {
 };
 
 export type LeadFormStatus = 'idle' | 'sending' | 'sent' | 'invalid' | 'failed';
+
+/** Язык текстов демо и ядра. */
+export type DemoLang = 'ru' | 'en';

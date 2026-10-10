@@ -1,0 +1,1 @@
+export { WhereItHurts } from './WhereItHurts';

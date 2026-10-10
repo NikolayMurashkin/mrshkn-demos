@@ -1,0 +1,53 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.contacts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: var(--demo-border-width) solid var(--demo-border);
+}
+
+.row:first-child {
+  border-top: var(--demo-border-width) solid var(--demo-border);
+}
+
+.row dt {
+  @include type.ui(600, 14px, 1.2);
+  color: var(--demo-muted);
+}
+
+.row dd {
+  @include type.ui(600, 18px, 1.35);
+}
+
+.row a {
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.row a:hover {
+  color: var(--demo-accent);
+}
+
+@include media.max-1023 {
+  .contacts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

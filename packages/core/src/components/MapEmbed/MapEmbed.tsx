@@ -2,21 +2,24 @@
 
 import { useState } from 'react';
 import { mapWidgetUrl } from '../../map';
-import type { MapPoint } from '../../types';
+import { CORE_TEXTS } from '../../texts';
+import type { DemoLang, MapPoint } from '../../types';
 import styles from './MapEmbed.module.scss';
 
 type MapEmbedProps = {
   point: MapPoint;
   /** Что отмечено на карте: заголовок iframe для скринридера. */
   label: string;
+  lang?: DemoLang;
 };
 
 /**
  * Карта грузится по нажатию, а не при открытии страницы: виджет Яндекса тянет скрипты, тайлы и свои cookie,
  * и до нажатия страница не делает к нему ни одного запроса.
  */
-export const MapEmbed = ({ point, label }: MapEmbedProps) => {
+export const MapEmbed = ({ point, label, lang = 'ru' }: MapEmbedProps) => {
   const [shown, setShown] = useState(false);
+  const texts = CORE_TEXTS[lang].map;
 
   return (
     <div
@@ -37,9 +40,9 @@ export const MapEmbed = ({ point, label }: MapEmbedProps) => {
             type="button"
             onClick={() => setShown(true)}
           >
-            Показать карту
+            {texts.show}
           </button>
-          <p className={styles.note}>Карту загрузят Яндекс Карты</p>
+          <p className={styles.note}>{texts.note}</p>
         </div>
       )}
     </div>

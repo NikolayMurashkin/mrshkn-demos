@@ -119,6 +119,31 @@ describe('отзывы в демо вымышленного дела', () => {
     expect(JSON.stringify(Reviews.fields)).not.toMatch(/"type":"upload"|"relationTo"/);
   });
 
+  it('подпись отзыва проверяется по шаблону своего языка', async () => {
+    for (const author of ['Emily R.', 'Mary-Jane K.']) {
+      expect(isReviewAuthor(author, 'en'), author).toBe(true);
+    }
+
+    for (const author of ['Ирина С.', 'Emily', 'emily r.', 'Emily Ross']) {
+      expect(isReviewAuthor(author, 'en'), author).toBe(false);
+    }
+
+    expect(isReviewAuthor('Ирина С.', 'ru')).toBe(true);
+    expect(isReviewAuthor('Ирина С.')).toBe(true);
+    expect(isReviewAuthor('Emily R.', 'ru')).toBe(false);
+    expect(isReviewAuthor('Emily R.')).toBe(false);
+
+    const field = authorField();
+    const validate = field && 'validate' in field ? (field.validate as TextFieldSingleValidation) : undefined;
+    const english = { req: { locale: 'en' } } as unknown as Parameters<TextFieldSingleValidation>[1];
+    const noLocale = {} as Parameters<TextFieldSingleValidation>[1];
+
+    expect(await validate?.('Emily R.', english)).toBe(true);
+    expect(await validate?.('Ирина С.', english)).toEqual(expect.any(String));
+    expect(await validate?.('Ирина С.', noLocale)).toBe(true);
+    expect(await validate?.('Emily R.', noLocale)).toEqual(expect.any(String));
+  });
+
   it('JSON-LD страниц собирается из данных демо и не содержит Review и AggregateRating', async () => {
     for (const app of APPS) {
       const { DEMO } = (await import(`../../apps/${app}/src/demo.config.ts`)) as { DEMO: DemoConfig };

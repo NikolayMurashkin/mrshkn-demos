@@ -1,0 +1,21 @@
+$max-1023: 1023px;
+$max-767: 767px;
+$max-480: 480px;
+
+@mixin max-1023 {
+  @media (max-width: $max-1023) {
+    @content;
+  }
+}
+
+@mixin max-767 {
+  @media (max-width: $max-767) {
+    @content;
+  }
+}
+
+@mixin max-480 {
+  @media (max-width: $max-480) {
+    @content;
+  }
+}

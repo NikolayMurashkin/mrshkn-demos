@@ -1,0 +1,87 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  @include type.display(48px);
+  @include type.backend-text;
+}
+
+h3.title {
+  font-size: 40px;
+}
+
+.explainer:empty {
+  display: none;
+}
+
+.order {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.caption {
+  @include type.visually-hidden;
+}
+
+.order th {
+  @include type.ui(600, 14px, 1.2);
+  padding: 0 0 8px;
+  border-bottom: var(--demo-border-width) solid var(--demo-border-strong);
+  color: var(--demo-muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.order td {
+  padding: 12px 0;
+  border-bottom: var(--demo-border-width) solid var(--demo-border);
+  vertical-align: top;
+}
+
+.order td:first-child {
+  @include type.backend-text;
+  padding-right: 12px;
+  line-height: 1.35;
+}
+
+.order th:not(:first-child),
+.order td:not(:first-child) {
+  padding-left: 12px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.order td:not(:first-child) {
+  @include type.ui(600, 16px, 1.35);
+}
+
+.order td:last-child {
+  @include type.backend-text;
+  min-width: calc(8ch + 12px);
+  white-space: normal;
+}
+
+@include media.max-1023 {
+  .title {
+    font-size: 38px;
+  }
+
+  h3.title {
+    font-size: 34px;
+  }
+}

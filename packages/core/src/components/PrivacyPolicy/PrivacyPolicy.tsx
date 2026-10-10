@@ -1,4 +1,6 @@
-import { STUDIO_EMAIL, STUDIO_NAME, STUDIO_URL } from '../../consts';
+import { STUDIO_EMAIL, STUDIO_URL } from '../../consts';
+import { CORE_TEXTS } from '../../texts';
+import type { DemoLang } from '../../types';
 import styles from './PrivacyPolicy.module.scss';
 
 type PrivacyPolicyProps = {
@@ -6,62 +8,41 @@ type PrivacyPolicyProps = {
   withYandexReviews: boolean;
   /** На сайте есть карта Яндекса, которая грузится по нажатию «Показать карту». */
   withYandexMap?: boolean;
+  lang?: DemoLang;
 };
 
 /**
  * Общая для всех демо политика: дело в демо вымышлено, а заявки с формы получает студия. Текст — черновик
  * до пакета документов студии и вычитки юристом.
  */
-export const PrivacyPolicy = ({ withYandexReviews, withYandexMap = false }: PrivacyPolicyProps) => (
-  <article className={styles.policy}>
-    <h1>Политика обработки персональных данных</h1>
-    <p>
-      Это демо-сайт студии {STUDIO_NAME}: дело, о&nbsp;котором он&nbsp;рассказывает, вымышлено. Заявки с&nbsp;этого
-      сайта получает студия.
-    </p>
-    <h2>Оператор</h2>
-    <p>
-      Студия {STUDIO_NAME}, <a href={STUDIO_URL}>mrshkn.com</a>. Связь&nbsp;—{' '}
-      <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>.
-    </p>
-    <h2>Какие данные собираются</h2>
-    <p>
-      Из&nbsp;формы заявки&nbsp;— имя, телефон или ник в&nbsp;Telegram и&nbsp;комментарий, если вы&nbsp;его оставили.
-      Сервер видит IP-адрес и&nbsp;по&nbsp;нему ограничивает частоту заявок; в&nbsp;базе адрес не&nbsp;хранится.
-    </p>
-    <h2>Зачем</h2>
-    <p>
-      Чтобы ответить на&nbsp;заявку. Рассылок нет. Уведомление о&nbsp;заявке с&nbsp;именем и&nbsp;способом связи
-      приходит студии в&nbsp;Telegram.
-    </p>
-    <h2>Где хранятся</h2>
-    <p>
-      На&nbsp;сервере студии в&nbsp;России. Заявка хранится, пока нужна для ответа, и&nbsp;удаляется по&nbsp;вашей
-      просьбе.
-    </p>
-    <h2>Cookie</h2>
-    <p>
-      Сайт ставит одну cookie: она запоминает, что вы&nbsp;закрыли уведомление о&nbsp;cookie. Тем, кто входит
-      в&nbsp;панель управления сайтом, ставится еще cookie входа. Аналитики и&nbsp;рекламных счетчиков на&nbsp;сайте
-      нет.
-    </p>
-    {withYandexReviews && (
+export const PrivacyPolicy = ({ withYandexReviews, withYandexMap = false, lang = 'ru' }: PrivacyPolicyProps) => {
+  const texts = CORE_TEXTS[lang].policy;
+
+  return (
+    <article className={styles.policy}>
+      <h1>{texts.title}</h1>
+      <p>{texts.intro}</p>
+      <h2>{texts.operatorTitle}</h2>
       <p>
-        Отзывы на&nbsp;странице показывает виджет Яндекс Карт. Его загружает Яндекс: он получает ваш IP-адрес
-        и&nbsp;может ставить свои cookie по&nbsp;собственным правилам.
+        {texts.operator} <a href={STUDIO_URL}>mrshkn.com</a>. {texts.contact}{' '}
+        <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>.
       </p>
-    )}
-    {withYandexMap && (
+      <h2>{texts.dataTitle}</h2>
+      <p>{texts.data}</p>
+      <h2>{texts.purposeTitle}</h2>
+      <p>{texts.purpose}</p>
+      <h2>{texts.storageTitle}</h2>
+      <p>{texts.storage}</p>
+      <h2>{texts.cookieTitle}</h2>
+      <p>{texts.cookie}</p>
+      {withYandexReviews && <p>{texts.yandexReviews}</p>}
+      {withYandexMap && <p>{texts.yandexMap}</p>}
+      <h2>{texts.rightsTitle}</h2>
       <p>
-        Карту на&nbsp;странице показывают Яндекс Карты, и&nbsp;загружается она, только когда вы&nbsp;нажмете «Показать
-        карту». После этого Яндекс получает ваш IP-адрес, может ставить свои cookie, показывать внутри карты рекламу
-        и&nbsp;собирать статистику по&nbsp;собственным правилам.
+        {texts.rightsBefore}
+        <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
+        {texts.rightsAfter}
       </p>
-    )}
-    <h2>Ваши права</h2>
-    <p>
-      Напишите на&nbsp;<a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>&nbsp;— расскажем, какие данные о&nbsp;вас
-      хранятся, исправим или удалим их.
-    </p>
-  </article>
-);
+    </article>
+  );
+};

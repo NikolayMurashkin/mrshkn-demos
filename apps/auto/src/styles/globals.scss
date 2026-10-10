@@ -1,0 +1,81 @@
+@use './tokens';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  hyphens: none;
+  background: var(--demo-bg);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--demo-bg);
+  color: var(--demo-fg);
+  font-family: var(--demo-font);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote) {
+  margin: 0;
+}
+
+:where(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+
+:where(a) {
+  color: inherit;
+}
+
+:where(a, button) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(button, input, textarea) {
+  font: inherit;
+  color: inherit;
+}
+
+:where(button) {
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+dd,
+dt,
+th,
+td,
+blockquote {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

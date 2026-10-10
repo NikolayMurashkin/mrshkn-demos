@@ -1,0 +1,64 @@
+@use '../../styles/type';
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px var(--demo-gutter);
+  border-bottom: var(--demo-border-width) solid var(--demo-border);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.mark {
+  font-family: var(--auto-font-display);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--auto-xray);
+  text-shadow: var(--auto-glow-xray);
+}
+
+.note {
+  @include type.ui(500, 16px, 1);
+  color: var(--demo-muted);
+}
+
+.lang {
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+  padding: 2px;
+  border: var(--demo-border-width) solid var(--demo-border-strong);
+  border-radius: var(--demo-radius);
+}
+
+.langLink {
+  @include type.ui(600, 15px, 1);
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: var(--demo-radius);
+  color: var(--demo-muted);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.langLink:hover {
+  color: var(--demo-fg);
+}
+
+.langLink[aria-current='page'] {
+  background: var(--demo-fg);
+  color: var(--demo-bg);
+}
