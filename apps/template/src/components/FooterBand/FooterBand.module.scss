@@ -51,7 +51,7 @@
 .title {
   @include type.footer-title;
 
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 
 .lead {

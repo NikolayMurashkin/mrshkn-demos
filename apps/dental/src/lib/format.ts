@@ -1,8 +1,10 @@
 import { NBSP } from '@mrshkn/demo-core/consts';
 import type { DemoAddress } from '@mrshkn/demo-core/types';
 
-/** Сумма в рублях: разряды через неразрывный пробел с тысяч — в колонке цен «1 500» и «18 000» читаются ровно. */
-export const formatAmount = (amount: number) => String(Math.round(amount)).replace(/\B(?=(\d{3})+$)/g, NBSP);
+const amountFormat = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 });
+
+/** Сумма в рублях по-русски: разряды с тысяч через неразрывный пробел, дробная часть округляется до рубля. */
+export const formatAmount = (amount: number) => amountFormat.format(amount);
 
 export const formatPrice = (price: number, from = false) => `${from ? `от${NBSP}` : ''}${formatAmount(price)}${NBSP}₽`;
 

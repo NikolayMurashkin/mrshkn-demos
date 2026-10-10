@@ -45,7 +45,7 @@ export const COMMENT_MAX_LENGTH = 2000;
 
 /** Поле связи по языку: на русском — телефон или ник в Telegram, на английском — телефон или почта, без «tel». */
 export const CONTACT_INPUT: Record<DemoLang, { autoComplete: string; spellCheck?: boolean }> = {
-  ru: { autoComplete: 'tel' },
+  ru: { autoComplete: 'tel', spellCheck: false },
   en: { autoComplete: 'on', spellCheck: false },
 };
 

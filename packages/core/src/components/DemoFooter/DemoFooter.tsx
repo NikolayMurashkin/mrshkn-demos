@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { STUDIO_URL } from '../../consts';
+import { STUDIO_NAME, STUDIO_URL } from '../../consts';
 import { CORE_TEXTS } from '../../texts';
 import type { DemoLang } from '../../types';
 import styles from './DemoFooter.module.scss';
@@ -13,6 +13,7 @@ type DemoFooterProps = {
 /** Подпись «Демо-проект студии» — обязательная часть каждого демо, поэтому она не настраивается. */
 export const DemoFooter = ({ policyHref, lang = 'ru', children }: DemoFooterProps) => {
   const texts = CORE_TEXTS[lang].footer;
+  const [beforeName, afterName] = texts.studio.split(STUDIO_NAME);
 
   return (
     <footer className={styles.footer}>
@@ -20,7 +21,12 @@ export const DemoFooter = ({ policyHref, lang = 'ru', children }: DemoFooterProp
         {children}
         <div className={styles.meta}>
           <p className={styles.mark}>
-            {texts.mark} <a href={STUDIO_URL}>{texts.studio}</a>
+            {texts.mark}{' '}
+            <a href={STUDIO_URL}>
+              {beforeName}
+              <span translate="no">{STUDIO_NAME}</span>
+              {afterName}
+            </a>
           </p>
           <a href={policyHref}>{texts.policy}</a>
         </div>

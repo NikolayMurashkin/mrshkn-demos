@@ -22,7 +22,7 @@
   font-weight: var(--demo-title-weight);
   line-height: var(--demo-title-leading);
   letter-spacing: var(--demo-title-tracking);
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
   text-wrap: balance;
 }
 
@@ -57,7 +57,8 @@
   transition: color var(--demo-duration) var(--demo-ease);
 }
 
-.policy a:hover {
+.policy a:hover,
+.policy a:active {
   color: var(--demo-accent-ink);
   text-decoration-thickness: 2px;
 }

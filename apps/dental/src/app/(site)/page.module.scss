@@ -78,7 +78,7 @@
 .title {
   @include type.hero-title;
 
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
   text-wrap: balance;
 }
 

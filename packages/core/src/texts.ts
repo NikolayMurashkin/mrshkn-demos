@@ -5,6 +5,7 @@ export type CoreTexts = {
   footer: {
     /** Подпись «Демо-проект студии»: текст до ссылки и сама ссылка на сайт студии. */
     mark: string;
+    /** Содержит `STUDIO_NAME`: подвал выводит имя отдельным `<span translate="no">`, чтобы переводчик браузера его не трогал. */
     studio: string;
     policy: string;
   };
