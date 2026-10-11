@@ -1,0 +1,53 @@
+{
+  "type": "notification",
+  "event": "payment.succeeded",
+  "object": {
+    "id": "22d6d597-000f-5000-9000-145f6df21d6f",
+    "status": "succeeded",
+    "paid": true,
+    "amount": {
+      "value": "2.00",
+      "currency": "RUB"
+    },
+    "authorization_details": {
+      "rrn": "10000000000",
+      "auth_code": "000000",
+      "three_d_secure": {
+        "applied": true
+      }
+    },
+    "captured_at": "2018-07-10T14:28:32.484Z",
+    "created_at": "2018-07-10T14:27:54.691Z",
+    "description": "Заказ №72",
+    "income_amount": {
+      "value": "1.93",
+      "currency": "RUB"
+    },
+    "metadata": {},
+    "payment_method": {
+      "type": "bank_card",
+      "id": "22d6d597-000f-5000-9000-145f6df21d6f",
+      "saved": false,
+      "card": {
+        "first6": "555555",
+        "last4": "4444",
+        "expiry_month": "07",
+        "expiry_year": "2021",
+        "card_type": "MasterCard",
+        "issuer_country": "RU",
+        "issuer_name": "Sberbank"
+      },
+      "title": "Bank card *4444"
+    },
+    "recipient": {
+      "account_id": "100500",
+      "gateway_id": "100700"
+    },
+    "refundable": true,
+    "refunded_amount": {
+      "value": "0.00",
+      "currency": "RUB"
+    },
+    "test": true
+  }
+}

@@ -1,0 +1,37 @@
+@use '../../styles/layout';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.block {
+  @include layout.grid;
+}
+
+.aside {
+  @include layout.margin;
+
+  padding-top: 18px;
+  border-top: var(--border-width) solid var(--ink);
+}
+
+.main {
+  @include layout.main(7);
+
+  padding-top: 18px;
+  border-top: var(--border-width) solid var(--line);
+}
+
+.title {
+  @include type.card-title;
+  @include type.backend-text;
+}
+
+@include media.max-1080 {
+  .block {
+    row-gap: 14px;
+  }
+
+  .main {
+    padding-top: 0;
+    border-top: 0;
+  }
+}

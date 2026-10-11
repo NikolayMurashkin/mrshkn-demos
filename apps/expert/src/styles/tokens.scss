@@ -1,0 +1,118 @@
+@use './media';
+
+:root {
+  --bg: #f4f4f1;
+  --surface: #fbfbf9;
+  --surface-soft: #eceee8;
+  --ink: #1a1c19;
+  --ink-inverse: #f4f4f1;
+  --muted: #62665f;
+  --line: #d5d8d0;
+  --line-strong: #81867e;
+  --accent: #1f5c46;
+  --accent-ink: #1f5c46;
+  --accent-contrast: #ffffff;
+
+  --font-display: 'Prata', 'Prata Metric Fallback', 'Times New Roman', Georgia, serif;
+  --font-text: 'Onest', 'Onest Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-dropcap: 116px;
+  --font-size-page-title: clamp(34px, 5vw, 72px);
+  --font-size-wordmark: clamp(36px, 4.4vw, 64px);
+  --font-size-plate-title: clamp(28px, 3.2vw, 48px);
+  --font-size-numeral: clamp(40px, 3.6vw, 52px);
+  --font-size-amount: clamp(32px, 3vw, 44px);
+  --font-size-plan-name: clamp(22px, 2.3vw, 32px);
+  --font-size-prose-title: clamp(24px, 2.2vw, 32px);
+  --font-size-quiz-title: clamp(24px, 2.4vw, 34px);
+  --font-size-card-title: clamp(21px, 1.9vw, 26px);
+  --font-size-boxnote-title: clamp(21px, 2vw, 26px);
+  --font-size-price: 24px;
+  --font-size-lead: clamp(17px, 1.3vw, 19px);
+  --font-size-prose: 18px;
+  --font-size-body: 16px;
+  --font-size-button: 15px;
+  --font-size-small: 15px;
+  --font-size-nav: 14px;
+  --font-size-caption: 13px;
+  --font-size-kicker: 12px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-120: 120px;
+
+  --e-gutter: clamp(20px, 6.6vw, 96px);
+  --e-column-gap: var(--space-32);
+
+  --radius-control: 2px;
+  --radius-surface: 2px;
+  --shadow-floating: none;
+  --border-width: 1px;
+  --border-width-mark: 2px;
+  --border-width-strong: 3px;
+
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-rule: 700ms;
+  --duration-reveal: 900ms;
+  --duration-stagger: 90ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--surface);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--line-strong);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-mark);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-mark);
+  --demo-radius: var(--radius-control);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-display);
+  --demo-control-height: 54px;
+  --demo-control-height-sm: 44px;
+  --demo-button-padding-x: 26px;
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 500;
+  --demo-label-size: var(--font-size-kicker);
+  --demo-label-weight: 500;
+  --demo-label-tracking: 0.16em;
+  --demo-label-case: uppercase;
+  --demo-title-size: var(--font-size-page-title);
+  --demo-title-weight: 400;
+  --demo-title-leading: 1.05;
+  --demo-title-tracking: -0.01em;
+  --demo-section-gap: var(--space-56);
+  --demo-gutter: var(--e-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-out);
+  --demo-ease-move: var(--ease-out);
+}
+
+@include media.max-720 {
+  :root {
+    --font-size-dropcap: 76px;
+    --e-column-gap: var(--space-12);
+    --demo-section-gap: var(--space-32);
+  }
+}

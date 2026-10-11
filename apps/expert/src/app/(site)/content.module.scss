@@ -1,0 +1,45 @@
+@use '../../styles/layout';
+@use '../../styles/type';
+
+.page {
+  @include layout.page;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 66ch;
+  counter-reset: item;
+
+  li {
+    @include type.backend-text;
+
+    position: relative;
+    padding-left: 28px;
+    font-size: var(--font-size-prose);
+    line-height: 1.6;
+
+    &::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+  }
+}
+
+.numbered li {
+  counter-increment: item;
+  padding-left: 40px;
+
+  &::before {
+    content: counter(item);
+    top: -0.05em;
+    font-family: var(--font-display);
+    font-size: var(--font-size-price);
+    line-height: 1.2;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+  }
+}

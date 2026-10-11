@@ -1,0 +1,69 @@
+@use '../../styles/button';
+@use '../../styles/type';
+
+.prose {
+  @include type.prose;
+  @include type.backend-text;
+
+  max-width: 66ch;
+
+  > * {
+    margin: 0;
+  }
+
+  > * + * {
+    margin-top: 18px;
+  }
+
+  > p:first-of-type {
+    @include type.dropcap;
+  }
+
+  h2 {
+    margin-top: 44px;
+    font-family: var(--font-display);
+    font-size: var(--font-size-prose-title);
+    font-weight: 400;
+    line-height: 1.2;
+    scroll-margin-top: 32px;
+  }
+
+  h3 {
+    margin-top: 32px;
+    font-size: var(--font-size-prose);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  a {
+    @include button.link;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.4em;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li + li {
+    margin-top: 6px;
+  }
+
+  blockquote {
+    margin-top: 36px;
+    margin-bottom: 18px;
+    padding: 22px 0;
+    border-top: var(--border-width-strong) double var(--ink);
+    border-bottom: var(--border-width-strong) double var(--ink);
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.1vw, 30px);
+    line-height: 1.3;
+  }
+}

@@ -1,0 +1,21 @@
+@use '../../../styles/layout';
+@use '../../../styles/type';
+
+.page {
+  @include layout.page;
+}
+
+.layout {
+  @include layout.grid;
+}
+
+.main {
+  @include layout.main;
+}
+
+.meta {
+  @include type.small;
+  @include type.backend-text;
+
+  color: var(--muted);
+}

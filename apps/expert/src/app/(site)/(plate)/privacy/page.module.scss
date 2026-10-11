@@ -1,0 +1,25 @@
+@use '../../../../styles/layout';
+@use '../../../../styles/type';
+
+.page {
+  @include layout.page;
+}
+
+.layout {
+  @include layout.grid;
+}
+
+.mark {
+  @include layout.margin;
+  @include type.kicker;
+
+  padding-top: 18px;
+  border-top: var(--border-width) solid var(--ink);
+  color: var(--muted);
+}
+
+.text {
+  @include layout.main;
+
+  max-width: 66ch;
+}
