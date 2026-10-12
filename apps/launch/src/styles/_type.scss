@@ -1,0 +1,102 @@
+@mixin text($size, $weight, $leading, $tracking: normal) {
+  font-family: var(--font-text);
+  font-size: var($size);
+  font-weight: $weight;
+  line-height: $leading;
+  letter-spacing: $tracking;
+}
+
+@mixin mono($size, $weight: 400, $leading: 1.5) {
+  font-family: var(--font-display);
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $leading;
+}
+
+@mixin code {
+  font-variant-ligatures: none;
+}
+
+@mixin hero-title {
+  @include text(--font-size-hero-title, 700, 1, -0.035em);
+
+  text-wrap: balance;
+}
+
+@mixin footer-title {
+  @include text(--font-size-footer-title, 700, 1, -0.03em);
+}
+
+@mixin section-title {
+  @include text(--font-size-section-title, 700, 1.02, -0.025em);
+
+  text-wrap: balance;
+}
+
+@mixin page-title {
+  @include text(--font-size-page-title, 700, 1.05, -0.025em);
+
+  text-wrap: balance;
+}
+
+@mixin plan-name {
+  @include text(--font-size-plan-name, 700, 1.2, -0.01em);
+}
+
+@mixin card-title {
+  @include text(--font-size-card-title, 700, 1.25);
+}
+
+@mixin lead {
+  font-size: var(--font-size-lead);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@mixin prose {
+  font-size: var(--font-size-prose);
+  line-height: 1.6;
+}
+
+@mixin small {
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+
+@mixin label {
+  @include mono(var(--font-size-label), 500, 1.3);
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@mixin note {
+  @include mono(var(--font-size-label));
+
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+
+@mixin prompt {
+  @include mono(var(--font-size-prompt));
+
+  color: var(--muted);
+}
+
+@mixin hash-mark($size: 0.5em, $lift: 0.42em) {
+  content: '## ';
+  font-family: var(--font-display);
+  font-size: $size;
+  font-weight: 400;
+  letter-spacing: 0;
+  vertical-align: $lift;
+  color: var(--accent-ink);
+}
+
+@mixin backend-text {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}

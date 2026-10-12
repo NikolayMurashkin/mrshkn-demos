@@ -1,0 +1,138 @@
+@use './media';
+
+:root {
+  --bg: #0f151c;
+  --surface: #131b24;
+  --surface-soft: #182230;
+  --ink: #e4ebf2;
+  --ink-inverse: #0f151c;
+  --muted: #8593a1;
+  --line: #223040;
+  --line-strong: #617284;
+  --accent: #ffb454;
+  --accent-ink: #ffb454;
+  --accent-contrast: #0e141b;
+  --ok: #5cd67a;
+  --shadow-floating: 0 8px 24px rgb(0 0 0 / 45%);
+
+  --font-display: 'JetBrains Mono', 'JetBrains Mono Metric Fallback', 'SF Mono', Menlo, Consolas, monospace;
+  --font-text: 'Terminal Sans', 'Terminal Sans Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-hero-title: clamp(36px, 7.8vw, 112px);
+  --font-size-footer-title: clamp(36px, 6vw, 88px);
+  --font-size-section-title: clamp(30px, 4.4vw, 64px);
+  --font-size-page-title: clamp(30px, 4.4vw, 56px);
+  --font-size-plan-name: clamp(20px, 2vw, 26px);
+  --font-size-card-title: 20px;
+  --font-size-price: clamp(28px, 3vw, 36px);
+  --font-size-wordmark: 20px;
+  --font-size-prompt: 15px;
+  --font-size-log: 14px;
+  --font-size-button: 14px;
+  --font-size-label: 12px;
+  --font-size-lead: clamp(16px, 1.4vw, 19px);
+  --font-size-prose: 17px;
+  --font-size-body: 15px;
+  --font-size-small: 13.5px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-96: 96px;
+
+  --t-gutter: clamp(20px, 4vw, 56px);
+  --t-section-y: var(--space-96);
+  --t-header-height: 80px;
+
+  --radius-control: 4px;
+  --radius-surface: 8px;
+  --radius-round: 50%;
+  --border-width: 1px;
+  --border-width-strong: 2px;
+
+  --duration-fast: 160ms;
+  --duration-base: 250ms;
+  --duration-type: 900ms;
+  --duration-log-start: 1000ms;
+  --duration-log-step: 280ms;
+  --duration-blink: 1s;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-step: steps(1);
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--surface);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--line-strong);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-strong);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-strong);
+  --demo-radius: var(--radius-control);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-text);
+  --demo-control-height: 52px;
+  --demo-control-height-sm: 42px;
+  --demo-button-padding-x: 24px;
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 500;
+  --demo-label-size: var(--font-size-label);
+  --demo-label-weight: 500;
+  --demo-label-tracking: 0.06em;
+  --demo-label-case: uppercase;
+  --demo-title-size: var(--font-size-page-title);
+  --demo-title-weight: 700;
+  --demo-title-leading: 1.05;
+  --demo-title-tracking: -0.025em;
+  --demo-section-gap: var(--space-48);
+  --demo-gutter: var(--t-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-out);
+  --demo-ease-move: var(--ease-out);
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f7f9;
+    --surface: #ffffff;
+    --surface-soft: #eaeef2;
+    --ink: #0e141b;
+    --ink-inverse: #f5f7f9;
+    --muted: #5b6673;
+    --line: #d3dae2;
+    --line-strong: #7d8995;
+    --accent: #c27400;
+    --accent-ink: #9c5c00;
+    --accent-contrast: #0e141b;
+    --ok: #187a42;
+    --shadow-floating: 0 8px 24px rgb(14 20 27 / 14%);
+
+    color-scheme: light;
+  }
+}
+
+@include media.max-1080 {
+  :root {
+    --t-section-y: var(--space-64);
+    --t-header-height: 120px;
+  }
+}

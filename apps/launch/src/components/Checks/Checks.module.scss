@@ -1,0 +1,21 @@
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    position: relative;
+    padding-left: 30px;
+    font-size: 14.5px;
+    line-height: 1.45;
+
+    &::before {
+      content: '[x]';
+      position: absolute;
+      left: 0;
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--ok);
+    }
+  }
+}

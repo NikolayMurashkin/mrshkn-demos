@@ -1,0 +1,60 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+  max-width: 68ch;
+  padding-top: var(--space-32);
+  border-top: var(--border-width) solid var(--line);
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-16) var(--space-20);
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+  transition: border-color var(--duration-fast) var(--ease-out);
+
+  &:hover,
+  &:active {
+    border-color: var(--ink);
+
+    .title {
+      color: var(--accent-ink);
+    }
+  }
+}
+
+.next {
+  grid-column: 2;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.label {
+  @include type.mono(13px);
+
+  color: var(--muted);
+}
+
+.title {
+  @include type.card-title;
+  @include type.backend-text;
+
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@include media.max-480 {
+  .pager {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .next {
+    grid-column: 1;
+  }
+}

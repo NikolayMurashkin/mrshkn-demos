@@ -1,0 +1,207 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 520px;
+  align-items: center;
+  gap: var(--space-48);
+  padding: var(--space-64) var(--t-gutter) var(--space-56);
+  overflow: hidden;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  min-width: 0;
+}
+
+.prompt {
+  @include type.prompt;
+  @include type.code;
+
+  min-width: 0;
+}
+
+.sign {
+  color: var(--accent-ink);
+}
+
+.command {
+  display: inline-block;
+  max-width: calc(var(--chars) * 1ch);
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  animation: type var(--duration-type) steps(var(--chars), end) both;
+}
+
+@keyframes type {
+  from {
+    max-width: 0;
+  }
+}
+
+.title {
+  @include type.hero-title;
+}
+
+.dot {
+  color: var(--accent-ink);
+}
+
+.lead {
+  @include type.lead;
+
+  max-width: 560px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+.primary {
+  @include button.base;
+  @include button.primary;
+}
+
+.secondary {
+  @include button.base;
+}
+
+.log {
+  position: relative;
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  padding: 18px var(--space-20) 18px var(--space-12);
+  @include type.mono(var(--font-size-log), 400, 1.9);
+  @include type.code;
+}
+
+.line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  animation: line var(--duration-fast) steps(1, start) both;
+  animation-delay: calc(var(--duration-log-start) + var(--duration-log-step) * var(--i));
+}
+
+@keyframes line {
+  from {
+    visibility: hidden;
+  }
+}
+
+.num {
+  flex-shrink: 0;
+  width: 2ch;
+  margin-right: var(--space-4);
+  padding-right: var(--space-4);
+  border-right: var(--border-width) solid var(--line);
+  text-align: right;
+  color: var(--muted);
+}
+
+.stage {
+  flex-shrink: 0;
+  white-space: pre;
+  color: var(--muted);
+}
+
+.text {
+  @include type.backend-text;
+}
+
+.key {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.leader {
+  flex: 1;
+  min-width: var(--space-16);
+  border-bottom: var(--border-width) dotted var(--muted);
+  transform: translateY(-5px);
+}
+
+.ok {
+  flex-shrink: 0;
+  color: var(--ok);
+}
+
+.active {
+  flex-shrink: 0;
+  color: var(--accent-ink);
+}
+
+.cursor {
+  flex-shrink: 0;
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  align-self: center;
+  animation: blink var(--duration-blink) var(--ease-step) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@include media.max-1080 {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-48) var(--t-gutter);
+  }
+}
+
+@include media.max-480 {
+  .hero {
+    padding: var(--space-32) var(--t-gutter) var(--space-48);
+  }
+
+  .prompt {
+    font-size: 14px;
+  }
+
+  .command {
+    display: inline;
+    max-width: none;
+    white-space: normal;
+    animation: none;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+  }
+
+  .lines {
+    padding: 14px var(--space-16) 14px var(--space-8);
+    font-size: 12.5px;
+  }
+}

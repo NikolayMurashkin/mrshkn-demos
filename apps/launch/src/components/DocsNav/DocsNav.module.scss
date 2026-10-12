@@ -1,0 +1,45 @@
+@use '../../styles/type';
+
+.nav {
+  padding: var(--space-12) var(--space-12);
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-12);
+  min-height: 44px;
+  padding: 10px var(--space-12);
+  border-radius: var(--radius-control);
+  font-size: 15px;
+  line-height: 1.45;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+
+  &:hover,
+  &:active {
+    background: var(--surface-soft);
+    color: var(--accent-ink);
+  }
+
+  &[aria-current='page'] {
+    font-weight: 700;
+    color: var(--accent-ink);
+  }
+}
+
+.index {
+  @include type.mono(13px);
+
+  flex-shrink: 0;
+  width: 2ch;
+  color: var(--accent-ink);
+}
+
+.title {
+  @include type.backend-text;
+}

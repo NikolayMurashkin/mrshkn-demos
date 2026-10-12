@@ -1,0 +1,99 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  padding: var(--t-section-y) var(--t-gutter);
+  border-top: var(--border-width) solid var(--line);
+}
+
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-20);
+}
+
+.item {
+  display: flex;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  width: 100%;
+  padding: 28px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.name {
+  @include type.plan-name;
+}
+
+.summary {
+  @include type.small;
+
+  color: var(--muted);
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-16);
+  padding: var(--space-16) 0;
+  border-top: var(--border-width) solid var(--line);
+  border-bottom: var(--border-width) solid var(--line);
+}
+
+.amount {
+  @include type.mono(var(--font-size-price), 700, 1.1);
+
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.term {
+  @include type.mono(13px);
+
+  color: var(--muted);
+}
+
+.plan > ul {
+  flex: 1;
+}
+
+.button {
+  @include button.base;
+
+  align-self: stretch;
+}
+
+.primary {
+  @include button.base;
+  @include button.primary;
+
+  align-self: stretch;
+}
+
+@include media.max-1080 {
+  .plans {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+  }
+}
+
+@include media.max-480 {
+  .plan {
+    padding: var(--space-20);
+  }
+}

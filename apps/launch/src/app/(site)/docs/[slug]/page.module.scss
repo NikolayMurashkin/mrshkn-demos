@@ -1,0 +1,110 @@
+@use '../../../../styles/media';
+@use '../../../../styles/type';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  padding: var(--space-48) var(--t-gutter) var(--space-96);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-16);
+  max-width: 920px;
+}
+
+.label {
+  @include type.label;
+}
+
+.title {
+  @include type.page-title;
+}
+
+.lead {
+  @include type.lead;
+
+  max-width: 560px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  gap: var(--space-56);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-56);
+  min-width: 0;
+}
+
+.prose {
+  @include type.prose;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  max-width: 68ch;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  min-width: 0;
+
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+
+    &::before {
+      @include type.hash-mark(0.7em, 0);
+    }
+  }
+}
+
+.code {
+  @include type.mono(14px, 400, 1.6);
+  @include type.code;
+
+  padding: var(--space-16) var(--space-20);
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.aside {
+  position: sticky;
+  top: calc(var(--t-header-height) + var(--space-16));
+  min-width: 0;
+}
+
+@include media.max-1080 {
+  .cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .aside {
+    position: static;
+  }
+}
+
+@include media.max-480 {
+  .section h2 {
+    font-size: 22px;
+  }
+
+  .code {
+    padding: var(--space-12) var(--space-16);
+    font-size: 13px;
+  }
+}

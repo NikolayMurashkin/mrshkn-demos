@@ -1,0 +1,17 @@
+@use '../../../styles/type';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-48) var(--t-gutter) var(--space-96);
+}
+
+.label {
+  @include type.label;
+}
+
+.text {
+  max-width: 68ch;
+  min-width: 0;
+}

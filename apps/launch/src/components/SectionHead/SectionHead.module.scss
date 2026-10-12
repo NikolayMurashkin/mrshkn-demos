@@ -1,0 +1,25 @@
+@use '../../styles/type';
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-32);
+}
+
+.title {
+  @include type.section-title;
+
+  &::before {
+    @include type.hash-mark;
+  }
+}
+
+.note {
+  @include type.note;
+}
+
+.mark {
+  color: var(--accent-ink);
+}

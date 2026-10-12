@@ -1,0 +1,1 @@
+export { DocsPager } from './DocsPager';
