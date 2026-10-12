@@ -61,3 +61,10 @@ export type DocPage = {
   lead: string;
   sections: DocSection[];
 };
+
+export type WaitlistField = 'email' | 'consent';
+
+/** Ошибка у поля — под ним; общая (лимит, сбой сети) — строкой под кнопкой. */
+export type WaitlistErrors = Partial<Record<WaitlistField | 'form', string>>;
+
+export type WaitlistFormStatus = 'idle' | 'sending' | 'sent';

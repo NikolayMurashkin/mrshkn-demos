@@ -77,5 +77,8 @@ export type LeadRouteOptions = {
 
 export type LeadFormStatus = 'idle' | 'sending' | 'sent' | 'invalid' | 'failed';
 
+/** Форма сайта, которая собирает данные посетителя: заявка ядра или список ожидания. */
+export type PolicyForm = 'lead' | 'waitlist';
+
 /** Язык текстов демо и ядра. */
 export type DemoLang = 'ru' | 'en';

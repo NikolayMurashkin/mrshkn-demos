@@ -50,6 +50,13 @@ export type CoreTexts = {
     rightsTitle: string;
     rightsBefore: string;
     rightsAfter: string;
+    /** Абзацы политики сайта со списком ожидания: вместо формы заявки — только почта. */
+    waitlist: {
+      intro: string;
+      data: string;
+      purpose: string;
+      storage: string;
+    };
   };
 };
 
@@ -105,6 +112,12 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       rightsTitle: 'Ваши права',
       rightsBefore: `Напишите на${NBSP}`,
       rightsAfter: `${NBSP}— расскажем, какие данные о${NBSP}вас хранятся, исправим или удалим их.`,
+      waitlist: {
+        intro: `Это демо-сайт студии ${STUDIO_NAME}: сервис, о${NBSP}котором он${NBSP}рассказывает, вымышлен. Адреса из${NBSP}списка ожидания хранит студия.`,
+        data: `Из${NBSP}формы списка ожидания${NBSP}— только адрес почты. Сервер видит IP-адрес и${NBSP}по${NBSP}нему ограничивает частоту отправок; в${NBSP}базе IP-адрес не${NBSP}хранится.`,
+        purpose: `Чтобы показать, как работает список ожидания. Сервис вымышлен, поэтому писем на${NBSP}этот адрес не${NBSP}будет. Рассылок нет.`,
+        storage: `На${NBSP}сервере студии в${NBSP}России. Адрес хранится, пока работает демо-сайт, и${NBSP}удаляется по${NBSP}вашей просьбе.`,
+      },
     },
   },
   en: {
@@ -159,6 +172,14 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       rightsTitle: 'Your rights',
       rightsBefore: 'Email ',
       rightsAfter: ' and we’ll tell you what data we hold about you, and correct or delete it.',
+      waitlist: {
+        intro: `This is a demo site by ${STUDIO_NAME} studio: the service it describes is fictional. Email addresses from the waitlist are kept by the studio.`,
+        data: 'From the waitlist form: your email address only. The server sees your IP address and uses it to limit how often the form can be sent; the IP address is not stored.',
+        purpose:
+          'To show how a waitlist works. The service is fictional, so no emails will be sent to this address. No newsletters.',
+        storage:
+          'On the studio’s server in Russia. The address is kept while the demo site is online and is deleted on your request.',
+      },
     },
   },
 };

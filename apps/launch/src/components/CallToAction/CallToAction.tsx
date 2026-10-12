@@ -1,13 +1,14 @@
-import Link from 'next/link';
 import { Command } from '@/components/Command';
-import { FOOTER_CTA, HEADER_CTA } from '@/consts';
+import { WaitlistForm } from '@/components/WaitlistForm';
+import { FOOTER_CTA } from '@/consts';
 import styles from './CallToAction.module.scss';
 
-/** Плита над подвалом демо — Footer DS: команда, крупный призыв, главная кнопка в быстрый старт. */
+/** Плита над подвалом демо — Footer DS: команда, крупный призыв и форма списка ожидания; на нее ведут тарифы. */
 export const CallToAction = () => (
   <section
     className={styles.band}
-    aria-labelledby="cta-title"
+    id={FOOTER_CTA.id}
+    aria-labelledby={`${FOOTER_CTA.id}-title`}
   >
     <div className={styles.lead}>
       <p
@@ -18,19 +19,13 @@ export const CallToAction = () => (
       </p>
       <h2
         className={styles.title}
-        id="cta-title"
+        id={`${FOOTER_CTA.id}-title`}
       >
         {FOOTER_CTA.title}
       </h2>
     </div>
     <div className={styles.aside}>
-      <Link
-        className={styles.button}
-        href={HEADER_CTA.href}
-        prefetch={false}
-      >
-        {FOOTER_CTA.cta} <span aria-hidden="true">→</span>
-      </Link>
+      <WaitlistForm />
       <p className={styles.note}>
         <span aria-hidden="true">{'// '}</span>
         {FOOTER_CTA.note}

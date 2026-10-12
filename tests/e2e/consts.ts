@@ -7,12 +7,14 @@ export const E2E_DATABASE_URL = process.env.E2E_DATABASE_URL ?? 'postgres://demo
 
 /**
  * Приложения, которые поднимает e2e: у каждого свой порт и своя база на том же сервере Postgres, что и `demos_e2e`.
- * Шаблон проверяет `template.spec.ts`, «Клиника» — смоук форм, «Эксперт» — смоук записи с оплатой.
+ * Шаблон проверяет `template.spec.ts`, «Клиника» — смоук форм, «Эксперт» — смоук записи с оплатой,
+ * «SaaS-лендинг» — смоук waitlist.
  */
 export const E2E_APPS = [
   { slug: 'template', port: PORT, database: 'demos_e2e' },
   { slug: 'dental', port: 3308, database: 'demos_dental_e2e' },
   { slug: 'expert', port: 3309, database: 'demos_expert_e2e' },
+  { slug: 'launch', port: 3318, database: 'demos_launch_e2e' },
 ] as const;
 
 export type E2EApp = (typeof E2E_APPS)[number];

@@ -3,12 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV, NAV_LABEL } from '@/consts';
-import type { NavItem } from '@/types';
+import { isCurrent } from '@/lib/nav';
 import styles from './SiteHeader.module.scss';
-
-/** Текущий пункт — раздел, в котором открыта страница; якоря главной текущими не бывают. */
-const isCurrent = (pathname: string, { section }: NavItem) =>
-  Boolean(section) && (pathname === section || pathname.startsWith(`${section}/`));
 
 export const SiteNav = () => {
   const pathname = usePathname();

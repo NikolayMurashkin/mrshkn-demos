@@ -1,0 +1,156 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  width: 100%;
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.label {
+  @include type.small;
+
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 0 var(--space-16);
+  border: var(--border-width) solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  transition: border-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    border-color: var(--ink);
+  }
+
+  &:focus-visible {
+    border-color: var(--accent-ink);
+    outline-offset: 2px;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: var(--accent-ink);
+  }
+}
+
+.error {
+  @include type.mono(13px);
+  @include type.backend-text;
+
+  color: var(--accent-ink);
+
+  &::before {
+    content: '! ';
+    font-weight: 700;
+  }
+}
+
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.45;
+
+  input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+
+    &[aria-invalid='true'] {
+      outline: var(--border-width) solid var(--accent-ink);
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid='true']:focus-visible {
+      outline-width: var(--border-width-strong);
+      outline-offset: 3px;
+    }
+  }
+
+  label {
+    @include type.backend-text;
+
+    padding-left: 10px;
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.submit {
+  @include button.base;
+  @include button.primary;
+  @include button.lg;
+
+  align-self: flex-start;
+
+  &:disabled,
+  &:disabled:hover {
+    border-color: var(--line);
+    background: var(--surface-soft);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+}
+
+.status {
+  @include type.mono(13px);
+  @include type.backend-text;
+
+  color: var(--accent-ink);
+
+  &:empty {
+    margin-top: calc(-1 * var(--space-20));
+  }
+}
+
+.done {
+  @include type.mono(var(--font-size-prompt));
+  @include type.backend-text;
+
+  &:focus-visible {
+    outline-offset: 3px;
+  }
+}
+
+.mark {
+  color: var(--ok);
+}
+
+@include media.max-480 {
+  .submit {
+    align-self: stretch;
+  }
+}

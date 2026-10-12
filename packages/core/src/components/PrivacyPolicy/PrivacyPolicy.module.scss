@@ -41,6 +41,8 @@
 
 .policy h2::before {
   content: counter(policy) '.';
+  flex: none;
+  white-space: nowrap;
   color: var(--demo-accent-ink);
   font-weight: 300;
 }

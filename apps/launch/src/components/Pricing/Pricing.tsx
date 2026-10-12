@@ -1,12 +1,14 @@
-import Link from 'next/link';
 import { Checks } from '@/components/Checks';
 import { SectionHead } from '@/components/SectionHead';
 import { Window } from '@/components/Window';
-import { HEADER_CTA, PRICING } from '@/consts';
+import { PRICING } from '@/consts';
 import { formatPlanPrice } from '@/lib/format';
 import styles from './Pricing.module.scss';
 
-/** Тарифы карточками PlanCard: один выделен рамкой accent и главной кнопкой, без подписи «популярный». */
+/**
+ * Тарифы карточками PlanCard: один выделен рамкой accent и главной кнопкой, без подписи «популярный». Кнопки ведут
+ * к форме списка ожидания в плите над подвалом — она есть на каждой странице, якорь работает и без JS.
+ */
 export const Pricing = () => (
   <section
     className={styles.section}
@@ -38,13 +40,12 @@ export const Pricing = () => (
               <span className={styles.term}>{plan.term}</span>
             </p>
             <Checks items={plan.points} />
-            <Link
+            <a
               className={plan.accent ? styles.primary : styles.button}
-              href={HEADER_CTA.href}
-              prefetch={false}
+              href={PRICING.href}
             >
               {plan.cta}
-            </Link>
+            </a>
           </Window>
         </li>
       ))}

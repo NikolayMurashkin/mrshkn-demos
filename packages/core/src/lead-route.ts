@@ -11,7 +11,7 @@ const json = (body: object, status = 200) => Response.json(body, { status });
  * Берется последний адрес в `x-forwarded-for`: первый присылает сам клиент, и лимит обходился бы одной
  * строкой заголовка. Последний дописывает наш прокси.
  */
-const addressOf = (request: Request) =>
+export const addressOf = (request: Request) =>
   request.headers
     .get('x-forwarded-for')
     ?.split(',')

@@ -1,6 +1,8 @@
+import { CORE_TEXTS } from '@mrshkn/demo-core/texts';
 import content from './content.json';
 import { typographContent } from './lib/typograph-content';
-import type { DocPage, Feature, LinkItem, LogLine, NavItem, Plan, Release } from './types';
+import type { DocPage, Feature, LinkItem, LogLine, NavItem, Plan, Release, WaitlistErrors } from './types';
+import type { WaitlistErrorKind } from './waitlist/types';
 
 /**
  * Тексты демо — статикой в `content.json`: их же читает генератор DS Terminal (раздел «Многостраничный сайт»),
@@ -41,7 +43,21 @@ export const CHANGELOG = {
   releases: CONTENT.changelog.releases satisfies Release[],
 };
 
+/** Плита над подвалом — форма списка ожидания: на нее ведут кнопки тарифов, `id` — якорь `#waitlist`. */
 export const FOOTER_CTA = CONTENT.footer;
+
+export const WAITLIST_TEXTS = CONTENT.waitlist;
+
+/** Подпись согласия и ссылка на политику — общие с формой заявки ядра. */
+export const CONSENT_TEXTS = CORE_TEXTS.ru.leadForm;
+
+/** Вид ошибки ответа → где и что показать: у поля почты, у согласия или строкой под кнопкой. */
+export const WAITLIST_ERRORS: Record<WaitlistErrorKind, WaitlistErrors> = {
+  email: { email: WAITLIST_TEXTS.emailError },
+  consent: { consent: WAITLIST_TEXTS.consentError },
+  rate: { form: WAITLIST_TEXTS.rateError },
+  failed: { form: WAITLIST_TEXTS.failedError },
+};
 
 export const DOCS = {
   label: CONTENT.docs.label,

@@ -11,7 +11,10 @@ const PrivacyPage = () => (
   <main className={styles.page}>
     <p className={styles.label}>{PRIVACY_PAGE.label}</p>
     <div className={styles.text}>
-      <PrivacyPolicy withYandexReviews={false} />
+      <PrivacyPolicy
+        withYandexReviews={false}
+        form="waitlist"
+      />
     </div>
   </main>
 );
