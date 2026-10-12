@@ -1,0 +1,119 @@
+@mixin backend-text {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+@mixin display($size, $leading, $tracking) {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var($size);
+  font-weight: 900;
+  line-height: $leading;
+  letter-spacing: $tracking;
+}
+
+@mixin hero-title {
+  @include display(--font-size-hero-title, 1, -0.03em);
+}
+
+@mixin section-title {
+  @include display(--font-size-section-title, 0.95, -0.03em);
+
+  text-wrap: balance;
+}
+
+@mixin page-title {
+  @include display(--font-size-page-title, 1, -0.02em);
+
+  text-wrap: balance;
+}
+
+@mixin plate-title {
+  @include display(--font-size-plate-title, 1, -0.03em);
+
+  text-wrap: balance;
+}
+
+@mixin wordmark {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--font-size-wordmark);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--ink-on-alt);
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 8%;
+    right: -10px;
+    left: -10px;
+    height: 84%;
+    border-radius: var(--radius-mark);
+    background: var(--accent-alt);
+    transform: rotate(-2deg);
+  }
+}
+
+@mixin kind {
+  font-size: var(--font-size-label);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@mixin lead {
+  max-width: 620px;
+  font-size: var(--font-size-lead);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+@mixin note-sticker {
+  margin: 0 0 var(--space-12);
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-mark);
+  background: var(--accent-alt);
+  color: var(--ink-on-alt);
+  box-shadow: var(--shadow-floating);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  transform: rotate(-3deg);
+}
+
+@mixin tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 30px;
+  padding: 4px 12px;
+  border: var(--border-width) solid currentcolor;
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-label);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@mixin tag-alt {
+  @include tag;
+
+  border-color: var(--ink);
+  background: var(--accent-alt);
+  color: var(--ink-on-alt);
+}
+
+@mixin underline {
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width);
+  text-underline-offset: 4px;
+}

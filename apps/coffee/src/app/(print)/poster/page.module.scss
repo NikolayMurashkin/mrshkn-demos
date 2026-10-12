@@ -1,0 +1,40 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+  padding: var(--space-40) var(--p-gutter) var(--space-72);
+}
+
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12) var(--space-20);
+  max-width: 100%;
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-24);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+}
+
+.hintText {
+  font-weight: 700;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .hint {
+    display: none;
+  }
+
+  .page {
+    display: block;
+    padding: 0;
+  }
+}

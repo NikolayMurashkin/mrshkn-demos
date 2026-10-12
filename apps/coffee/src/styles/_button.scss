@@ -1,0 +1,87 @@
+@use './media';
+
+@mixin base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  height: 56px;
+  padding: 0 28px;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--font-size-button);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+
+  svg {
+    flex: none;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-floating);
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+
+  @include media.max-480 {
+    height: auto;
+    min-height: 56px;
+    padding: 14px 24px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@mixin primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+@mixin warm {
+  background: var(--accent-warm);
+  color: var(--ink-on-alt);
+}
+
+@mixin alt {
+  background: var(--accent-alt);
+  color: var(--ink-on-alt);
+}
+
+@mixin sm {
+  height: 46px;
+  padding: 0 20px;
+  font-size: 15px;
+
+  @include media.max-480 {
+    min-height: 46px;
+    padding: 10px 20px;
+  }
+}
+
+@mixin lg {
+  height: 64px;
+  padding: 0 32px;
+
+  @include media.max-480 {
+    height: auto;
+    min-height: 60px;
+    padding: 14px 24px;
+  }
+}

@@ -1,0 +1,118 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.filter {
+  display: grid;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  min-width: 0;
+
+  li {
+    display: flex;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+.chip {
+  @include type.backend-text;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-height: 44px;
+  max-width: 100%;
+  padding: var(--space-8) 18px;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-floating);
+  }
+
+  &[aria-current='true'] {
+    background: var(--accent);
+    color: var(--accent-contrast);
+    box-shadow: var(--shadow-floating);
+    transform: translate(-2px, -2px);
+  }
+
+  &[aria-current='true']::before {
+    content: '';
+    flex: none;
+    width: 6px;
+    height: 11px;
+    margin: 0 4px 3px 2px;
+    border: solid currentcolor;
+    border-width: 0 var(--border-width) var(--border-width) 0;
+    border-radius: 0;
+    background: none;
+    transform: rotate(45deg);
+  }
+}
+
+.tag {
+  &::before {
+    content: '';
+    flex: none;
+    width: 18px;
+    height: 18px;
+    border: var(--border-width) solid currentcolor;
+    border-radius: var(--radius-control);
+    background:
+      linear-gradient(currentcolor, currentcolor) center / 8px var(--border-width) no-repeat,
+      linear-gradient(currentcolor, currentcolor) center / var(--border-width) 8px no-repeat;
+  }
+
+  &[aria-current='true'] {
+    background: var(--accent-alt);
+    color: var(--ink-on-alt);
+  }
+}
+
+@include media.max-720 {
+  .compact {
+    display: flex;
+    margin-inline: calc(-1 * var(--p-gutter));
+    padding: 6px var(--p-gutter) 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+
+    .chips {
+      flex: none;
+      flex-wrap: nowrap;
+    }
+
+    li {
+      flex: none;
+      max-width: none;
+    }
+
+    .tags {
+      margin-left: var(--space-12);
+      padding-left: var(--space-12);
+      border-left: var(--border-width) solid var(--ink);
+    }
+
+    .chip {
+      max-width: none;
+      white-space: nowrap;
+    }
+  }
+}

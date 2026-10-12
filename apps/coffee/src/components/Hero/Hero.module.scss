@@ -1,0 +1,190 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: var(--space-40);
+  align-items: center;
+  padding: var(--space-56) var(--p-gutter) var(--space-72);
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  min-width: 0;
+  animation: bounce var(--duration-bounce) var(--ease-out) both;
+}
+
+.title {
+  @include type.hero-title;
+  @include type.backend-text;
+}
+
+.lead {
+  @include type.lead;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primary,
+.secondary {
+  @include button.base;
+
+  height: 60px;
+  padding: 0 30px;
+}
+
+.primary {
+  @include button.primary;
+}
+
+.stickers {
+  position: relative;
+  height: 420px;
+}
+
+.sticker {
+  position: absolute;
+  padding: 18px 22px;
+  border: var(--border-width-strong) solid var(--ink);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-surface);
+  font-size: var(--font-size-sticker);
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  transform: rotate(var(--tilt));
+  animation: slap var(--duration-slap) var(--ease-spring) both;
+}
+
+.alt {
+  --tilt: -7deg;
+
+  top: 24px;
+  left: 16px;
+  width: 230px;
+  background: var(--accent-alt);
+  color: var(--ink-on-alt);
+  animation:
+    slap var(--duration-slap) var(--ease-spring) both,
+    wiggle var(--duration-wiggle) var(--ease-in-out) var(--duration-slap) infinite alternate;
+}
+
+.warm {
+  --tilt: 5deg;
+
+  top: 140px;
+  right: 8px;
+  width: 210px;
+  background: var(--accent-warm);
+  color: var(--ink-on-alt);
+  animation-delay: var(--duration-stagger);
+}
+
+.accent {
+  --tilt: -3deg;
+
+  bottom: 28px;
+  left: 56px;
+  width: 250px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  animation-delay: calc(var(--duration-stagger) * 2);
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width);
+  text-underline-offset: 4px;
+  transition: box-shadow var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    box-shadow: var(--shadow-band);
+  }
+}
+
+.star {
+  position: absolute;
+  right: 36px;
+  bottom: 12px;
+  color: var(--accent-alt);
+  transform: rotate(12deg);
+  animation: slap var(--duration-slap) var(--ease-spring) calc(var(--duration-stagger) * 3) both;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(20px) scale(0.98);
+    opacity: 0.001;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes slap {
+  from {
+    transform: scale(1.35) rotate(calc(var(--tilt, 12deg) + 14deg));
+    opacity: 0.001;
+  }
+
+  to {
+    transform: rotate(var(--tilt, 12deg));
+    opacity: 1;
+  }
+}
+
+@keyframes wiggle {
+  from {
+    transform: rotate(-7deg);
+  }
+
+  to {
+    transform: rotate(-4deg);
+  }
+}
+
+@include media.max-1080 {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: var(--space-40);
+  }
+
+  .stickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-20);
+    height: auto;
+    padding: var(--space-12) var(--space-8) var(--space-12) 0;
+  }
+
+  .sticker {
+    position: static;
+    width: auto;
+    max-width: 260px;
+    font-size: 18px;
+  }
+
+  .star {
+    display: none;
+  }
+}
+
+@include media.max-480 {
+  .hero {
+    padding: var(--space-32) var(--p-gutter) var(--space-56);
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    min-height: 60px;
+  }
+}
