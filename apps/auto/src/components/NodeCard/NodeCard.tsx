@@ -15,12 +15,23 @@ type NodeCardProps = {
   action?: ReactNode;
   /** Под заголовком: симптом, которым открыли карточку. */
   lead?: ReactNode;
+  /** Объяснялка узла в ее месте до заказ-наряда: ползунок и расчет на первом экране. */
+  explanation?: ReactNode;
   /** После заказ-наряда: примечание о цене и запись. */
   children?: ReactNode;
 };
 
 /** Карточка узла — заказ-наряд: вероятные причины, цена работы «от» и срок. Тексты из CMS — через типограф. */
-export const NodeCard = ({ node, lang, headingLevel = 'h3', titleId, action, lead, children }: NodeCardProps) => {
+export const NodeCard = ({
+  node,
+  lang,
+  headingLevel = 'h3',
+  titleId,
+  action,
+  lead,
+  explanation,
+  children,
+}: NodeCardProps) => {
   const texts = TEXTS[lang].card;
   const Heading = headingLevel;
   const explainer = EXPLAINERS[node.key];
@@ -44,7 +55,9 @@ export const NodeCard = ({ node, lang, headingLevel = 'h3', titleId, action, lea
         <div
           className={styles.explainer}
           data-explainer={explainer}
-        />
+        >
+          {explanation}
+        </div>
       )}
       <table className={styles.order}>
         <caption className={styles.caption}>{texts.tableCaption}</caption>

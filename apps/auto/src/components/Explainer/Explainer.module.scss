@@ -1,0 +1,238 @@
+@use '../../styles/type';
+
+.explain {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0 20px;
+  border-top: var(--demo-border-width) solid var(--demo-border-strong);
+  border-bottom: var(--demo-border-width) solid var(--demo-border-strong);
+  color: var(--demo-fg);
+}
+
+.title {
+  @include type.display(28px);
+  @include type.backend-text;
+  line-height: 1;
+}
+
+.lead,
+.note {
+  @include type.backend-text;
+  line-height: 1.45;
+}
+
+.note {
+  color: var(--demo-muted);
+  font-size: 14px;
+}
+
+.control {
+  @include type.ui(600, 16px);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.control label,
+.facts dt,
+.facts dd {
+  @include type.backend-text;
+}
+
+.value {
+  color: var(--demo-accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.range {
+  width: 100%;
+  height: 32px;
+  margin: -4px 0 0;
+  background: transparent;
+  accent-color: var(--demo-accent);
+  cursor: pointer;
+  appearance: none;
+}
+
+.range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--demo-radius);
+  background: var(--demo-border-strong);
+}
+
+.range::-moz-range-track {
+  height: 4px;
+  border-radius: var(--demo-radius);
+  background: var(--demo-border-strong);
+}
+
+.range::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border: 0;
+  border-radius: var(--auto-radius-dot);
+  background: var(--demo-accent);
+  box-shadow: var(--auto-glow-lamp);
+  appearance: none;
+}
+
+.range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: var(--auto-radius-dot);
+  background: var(--demo-accent);
+  box-shadow: var(--auto-glow-lamp);
+}
+
+.range:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
+}
+
+.figure {
+  margin: 0;
+}
+
+.plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--demo-border-width) solid var(--demo-border);
+  border-radius: var(--demo-radius);
+  background: var(--demo-bg);
+}
+
+.axis {
+  stroke: var(--demo-border-strong);
+  stroke-width: 1;
+}
+
+.line {
+  fill: none;
+  stroke: var(--demo-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.lineNew {
+  stroke: var(--auto-xray);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.air {
+  fill: none;
+  stroke: var(--demo-danger);
+  stroke-width: 4;
+}
+
+.playhead {
+  stroke: var(--demo-muted);
+  stroke-width: 1;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 8px;
+  color: var(--demo-muted);
+  font-size: 14px;
+}
+
+.key::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-top: 2px solid var(--demo-accent);
+}
+
+.keyNew::before {
+  border-top: 2px dashed var(--auto-xray);
+}
+
+.keyAir::before {
+  border-top: 4px solid var(--demo-danger);
+}
+
+.facts {
+  display: grid;
+  gap: 6px;
+}
+
+.facts div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 12px;
+}
+
+.facts dt {
+  color: var(--demo-muted);
+}
+
+.facts dd {
+  @include type.ui(600, 16px, 1.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.scale {
+  position: relative;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--auto-xray);
+}
+
+.zone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.zoneReplace {
+  background: var(--demo-accent);
+}
+
+.zoneError {
+  background: var(--demo-danger);
+}
+
+.zoneSkip {
+  background: repeating-linear-gradient(-45deg, var(--demo-danger) 0 4px, var(--demo-bg) 4px 7px);
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--demo-fg);
+  box-shadow: 0 0 0 1px var(--demo-bg);
+}
+
+.status {
+  @include type.backend-text;
+  padding-left: 12px;
+  border-left: 3px solid var(--auto-xray);
+  line-height: 1.4;
+}
+
+.status[data-level='replace'] {
+  border-left-color: var(--demo-accent);
+}
+
+.status[data-level='error'],
+.status[data-level='skip'] {
+  border-left-color: var(--demo-danger);
+}

@@ -14,6 +14,7 @@ const config = [
       'apps/*/src/payload-types.ts',
       'apps/*/src/migrations/**',
       'apps/*/next-env.d.ts',
+      'apps/*/public/**',
     ],
   },
   ...nextCoreWebVitals,

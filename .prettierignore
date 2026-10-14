@@ -9,3 +9,4 @@ yarn.lock
 apps/*/src/app/(payload)
 apps/*/src/payload-types.ts
 apps/*/src/migrations
+apps/*/public

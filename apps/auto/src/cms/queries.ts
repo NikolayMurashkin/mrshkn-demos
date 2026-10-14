@@ -19,10 +19,10 @@ export const getWhereItHurts = async (payload: Payload, lang: DemoLang): Promise
     causes: (causes ?? []).map(({ text, price, term }) => ({ text, price, term })),
   }));
 
-  const symptoms: AutoSymptom[] = symptomDocs.flatMap(({ key, node, text }) => {
+  const symptoms: AutoSymptom[] = symptomDocs.flatMap(({ key, node, text, place }) => {
     const nodeKey = keys.get(typeof node === 'object' ? node.id : node);
 
-    return nodeKey ? [{ key, node: nodeKey, text: text ?? '' }] : [];
+    return nodeKey ? [{ key, node: nodeKey, text: text ?? '', place: place ?? null }] : [];
   });
 
   return { nodes, symptoms };

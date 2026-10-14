@@ -7,8 +7,8 @@ export type AutoCause = { text: string; price: number; term: string };
 
 export type AutoNode = { key: string; name: string; causes: AutoCause[] };
 
-/** Симптом ведет в узел: `node` — `key` узла. */
-export type AutoSymptom = { key: string; node: string; text: string };
+/** Симптом ведет в узел: `node` — `key` узла; `place` — место разнесенного узла в сцене (привод ГРМ, задняя ось). */
+export type AutoSymptom = { key: string; node: string; text: string; place?: string | null };
 
 /** «Где болит» на одном языке: то, что берет страница. */
 export type WhereItHurts = { nodes: AutoNode[]; symptoms: AutoSymptom[] };
