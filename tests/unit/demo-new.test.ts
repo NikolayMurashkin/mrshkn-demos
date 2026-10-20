@@ -38,6 +38,21 @@ describe('yarn demo:new <name>', () => {
     expect(read('apps/dental/src/demo.config.ts')).not.toContain("slug: 'template'");
   });
 
+  it('U8: копирует подъем Payload при старте (src/instrumentation.ts) шаблона без изменений', () => {
+    const source = path.join(REPO_ROOT, 'apps/template/src/instrumentation.ts');
+
+    expect(existsSync(source), `у шаблона нет ${source}: новому демо нечего копировать`).toBe(true);
+
+    cpSync(source, path.join(root, 'apps/template/src/instrumentation.ts'));
+
+    scaffoldDemo({ root, name: 'dental' });
+
+    const copied = path.join(root, 'apps/dental/src/instrumentation.ts');
+
+    expect(existsSync(copied), 'apps/dental/src/instrumentation.ts после demo:new').toBe(true);
+    expect(readFileSync(copied).equals(readFileSync(source)), 'копия совпадает с шаблоном байт в байт').toBe(true);
+  });
+
   it('шаблон остается нетронутым', () => {
     scaffoldDemo({ root, name: 'dental' });
 
