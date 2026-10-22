@@ -33,7 +33,7 @@ export type DemoConfig = {
   title: string;
   description: string;
   business: DemoBusiness;
-  /** Deep-link Mini App «Запись» (`https://t.me/<bot>?startapp=<slug>`); без него запись ведет к форме заявки. */
+  /** Бот экземпляра Mini App «Запись» этого демо (`https://t.me/<bot>`, у каждого демо свой); без него запись ведет к форме заявки. */
   miniAppUrl?: string;
   /** Номер организации на Яндекс Картах; без него раздела отзывов нет. */
   yandexOrgId?: string;

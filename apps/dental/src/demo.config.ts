@@ -23,4 +23,5 @@ export const DEMO: DemoConfig = {
     openingHours: ['Mo-Su 09:00-21:00'],
     geo: { latitude: 54.7518, longitude: 20.4705 },
   },
+  miniAppUrl: 'https://t.me/mrshkn_dental_bot',
 };
