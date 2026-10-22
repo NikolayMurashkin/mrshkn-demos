@@ -1,12 +1,12 @@
 import { STUDIO_NAME, STUDIO_URL } from '@mrshkn/demo-core/consts';
-import type { NavItem } from './types';
+import type { LoyaltyAppEnv, NavItem } from './types';
 
 /** Знак в шапке, подвале, на карте-штампе и плакате: короткое имя заведения на желтой метке. */
 export const BRAND = { name: 'Гуща', kind: 'кофейня' };
 
 export const MENU_HREF = '/menu';
 
-/** Страница-заглушка до Mini App «Лояльность»: потом кнопки поведут в приложение, страница останется запасным входом. */
+/** Страница «Лояльность»: кнопки Mini App у ботов кофейни, без адресов ботов — заглушка. */
 export const LOYALTY_HREF = '/loyalty';
 
 export const LOYALTY_LABEL = 'Лояльность';
@@ -56,11 +56,36 @@ export const MENU = {
   reset: 'Показать все меню',
 };
 
+const LOYALTY_LEAD = 'Каждая 10-я чашка — от нас. Штампы ставит бариста по QR в приложении.';
+
+const LOYALTY_SOON = 'Приложение запускаем — загляните позже.';
+
+const LOYALTY_TITLE = 'Карта лояльности';
+
+/**
+ * `text` — заглушка, пока у кофейни нет ни одного бота; `lead` — тот же текст без «загляните позже», рядом с кнопками.
+ * Заголовок и описание называют мессенджеры с заданным ботом, перечисленные через `and`.
+ */
 export const LOYALTY = {
-  title: 'Карта лояльности — в Telegram и MAX',
-  text: 'Каждая 10-я чашка — от нас. Штампы ставит бариста по QR в приложении. Приложение запускаем — загляните позже.',
+  title: LOYALTY_TITLE,
+  heading: (messengers: string) => `${LOYALTY_TITLE} — в ${messengers}`,
+  description: (messengers: string) => `Каждая 10-я чашка — от нас. ${LOYALTY_TITLE} в ${messengers}.`,
+  and: ' и ',
+  lead: LOYALTY_LEAD,
+  text: `${LOYALTY_LEAD} ${LOYALTY_SOON}`,
+  telegram: 'Открыть в Telegram',
+  max: 'Открыть в MAX',
   back: 'Вернуться в меню',
 };
+
+/** Адрес бота без https — не кнопка: `javascript:`, `#`, `http://` на странице не появятся. */
+export const LOYALTY_APP_URL_PREFIX = 'https://';
+
+/** Адрес Mini App у бота (`https://t.me/<бот>?startapp`, `https://max.ru/<бот>?startapp`) — из окружения стенда. */
+export const LOYALTY_APP_ENV: LoyaltyAppEnv[] = [
+  { name: 'LOYALTY_TELEGRAM_URL', label: LOYALTY.telegram, messenger: 'Telegram' },
+  { name: 'LOYALTY_MAX_URL', label: LOYALTY.max, messenger: 'MAX' },
+];
 
 /** Девять пустых ячеек карты-штампа и десятая — подарок. */
 export const STAMP_CELLS = Array.from({ length: 9 }, (_, index) => index);

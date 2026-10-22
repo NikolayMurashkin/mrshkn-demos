@@ -31,8 +31,18 @@
   @include type.lead;
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primary,
 .button {
   @include button.base;
+}
+
+.primary {
   @include button.primary;
 }
 
@@ -43,6 +53,12 @@
 }
 
 @include media.max-480 {
+  .actions {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .primary,
   .button {
     width: 100%;
   }
