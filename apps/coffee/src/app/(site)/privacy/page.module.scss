@@ -1,0 +1,14 @@
+.page {
+  flex: 1;
+  padding: var(--space-40) var(--p-gutter) var(--space-96);
+}
+
+.text {
+  --demo-title-size: var(--font-size-page-title);
+  --demo-title-leading: 1;
+
+  max-width: 68ch;
+  min-width: 0;
+  font-size: var(--font-size-prose);
+  line-height: 1.6;
+}

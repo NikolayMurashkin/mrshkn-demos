@@ -1,0 +1,128 @@
+@use './media';
+
+:root {
+  --bg: #fff7e6;
+  --surface: #ffffff;
+  --surface-soft: #fdeecd;
+  --ink: #1c1035;
+  --ink-inverse: #fff7e6;
+  --muted: #5d5477;
+  --line: #e6dcc6;
+  --accent: #6b3df6;
+  --accent-ink: #5a2ee0;
+  --accent-contrast: #ffffff;
+  --accent-contrast-soft: #ece4ff;
+  --accent-alt: #ffd43b;
+  --accent-warm: #ff5c7a;
+  --ink-on-alt: #1c1035;
+
+  --shadow-floating: 4px 4px 0 var(--ink);
+  --shadow-surface: 8px 8px 0 var(--ink);
+  --shadow-band: 10px 10px 0 var(--ink);
+
+  --font-display: 'Rubik', 'Rubik Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'Rubik', 'Rubik Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-hero-title: clamp(40px, 8vw, 116px);
+  --font-size-section-title: clamp(40px, 6.4vw, 88px);
+  --font-size-page-title: clamp(36px, 5.4vw, 72px);
+  --font-size-plate-title: clamp(32px, 4.4vw, 64px);
+  --font-size-plan-name: clamp(24px, 2.4vw, 32px);
+  --font-size-price: clamp(24px, 2.4vw, 30px);
+  --font-size-site-block: clamp(22px, 2.2vw, 28px);
+  --font-size-sticker: 20px;
+  --font-size-wordmark: 28px;
+  --font-size-lead: clamp(17px, 1.5vw, 21px);
+  --font-size-button: 18px;
+  --font-size-prose: 17px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-label: 13px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-96: 96px;
+  --space-120: 120px;
+
+  --p-gutter: clamp(20px, 4vw, 56px);
+  --p-section-y: var(--space-96);
+
+  --radius-control: 999px;
+  --radius-surface: 28px;
+  --radius-band: 40px;
+  --radius-inner: 18px;
+  --radius-mark: 12px;
+  --border-width: 2px;
+  --border-width-strong: 2.5px;
+
+  --duration-fast: 160ms;
+  --duration-base: 250ms;
+  --duration-slap: 600ms;
+  --duration-stagger: 120ms;
+  --duration-bounce: 1000ms;
+  --duration-wiggle: 5s;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: ease-in-out;
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--surface);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--ink);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-strong);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-strong);
+  --demo-radius: var(--radius-inner);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-display);
+  --demo-control-height: 56px;
+  --demo-control-height-sm: 46px;
+  --demo-button-padding-x: 28px;
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 700;
+  --demo-label-size: var(--font-size-label);
+  --demo-label-weight: 800;
+  --demo-label-tracking: 0.06em;
+  --demo-label-case: uppercase;
+  --demo-title-size: var(--font-size-section-title);
+  --demo-title-weight: 900;
+  --demo-title-leading: 0.95;
+  --demo-title-tracking: -0.03em;
+  --demo-section-gap: var(--space-56);
+  --demo-gutter: var(--p-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-out);
+  --demo-ease-move: var(--ease-spring);
+}
+
+@include media.max-1080 {
+  :root {
+    --p-section-y: var(--space-72);
+  }
+}
+
+@include media.max-720 {
+  :root {
+    --demo-section-gap: var(--space-40);
+  }
+}

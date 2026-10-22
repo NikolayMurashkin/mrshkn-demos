@@ -1,0 +1,16 @@
+@use '../../styles/media';
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: var(--space-12) var(--p-gutter);
+  border-bottom: var(--border-width) solid var(--ink);
+  background: var(--bg);
+}
+
+@include media.max-720 {
+  .bar {
+    padding-block: var(--space-4);
+  }
+}
