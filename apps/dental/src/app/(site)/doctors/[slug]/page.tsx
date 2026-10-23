@@ -1,13 +1,11 @@
-import { BookingButton } from '@mrshkn/demo-core/components/BookingButton';
-import { LEAD_FORM_ID } from '@mrshkn/demo-core/consts';
 import { paragraphs, typograph } from '@mrshkn/demo-core/typograph';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { BookingLinks } from '@/components/BookingLinks';
 import { PageIntro } from '@/components/PageIntro';
 import { Section } from '@/components/Section';
 import { ServiceList } from '@/components/ServiceList';
 import { getDoctor } from '@/cms/queries';
-import { DEMO } from '@/demo.config';
 import { practiceSinceText } from '@/lib/format';
 import type { Service } from '@/payload-types';
 import styles from '../../content.module.scss';
@@ -40,12 +38,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
         lead={practiceSinceText(doctor.practiceSince)}
         back={{ href: '/doctors', label: 'Все врачи' }}
       >
-        <BookingButton
-          formHref={`#${LEAD_FORM_ID}`}
-          miniAppUrl={DEMO.miniAppUrl}
-        >
-          Записаться к&nbsp;врачу
-        </BookingButton>
+        <BookingLinks />
       </PageIntro>
       <Section
         id="about"

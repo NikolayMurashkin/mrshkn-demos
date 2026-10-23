@@ -24,4 +24,5 @@ export const DEMO: DemoConfig = {
     geo: { latitude: 54.7518, longitude: 20.4705 },
   },
   miniAppUrl: 'https://t.me/mrshkn_dental_bot',
+  maxAppUrl: 'https://max.ru/se14753310_bot?startapp',
 };

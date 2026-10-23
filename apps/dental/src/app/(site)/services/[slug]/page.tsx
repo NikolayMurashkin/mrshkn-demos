@@ -1,14 +1,12 @@
-import { BookingButton } from '@mrshkn/demo-core/components/BookingButton';
-import { LEAD_FORM_ID } from '@mrshkn/demo-core/consts';
 import { paragraphs, typograph } from '@mrshkn/demo-core/typograph';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { BookingLinks } from '@/components/BookingLinks';
 import { DoctorCards } from '@/components/DoctorCards';
 import { PageIntro } from '@/components/PageIntro';
 import { PriceTable } from '@/components/PriceTable';
 import { Section } from '@/components/Section';
 import { getDoctorsOfService, getService } from '@/cms/queries';
-import { DEMO } from '@/demo.config';
 import { formatPrice } from '@/lib/format';
 import styles from '../../content.module.scss';
 
@@ -40,12 +38,7 @@ const ServicePage = async ({ params }: ServicePageProps) => {
         lead={typograph(service.summary)}
         back={{ href: '/services', label: 'Все услуги' }}
       >
-        <BookingButton
-          formHref={`#${LEAD_FORM_ID}`}
-          miniAppUrl={DEMO.miniAppUrl}
-        >
-          Записаться
-        </BookingButton>
+        <BookingLinks />
       </PageIntro>
       <Section
         id="prices"

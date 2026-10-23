@@ -1,8 +1,7 @@
-import { BookingButton } from '@mrshkn/demo-core/components/BookingButton';
 import { DemoReviews } from '@mrshkn/demo-core/components/DemoReviews';
-import { LEAD_FORM_ID } from '@mrshkn/demo-core/consts';
 import Link from 'next/link';
 import { Arrow } from '@/components/Arrow';
+import { BookingLinks } from '@/components/BookingLinks';
 import { Contacts } from '@/components/Contacts';
 import { DoctorCards } from '@/components/DoctorCards';
 import { LicenseInfo } from '@/components/LicenseInfo';
@@ -52,12 +51,7 @@ const HomePage = async () => {
           <div className={styles.row}>
             <p className={styles.lead}>{HERO.lead}</p>
             <div className={styles.actions}>
-              <BookingButton
-                formHref={`#${LEAD_FORM_ID}`}
-                miniAppUrl={DEMO.miniAppUrl}
-              >
-                Записаться на&nbsp;прием
-              </BookingButton>
+              <BookingLinks />
               <Link
                 className={styles.secondary}
                 href="/prices"

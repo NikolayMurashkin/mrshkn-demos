@@ -1,4 +1,5 @@
-.button {
+.button,
+.outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -8,8 +9,6 @@
   padding: 0 var(--demo-button-padding-x);
   border: var(--demo-border-width) solid var(--demo-fg);
   border-radius: var(--demo-radius);
-  background: var(--demo-fg);
-  color: var(--demo-fg-inverse);
   font-size: var(--demo-button-font-size);
   font-weight: var(--demo-button-font-weight);
   line-height: 1;
@@ -19,6 +18,16 @@
     color var(--demo-duration) var(--demo-ease),
     background-color var(--demo-duration) var(--demo-ease),
     border-color var(--demo-duration) var(--demo-ease);
+}
+
+.button {
+  background: var(--demo-fg);
+  color: var(--demo-fg-inverse);
+}
+
+.outline {
+  background: transparent;
+  color: var(--demo-fg);
 }
 
 .button::after {
@@ -39,18 +48,26 @@
   color: var(--demo-accent-fg);
 }
 
+.outline:hover,
+.outline:active {
+  border-color: var(--demo-accent-ink);
+  color: var(--demo-accent-ink);
+}
+
 .button:hover::after,
 .button:active::after {
   transform: translateX(4px);
 }
 
-.button:focus-visible {
+.button:focus-visible,
+.outline:focus-visible {
   outline: var(--demo-focus-width) solid var(--demo-focus);
   outline-offset: var(--demo-focus-offset);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .button,
+  .outline,
   .button::after {
     transition: none;
   }

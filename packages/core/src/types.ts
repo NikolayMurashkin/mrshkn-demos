@@ -35,6 +35,8 @@ export type DemoConfig = {
   business: DemoBusiness;
   /** Бот экземпляра Mini App «Запись» этого демо (`https://t.me/<bot>`, у каждого демо свой); без него запись ведет к форме заявки. */
   miniAppUrl?: string;
+  /** Бот того же Mini App «Запись» в MAX (`https://max.ru/<ник бота>?startapp`); без него вторая ссылка записи не рисуется. */
+  maxAppUrl?: string;
   /** Номер организации на Яндекс Картах; без него раздела отзывов нет. */
   yandexOrgId?: string;
 };
