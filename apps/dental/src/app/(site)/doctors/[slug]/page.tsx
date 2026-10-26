@@ -2,10 +2,12 @@ import { paragraphs, typograph } from '@mrshkn/demo-core/typograph';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BookingLinks } from '@/components/BookingLinks';
+import { DoctorDocuments } from '@/components/DoctorDocuments';
 import { PageIntro } from '@/components/PageIntro';
 import { Section } from '@/components/Section';
 import { ServiceList } from '@/components/ServiceList';
 import { getDoctor } from '@/cms/queries';
+import { DOCTOR_DOCUMENTS } from '@/consts';
 import { practiceSinceText } from '@/lib/format';
 import type { Service } from '@/payload-types';
 import styles from '../../content.module.scss';
@@ -51,6 +53,18 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
           ))}
         </div>
       </Section>
+      {doctor.accreditation && (
+        <Section
+          id="documents"
+          label={DOCTOR_DOCUMENTS.label}
+          title={DOCTOR_DOCUMENTS.title}
+        >
+          <DoctorDocuments
+            accreditation={doctor.accreditation}
+            schedule={doctor.schedule ?? []}
+          />
+        </Section>
+      )}
       {Boolean(doctor.education?.length) && (
         <Section
           id="education"

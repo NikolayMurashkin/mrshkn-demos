@@ -1,7 +1,10 @@
-import { RATE_LIMIT_MAX_KEYS } from '../consts';
+import { RATE_LIMIT_SWEEP_MS } from '../consts';
 import type { RateLimiterOptions } from '../types';
 
-/** Скользящее окно по адресу. Память живет в процессе: каждое демо крутится одним контейнером. */
+/**
+ * Скользящее окно по адресу. Память живет в процессе: каждое демо крутится одним контейнером. Адрес, который
+ * не обращался дольше окна, стирается на каждом вызове и по таймеру: политика обещает хранить его около 10 минут.
+ */
 export const createRateLimiter = ({ limit, windowMs }: RateLimiterOptions) => {
   const hits = new Map<string, number[]>();
 
@@ -13,11 +16,12 @@ export const createRateLimiter = ({ limit, windowMs }: RateLimiterOptions) => {
     }
   };
 
+  /** Таймер не держит процесс: без него сервер и тесты завершались бы как прежде. */
+  setInterval(() => prune(Date.now()), Math.min(windowMs, RATE_LIMIT_SWEEP_MS)).unref?.();
+
   return {
     allow(key: string, now: number = Date.now()) {
-      if (hits.size > RATE_LIMIT_MAX_KEYS) {
-        prune(now);
-      }
+      prune(now);
 
       const fresh = (hits.get(key) ?? []).filter((time) => now - time < windowMs);
 
@@ -30,6 +34,10 @@ export const createRateLimiter = ({ limit, windowMs }: RateLimiterOptions) => {
       hits.set(key, [...fresh, now]);
 
       return true;
+    },
+    /** Сколько адресов лимитер сейчас помнит. */
+    size() {
+      return hits.size;
     },
   };
 };

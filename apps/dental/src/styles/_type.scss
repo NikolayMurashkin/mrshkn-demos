@@ -62,6 +62,8 @@
 }
 
 @mixin prose {
+  --lv-line-height: 1.6;
+
   font-size: var(--font-size-prose);
   line-height: 1.6;
 }

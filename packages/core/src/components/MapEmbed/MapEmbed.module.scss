@@ -54,7 +54,7 @@
 .note {
   margin: 0;
   color: var(--demo-muted);
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
 }
 
 .widget {

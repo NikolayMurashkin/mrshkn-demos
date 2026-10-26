@@ -2,6 +2,8 @@ import { MapEmbed } from '@mrshkn/demo-core/components/MapEmbed';
 import { DIRECTIONS_TEXT, HOURS_TEXT } from '@/consts';
 import { DEMO } from '@/demo.config';
 import { addressText, phoneHref } from '@/lib/format';
+import { NumberText } from '../NumberText';
+import { PhoneText } from '../PhoneText';
 import styles from './Contacts.module.scss';
 
 export const Contacts = () => {
@@ -18,7 +20,7 @@ export const Contacts = () => {
                 className={styles.phone}
                 href={phoneHref(telephone)}
               >
-                {telephone}
+                <PhoneText phone={telephone} />
               </a>
             </dd>
           </div>
@@ -31,7 +33,9 @@ export const Contacts = () => {
         )}
         <div className={styles.cell}>
           <dt className={styles.term}>Часы работы</dt>
-          <dd className={styles.value}>{HOURS_TEXT}</dd>
+          <dd className={styles.value}>
+            <NumberText text={HOURS_TEXT} />
+          </dd>
         </div>
         <div className={styles.cell}>
           <dt className={styles.term}>Как добраться</dt>

@@ -1,0 +1,55 @@
+html[data-low-vision='on'] {
+  --demo-bg: var(--lv-bg);
+  --demo-fg: var(--lv-text);
+  --demo-fg-inverse: var(--lv-bg);
+  --demo-muted: var(--lv-text);
+  --demo-surface: var(--lv-bg);
+  --demo-surface-soft: var(--lv-bg);
+  --demo-border: var(--lv-text);
+  --demo-border-strong: var(--lv-text);
+  --demo-accent: var(--lv-accent);
+  --demo-accent-fg: var(--lv-bg);
+  --demo-accent-ink: var(--lv-accent);
+  --demo-danger: var(--lv-accent);
+  --demo-focus: var(--lv-accent);
+}
+
+html[data-low-vision='on'] :is(p, li, dt, dd, label, legend, figcaption, blockquote, th, td, input, textarea) {
+  line-height: var(--lv-line-height, 1.5);
+}
+
+html[data-lv-font='100'] {
+  --lv-scale: 1;
+}
+
+html[data-lv-font='150'] {
+  --lv-scale: 1.5;
+}
+
+html[data-lv-font='200'] {
+  --lv-scale: 2;
+}
+
+html[data-lv-scheme='black-on-white'] {
+  color-scheme: light;
+}
+
+html[data-lv-scheme='white-on-black'] {
+  color-scheme: dark;
+}
+
+html[data-lv-scheme='blue-on-lightblue'] {
+  color-scheme: light;
+}
+
+[data-lv-image-alt] {
+  display: none;
+}
+
+html[data-lv-images='off'] :is(img, picture, video, [data-lv-image]) {
+  display: none;
+}
+
+html[data-lv-images='off'] [data-lv-image-alt] {
+  display: block;
+}

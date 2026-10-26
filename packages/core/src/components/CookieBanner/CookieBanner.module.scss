@@ -13,7 +13,7 @@
   background: var(--demo-bg);
   color: var(--demo-fg);
   box-shadow: var(--demo-shadow);
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
   line-height: 1.5;
 }
 
@@ -51,7 +51,7 @@
   background: transparent;
   color: var(--demo-fg);
   font: inherit;
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
   font-weight: var(--demo-button-font-weight);
   line-height: 1;
   white-space: nowrap;

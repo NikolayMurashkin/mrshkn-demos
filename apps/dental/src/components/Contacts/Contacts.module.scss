@@ -38,7 +38,7 @@
 .value {
   @include type.backend-text;
 
-  font-size: 20px;
+  font-size: calc(20px * var(--lv-scale, 1));
   font-weight: 500;
   line-height: 1.35;
 }
@@ -47,6 +47,10 @@
   @include button.link;
 
   white-space: nowrap;
+
+  :global(html[data-low-vision='on']) & {
+    white-space: normal;
+  }
 }
 
 .note {
@@ -71,5 +75,32 @@
 @include media.max-480 {
   .facts {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .facts {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .map {
+    grid-column: 1 / -1;
+  }
+
+  .cell {
+    container-type: inline-size;
+  }
+
+  .value {
+    font-size: min(calc(20px * var(--lv-scale, 1)), 13cqi);
+  }
+
+  @include media.max-720 {
+    .facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 }

@@ -28,7 +28,7 @@
 .value {
   @include type.backend-text;
 
-  font-size: 20px;
+  font-size: calc(20px * var(--lv-scale, 1));
   font-weight: 500;
   line-height: 1.35;
 }
@@ -64,10 +64,45 @@
   }
 
   .value {
-    font-size: 18px;
+    font-size: calc(18px * var(--lv-scale, 1));
   }
 
   .activities {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .row {
+    container-type: inline-size;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .term {
+    font-size: min(var(--font-size-kicker), 7cqi);
+  }
+
+  .value {
+    font-size: min(calc(20px * var(--lv-scale, 1)), 10cqi);
+  }
+
+  .activities {
+    grid-template-columns: minmax(0, 1fr);
+    font-size: min(var(--font-size-prose), 9cqi);
+  }
+
+  .number {
+    font-size: max(var(--font-size-body), min(calc(20px * var(--lv-scale, 1)), 11.4cqi));
+  }
+
+  @include media.max-720 {
+    .value {
+      font-size: min(calc(18px * var(--lv-scale, 1)), 10cqi);
+    }
+
+    .number {
+      font-size: max(var(--font-size-body), min(calc(18px * var(--lv-scale, 1)), 11.4cqi));
+    }
   }
 }

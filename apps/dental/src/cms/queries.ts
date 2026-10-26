@@ -1,6 +1,7 @@
 import config from '@payload-config';
 import { getPayload } from 'payload';
 import { cache } from 'react';
+import { searchClinic } from './search';
 
 /** Чтение контента страниц. Кеша между запросами нет: правка в админке видна со следующей загрузки. */
 export const getServices = cache(async () => {
@@ -56,3 +57,6 @@ export const getReviews = cache(async () => {
 
   return docs;
 });
+
+/** Поиск по сайту: врачи, услуги и страница сведений. */
+export const searchContent = cache(async (query: string) => searchClinic(await getPayload({ config }), query));

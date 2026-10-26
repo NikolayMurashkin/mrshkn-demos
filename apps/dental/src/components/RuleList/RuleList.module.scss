@@ -1,0 +1,53 @@
+@use '../../styles/button';
+@use '../../styles/type';
+
+.list {
+  counter-reset: rule;
+  display: flex;
+  flex-direction: column;
+  max-width: 68ch;
+  border-top: var(--border-width) solid var(--ink);
+}
+
+.item {
+  @include type.prose;
+  @include type.backend-text;
+
+  counter-increment: rule;
+  display: grid;
+  grid-template-columns: 2.5ch minmax(0, 1fr);
+  gap: var(--space-16);
+  padding: var(--space-16) 0;
+}
+
+.item + .item {
+  border-top: var(--border-width) solid var(--line);
+}
+
+.item::before {
+  content: counter(rule);
+  color: var(--accent-ink);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.text {
+  min-width: 0;
+}
+
+.link {
+  @include button.link;
+}
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .list {
+    container-type: inline-size;
+  }
+
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-8);
+    font-size: min(var(--font-size-prose), 11cqi);
+  }
+}

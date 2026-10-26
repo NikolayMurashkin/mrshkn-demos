@@ -1,0 +1,75 @@
+@use '../../styles/type';
+
+.documents {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+  max-width: 68ch;
+}
+
+.document {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding-top: var(--space-16);
+  border-top: var(--border-width) solid var(--ink);
+}
+
+.line {
+  @include type.prose;
+  @include type.backend-text;
+}
+
+.kind {
+  font-weight: 700;
+}
+
+.note {
+  @include type.small;
+  @include type.backend-text;
+
+  color: var(--muted);
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.subtitle {
+  @include type.kicker;
+
+  color: var(--muted);
+}
+
+.rows {
+  border-top: var(--border-width) solid var(--ink);
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+.row {
+  @include type.prose;
+  @include type.backend-text;
+
+  padding: var(--space-12) 0;
+}
+
+.row + .row {
+  border-top: var(--border-width) solid var(--line);
+}
+
+.hours {
+  font-variant-numeric: tabular-nums;
+}
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .documents {
+    container-type: inline-size;
+  }
+
+  .line {
+    font-size: min(var(--font-size-prose), 11cqi);
+  }
+}

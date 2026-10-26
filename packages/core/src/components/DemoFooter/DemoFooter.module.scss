@@ -2,7 +2,7 @@
   margin: 0 var(--demo-gutter);
   padding: 24px 0 32px;
   color: var(--demo-muted);
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
   line-height: 1.5;
 }
 

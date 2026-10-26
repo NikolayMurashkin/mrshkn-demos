@@ -1,0 +1,45 @@
+.toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: var(--demo-control-height-sm);
+  height: var(--demo-control-height-sm);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--demo-fg);
+  font: inherit;
+  font-size: var(--demo-button-font-size);
+  font-weight: var(--demo-button-font-weight);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--demo-duration) var(--demo-ease);
+}
+
+.toggle:hover,
+.toggle:active {
+  color: var(--demo-accent-ink);
+}
+
+.toggle:focus-visible {
+  outline: var(--demo-focus-width) solid var(--demo-focus);
+  outline-offset: var(--demo-focus-offset);
+}
+
+.icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+@media (max-width: 720px) {
+  .label {
+    display: none;
+  }
+}

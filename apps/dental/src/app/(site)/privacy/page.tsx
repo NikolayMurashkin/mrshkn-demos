@@ -14,6 +14,8 @@ const PrivacyPage = () => (
       <PrivacyPolicy
         withYandexReviews={Boolean(DEMO.yandexOrgId)}
         withYandexMap={Boolean(DEMO.business.geo)}
+        withLowVision
+        withSurvey
       />
     </div>
   </div>

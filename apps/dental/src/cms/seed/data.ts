@@ -126,6 +126,15 @@ export const DOCTORS: SeedDoctor[] = [
       'Курс эндодонтии под микроскопом, 2022',
     ],
     services: ['therapy', 'hygiene'],
+    accreditation: {
+      kind: 'accreditation',
+      specialty: 'Стоматология терапевтическая',
+      validUntil: '2029-04-15T10:00:00.000Z',
+    },
+    schedule: [
+      { days: 'Пн, ср, пт', hours: '9:00–15:00' },
+      { days: 'Вт, чт', hours: '15:00–21:00' },
+    ],
   },
   {
     slug: 'berezhnoy',
@@ -140,6 +149,12 @@ export const DOCTORS: SeedDoctor[] = [
       'Курс костной пластики и синус-лифтинга, 2019',
     ],
     services: ['implants', 'surgery'],
+    accreditation: {
+      kind: 'accreditation',
+      specialty: 'Стоматология хирургическая',
+      validUntil: '2028-09-20T10:00:00.000Z',
+    },
+    schedule: [{ days: 'Пн–пт', hours: '10:00–18:00' }],
   },
   {
     slug: 'koltsova',
@@ -154,6 +169,8 @@ export const DOCTORS: SeedDoctor[] = [
       'Курс лечения на элайнерах, 2021',
     ],
     services: ['orthodontics'],
+    accreditation: { kind: 'accreditation', specialty: 'Ортодонтия', validUntil: '2030-02-03T10:00:00.000Z' },
+    schedule: [{ days: 'Вт, чт, сб', hours: '9:00–17:00' }],
   },
   {
     slug: 'shumeyko',
@@ -168,6 +185,15 @@ export const DOCTORS: SeedDoctor[] = [
       'Курс цифрового протезирования, 2020',
     ],
     services: ['prosthetics', 'implants'],
+    accreditation: {
+      kind: 'accreditation',
+      specialty: 'Стоматология ортопедическая',
+      validUntil: '2028-11-30T10:00:00.000Z',
+    },
+    schedule: [
+      { days: 'Пн, ср', hours: '12:00–20:00' },
+      { days: 'Сб', hours: '10:00–15:00' },
+    ],
   },
   {
     slug: 'vetrova',
@@ -181,6 +207,8 @@ export const DOCTORS: SeedDoctor[] = [
       'Ординатура по детской стоматологии, 2019',
     ],
     services: ['kids', 'hygiene'],
+    accreditation: { kind: 'accreditation', specialty: 'Стоматология детская', validUntil: '2029-06-12T10:00:00.000Z' },
+    schedule: [{ days: 'Пн–пт', hours: '9:00–14:00' }],
   },
   {
     slug: 'tarnovsky',
@@ -194,6 +222,12 @@ export const DOCTORS: SeedDoctor[] = [
       'Ординатура по хирургической стоматологии, 2017',
     ],
     services: ['surgery'],
+    accreditation: {
+      kind: 'accreditation',
+      specialty: 'Стоматология хирургическая',
+      validUntil: '2028-03-25T10:00:00.000Z',
+    },
+    schedule: [{ days: 'Ежедневно', hours: '9:00–21:00' }],
   },
   {
     slug: 'mezentseva',
@@ -204,6 +238,12 @@ export const DOCTORS: SeedDoctor[] = [
       'Проводит профессиональную гигиену и отбеливание. Показывает, какие места щетка пропускает, и подбирает средства ухода.\n\nПациентам с брекетами объясняет, как чистить дуги и замки.',
     education: ['Среднее медицинское образование по специальности «Стоматология профилактическая», 2019'],
     services: ['hygiene'],
+    accreditation: {
+      kind: 'accreditation',
+      specialty: 'Стоматология профилактическая',
+      validUntil: '2029-10-08T10:00:00.000Z',
+    },
+    schedule: [{ days: 'Ср, пт, вс', hours: '11:00–20:00' }],
   },
 ];
 

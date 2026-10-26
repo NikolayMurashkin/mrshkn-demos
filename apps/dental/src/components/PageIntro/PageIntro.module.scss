@@ -129,3 +129,14 @@
     justify-content: space-between;
   }
 }
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .main {
+    container-type: inline-size;
+  }
+
+  .lead {
+    font-size: min(var(--font-size-lead), 10.5cqi);
+  }
+}

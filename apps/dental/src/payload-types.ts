@@ -72,6 +72,7 @@ export interface Config {
     services: Service;
     doctors: Doctor;
     reviews: Review;
+    'quality-surveys': QualitySurvey;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     doctors: DoctorsSelect<false> | DoctorsSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    'quality-surveys': QualitySurveysSelect<false> | QualitySurveysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -218,6 +220,25 @@ export interface Doctor {
       }[]
     | null;
   services?: (number | Service)[] | null;
+  /**
+   * Документ, который дает врачу право лечить; на странице врача — со сроком действия
+   */
+  accreditation: {
+    kind: 'accreditation' | 'certificate';
+    specialty: string;
+    validUntil: string;
+  };
+  schedule: {
+    /**
+     * «Пн, ср, пт», «Ежедневно»
+     */
+    days: string;
+    /**
+     * «9:00–15:00»
+     */
+    hours: string;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
 }
@@ -236,6 +257,22 @@ export interface Review {
    * Услуга или врач: «Имплантация, Бережной А. О.»
    */
   subject?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quality-surveys".
+ */
+export interface QualitySurvey {
+  id: number;
+  information: number;
+  comfort: number;
+  accessibility?: number | null;
+  courtesy: number;
+  satisfaction: number;
+  comment?: string | null;
+  demo: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -282,6 +319,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'reviews';
         value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'quality-surveys';
+        value: number | QualitySurvey;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -401,6 +442,20 @@ export interface DoctorsSelect<T extends boolean = true> {
         id?: T;
       };
   services?: T;
+  accreditation?:
+    | T
+    | {
+        kind?: T;
+        specialty?: T;
+        validUntil?: T;
+      };
+  schedule?:
+    | T
+    | {
+        days?: T;
+        hours?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -412,6 +467,21 @@ export interface ReviewsSelect<T extends boolean = true> {
   author?: T;
   text?: T;
   subject?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quality-surveys_select".
+ */
+export interface QualitySurveysSelect<T extends boolean = true> {
+  information?: T;
+  comfort?: T;
+  accessibility?: T;
+  courtesy?: T;
+  satisfaction?: T;
+  comment?: T;
+  demo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,0 +1,1 @@
+export { LicenseQr } from './LicenseQr';

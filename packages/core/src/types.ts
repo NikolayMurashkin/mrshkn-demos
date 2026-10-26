@@ -84,3 +84,83 @@ export type PolicyForm = 'lead' | 'waitlist';
 
 /** Язык текстов демо и ядра. */
 export type DemoLang = 'ru' | 'en';
+
+/** Размер шрифта версии для слабовидящих, % от обычного. */
+export type LowVisionFont = '100' | '150' | '200';
+
+export type LowVisionScheme = 'black-on-white' | 'white-on-black' | 'blue-on-lightblue';
+
+export type LowVisionImages = 'on' | 'off';
+
+export type LowVisionSettings = {
+  font: LowVisionFont;
+  scheme: LowVisionScheme;
+  images: LowVisionImages;
+};
+
+/** Событие значка: режим включен с этими настройками; без них режим уже был включен — панели только фокус. */
+export type LowVisionEventDetail = {
+  settings?: LowVisionSettings;
+};
+
+/** Цвета схемы версии для слабовидящих, `#rrggbb`. */
+export type LowVisionColors = {
+  text: string;
+  background: string;
+  accent: string;
+};
+
+/** Анкета оценки качества: оценки 1–5 без имени и контакта. */
+export type Survey = {
+  information: number;
+  comfort: number;
+  /** Доступность для людей с инвалидностью — необязательный вопрос. */
+  accessibility?: number;
+  courtesy: number;
+  satisfaction: number;
+  comment?: string;
+  demo: string;
+};
+
+/** Имена вопросов анкеты — оценки без комментария и демо. */
+export type SurveyQuestionName = Exclude<keyof Survey, 'comment' | 'demo'>;
+
+export type SurveyRejection = 'honeypot' | 'ratings';
+
+export type SurveyParseResult = { ok: true; survey: Survey } | { ok: false; reason: SurveyRejection };
+
+export type SurveyContext = {
+  demo: string;
+};
+
+export type SearchResult = {
+  /** Подпись вида результата: «Врач», «Услуга». */
+  kind: string;
+  title: string;
+  href: string;
+};
+
+/** Коллекция CMS, по полям которой ищет поиск сайта. */
+export type SearchCollection = {
+  slug: string;
+  fields: string[];
+  /** Поле документа, которое станет заголовком результата. */
+  title: string;
+  href: (doc: Record<string, unknown>) => string;
+  kind: string;
+  /** Порядок результатов внутри коллекции, как на сайте: `_order` у сортируемых в админке. */
+  sort?: string;
+};
+
+/** Страница из кода, а не из CMS: ищется по своему тексту. */
+export type SearchPage = {
+  title: string;
+  href: string;
+  text: string;
+  kind: string;
+};
+
+export type SearchSources = {
+  collections: SearchCollection[];
+  pages: SearchPage[];
+};

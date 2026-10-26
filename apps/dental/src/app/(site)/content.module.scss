@@ -102,3 +102,24 @@
     grid-column: 1 / -1;
   }
 }
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .text,
+  .list,
+  .group {
+    container-type: inline-size;
+  }
+
+  .text p {
+    font-size: min(var(--font-size-prose), 10cqi);
+  }
+
+  .list li {
+    font-size: min(var(--font-size-prose), 8.5cqi);
+  }
+
+  .groupTitle {
+    font-size: min(var(--font-size-plan-name), 9.5cqi);
+  }
+}

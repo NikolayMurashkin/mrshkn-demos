@@ -1,0 +1,57 @@
+@use '../../styles/type';
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.count {
+  @include type.kicker;
+
+  color: var(--muted);
+}
+
+.list {
+  border-top: var(--border-width) solid var(--ink);
+  border-bottom: var(--border-width) solid var(--ink);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: 20px 0;
+}
+
+.item + .item {
+  border-top: var(--border-width) solid var(--line);
+}
+
+.kind {
+  @include type.kicker;
+  @include type.backend-text;
+
+  color: var(--accent-ink);
+}
+
+.title {
+  @include type.plan-name;
+  @include type.backend-text;
+
+  align-self: flex-start;
+  max-width: 100%;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.title:hover,
+.title:active {
+  color: var(--accent-ink);
+}
+
+.empty {
+  @include type.prose;
+  @include type.backend-text;
+
+  max-width: 60ch;
+}

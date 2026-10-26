@@ -23,17 +23,17 @@
   --font-size-section-title: clamp(36px, 6.2vw, 88px);
   --font-size-page-title: clamp(36px, 6.2vw, 88px);
   --font-size-numeral: clamp(44px, 4.4vw, 64px);
-  --font-size-metric: clamp(26px, 2.4vw, 36px);
-  --font-size-plan-name: clamp(20px, 2vw, 28px);
-  --font-size-card-title: 24px;
-  --font-size-price: 22px;
-  --font-size-wordmark: 22px;
-  --font-size-lead: clamp(17px, 1.5vw, 21px);
-  --font-size-prose: 17px;
-  --font-size-body: 16px;
-  --font-size-button: 15px;
-  --font-size-small: 14px;
-  --font-size-kicker: 12px;
+  --font-size-metric: calc(clamp(26px, 2.4vw, 36px) * var(--lv-scale, 1));
+  --font-size-plan-name: calc(clamp(20px, 2vw, 28px) * var(--lv-scale, 1));
+  --font-size-card-title: calc(24px * var(--lv-scale, 1));
+  --font-size-price: calc(22px * var(--lv-scale, 1));
+  --font-size-wordmark: calc(22px * var(--lv-scale, 1));
+  --font-size-lead: calc(clamp(17px, 1.5vw, 21px) * var(--lv-scale, 1));
+  --font-size-prose: calc(17px * var(--lv-scale, 1));
+  --font-size-body: calc(16px * var(--lv-scale, 1));
+  --font-size-button: calc(15px * var(--lv-scale, 1));
+  --font-size-small: calc(14px * var(--lv-scale, 1));
+  --font-size-kicker: calc(12px * var(--lv-scale, 1));
 
   --space-4: 4px;
   --space-8: 8px;
@@ -101,6 +101,21 @@
   --demo-duration-move: var(--duration-base);
   --demo-ease: var(--ease-in-out);
   --demo-ease-move: var(--ease-out);
+}
+
+html[data-low-vision='on'] {
+  --bg: var(--lv-bg);
+  --surface: var(--lv-bg);
+  --surface-soft: var(--lv-bg);
+  --ink: var(--lv-text);
+  --ink-inverse: var(--lv-bg);
+  --muted: var(--lv-text);
+  --line: var(--lv-text);
+  --line-strong: var(--lv-text);
+  --accent: var(--lv-accent);
+  --accent-ink: var(--lv-accent);
+  --accent-contrast: var(--lv-bg);
+  --accent-contrast-soft: var(--lv-bg);
 }
 
 @include media.max-720 {

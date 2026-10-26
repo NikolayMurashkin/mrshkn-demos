@@ -2,6 +2,8 @@ import { BAND, HOURS_TEXT } from '@/consts';
 import { DEMO } from '@/demo.config';
 import { phoneHref } from '@/lib/format';
 import { Arrow } from '../Arrow';
+import { NumberText } from '../NumberText';
+import { PhoneText } from '../PhoneText';
 import styles from './FooterBand.module.scss';
 
 /** Ультрамариновая плита над подвалом: вопрос, приглашение и звонок в клинику с часами работы. */
@@ -34,10 +36,12 @@ export const FooterBand = () => {
               className={styles.cta}
               href={phoneHref(telephone)}
             >
-              {telephone}
+              <PhoneText phone={telephone} />
               <Arrow />
             </a>
-            <p className={styles.note}>{HOURS_TEXT}</p>
+            <p className={styles.note}>
+              <NumberText text={HOURS_TEXT} />
+            </p>
           </div>
         )}
       </div>

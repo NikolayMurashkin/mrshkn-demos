@@ -2,6 +2,19 @@
 @use '../../styles/media';
 @use '../../styles/type';
 
+@mixin initials-square {
+  .initials {
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    aspect-ratio: auto;
+    padding: 0;
+    font-size: 36px;
+  }
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -9,6 +22,7 @@
 }
 
 .card {
+  container-type: inline-size;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -105,14 +119,32 @@
     align-items: stretch;
   }
 
-  .initials {
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    width: 88px;
-    height: 88px;
-    aspect-ratio: auto;
-    padding: 0;
-    font-size: 36px;
+  @include initials-square;
+}
+
+:global(html[data-lv-font='150']),
+:global(html[data-lv-font='200']) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .name {
+    font-size: min(var(--font-size-card-title), 16cqi);
+  }
+
+  .position {
+    font-size: min(var(--font-size-button), 10cqi);
+  }
+
+  @include initials-square;
+
+  @include media.max-720 {
+    .list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card {
+      flex-direction: column;
+    }
   }
 }

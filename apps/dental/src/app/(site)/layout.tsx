@@ -1,8 +1,10 @@
 import { CookieBanner } from '@mrshkn/demo-core/components/CookieBanner';
 import { DemoFooter } from '@mrshkn/demo-core/components/DemoFooter';
 import { JsonLd } from '@mrshkn/demo-core/components/JsonLd';
-import { CONSENT_COOKIE, POLICY_HREF } from '@mrshkn/demo-core/consts';
+import { LowVisionPanel } from '@mrshkn/demo-core/components/LowVisionPanel';
+import { CONSENT_COOKIE, LOW_VISION_COOKIE, POLICY_HREF } from '@mrshkn/demo-core/consts';
 import { demoUrl, robotsMetadata } from '@mrshkn/demo-core/demo';
+import { lowVisionAttributes, lowVisionStyle, parseLowVision } from '@mrshkn/demo-core/low-vision';
 import { buildBusinessJsonLd } from '@mrshkn/demo-core/schema';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
@@ -27,16 +29,22 @@ export const metadata: Metadata = {
   robots: robotsMetadata(),
 };
 
+/** Версия для слабовидящих приходит с сервера: `<html>` и панель сразу в выбранном режиме, без мигания. */
 const SiteLayout = async ({ children }: SiteLayoutProps) => {
-  const noticeClosed = (await cookies()).has(CONSENT_COOKIE);
+  const store = await cookies();
+  const noticeClosed = store.has(CONSENT_COOKIE);
+  const lowVision = parseLowVision(store.get(LOW_VISION_COOKIE)?.value);
 
   return (
     <html
       lang="ru"
       className={geologica.className}
+      style={lowVisionStyle(lowVision)}
+      {...lowVisionAttributes(lowVision)}
     >
       <body>
         <JsonLd data={buildBusinessJsonLd(DEMO)} />
+        <LowVisionPanel initial={lowVision} />
         <Header />
         <main className={styles.main}>
           {children}

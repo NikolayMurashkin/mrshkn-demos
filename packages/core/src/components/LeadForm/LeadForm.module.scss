@@ -29,7 +29,7 @@
   background: var(--demo-surface);
   color: var(--demo-fg);
   font: inherit;
-  font-size: 16px;
+  font-size: calc(16px * var(--lv-scale, 1));
   line-height: 1.5;
   transition: border-color var(--demo-duration) var(--demo-ease);
 }
@@ -64,7 +64,7 @@ textarea.input {
   gap: 12px;
   margin-top: 16px;
   color: var(--demo-muted);
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -167,6 +167,14 @@ textarea.input {
   transform: none;
 }
 
+:global(html[data-low-vision='on']) .submit {
+  height: auto;
+  min-height: var(--demo-control-height);
+  padding-block: 12px;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
 .status {
   display: flex;
   align-items: baseline;
@@ -174,7 +182,7 @@ textarea.input {
   min-height: 1.5em;
   margin: 0;
   color: var(--demo-danger);
-  font-size: 14px;
+  font-size: calc(14px * var(--lv-scale, 1));
   font-weight: 500;
   overflow-wrap: anywhere;
 }
@@ -196,7 +204,7 @@ textarea.input {
   border-top: var(--demo-border-width-strong) solid var(--demo-fg);
   background: var(--demo-surface-soft);
   color: var(--demo-fg);
-  font-size: 17px;
+  font-size: calc(17px * var(--lv-scale, 1));
   line-height: 1.6;
   overflow-wrap: anywhere;
 }

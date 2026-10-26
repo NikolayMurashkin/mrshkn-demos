@@ -1,4 +1,4 @@
-import type { DemoLang } from './types';
+import type { DemoLang, LowVisionColors, LowVisionScheme, LowVisionSettings } from './types';
 
 export const STUDIO_NAME = 'MRSHKN';
 
@@ -51,8 +51,42 @@ export const CONTACT_INPUT: Record<DemoLang, { autoComplete: string; spellCheck?
 
 export const LEAD_RATE_LIMIT = { limit: 10, windowMs: 10 * 60 * 1000 };
 
-/** Сколько адресов помнит лимитер, прежде чем выбросить протухшие. */
-export const RATE_LIMIT_MAX_KEYS = 1000;
+/** Анкета оценки качества: столько же, сколько заявок, — политика обещает хранить адрес около 10 минут. */
+export const SURVEY_RATE_LIMIT = { limit: 10, windowMs: 10 * 60 * 1000 };
+
+/** Как часто лимитер стирает адреса, которые не обращались дольше окна: память не держит их до перезапуска. */
+export const RATE_LIMIT_SWEEP_MS = 60 * 1000;
+
+export const SURVEY_ENDPOINT = '/api/survey';
+
+/** Оценка анкеты — целое по шкале от 1 до 5. */
+export const SURVEY_RATING_MIN = 1;
+
+export const SURVEY_RATING_MAX = 5;
+
+/** Поиск по сайту: длинный запрос обрезается, чтобы не гонять в базу текст на страницу. */
+export const SEARCH_QUERY_MAX_LENGTH = 100;
+
+/** Версия для слабовидящих: выбор хранится в cookie год, сервер рисует страницу сразу в нем. */
+export const LOW_VISION_COOKIE = 'low_vision';
+
+export const LOW_VISION_MAX_AGE = 60 * 60 * 24 * 365;
+
+/** Что включает значок «Версия для слабовидящих». */
+export const LOW_VISION_DEFAULTS: LowVisionSettings = { font: '150', scheme: 'black-on-white', images: 'on' };
+
+/**
+ * Цвета схем версии для слабовидящих — единственный источник: в CSS они приходят переменными `--lv-*` на `<html>`.
+ * Текст и акцент к фону — не ниже 7:1 (ГОСТ Р 52872-2019, 1.4.6).
+ */
+export const LOW_VISION_SCHEMES: Record<LowVisionScheme, LowVisionColors> = {
+  'black-on-white': { text: '#000000', background: '#ffffff', accent: '#1a3ee8' },
+  'white-on-black': { text: '#ffffff', background: '#000000', accent: '#ffdd00' },
+  'blue-on-lightblue': { text: '#063462', background: '#9dd1ff', accent: '#3b0a6e' },
+};
+
+/** Событие, которым значок в шапке включает режим в панели без перезагрузки страницы. */
+export const LOW_VISION_EVENT = 'low-vision-change';
 
 export const TELEGRAM_API_FALLBACK = 'https://api.telegram.org';
 

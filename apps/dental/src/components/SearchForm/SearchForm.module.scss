@@ -1,0 +1,69 @@
+@use '../../styles/button';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 68ch;
+}
+
+.label {
+  @include type.kicker;
+
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 14px var(--space-16);
+  border: var(--border-width) solid var(--line-strong);
+  border-radius: var(--radius-control);
+  appearance: none;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--font-size-body);
+  transition: border-color var(--duration-fast) var(--ease-in-out);
+}
+
+.input:hover,
+.input:focus-visible {
+  border-color: var(--ink);
+}
+
+.input:focus-visible {
+  outline-offset: 2px;
+}
+
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.submit {
+  @include button.base;
+  @include button.primary;
+
+  flex: none;
+}
+
+@include media.max-480 {
+  .row {
+    flex-direction: column;
+  }
+
+  .submit {
+    justify-content: space-between;
+    width: 100%;
+  }
+}

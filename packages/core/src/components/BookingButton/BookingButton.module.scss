@@ -65,6 +65,14 @@
   outline-offset: var(--demo-focus-offset);
 }
 
+:global(html[data-low-vision='on']) :is(.button, .outline) {
+  height: auto;
+  min-height: var(--demo-control-height);
+  padding-block: 12px;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .button,
   .outline,

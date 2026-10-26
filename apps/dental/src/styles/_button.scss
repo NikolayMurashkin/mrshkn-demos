@@ -35,12 +35,24 @@
   &:active svg {
     transform: translateX(4px);
   }
+
+  :global(html[data-low-vision='on']) & {
+    height: auto;
+    min-height: 54px;
+    padding-block: var(--space-12);
+    white-space: normal;
+    overflow-wrap: normal;
+  }
 }
 
 @mixin lg {
   height: 64px;
   padding: 0 28px;
   font-size: var(--font-size-body);
+
+  :global(html[data-low-vision='on']) & {
+    min-height: 64px;
+  }
 }
 
 @mixin primary {
@@ -102,5 +114,34 @@
   &:active {
     color: var(--accent-ink);
     text-decoration-thickness: 2px;
+  }
+}
+
+@mixin arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  font-size: var(--font-size-button);
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color var(--duration-fast) var(--ease-in-out);
+
+  svg {
+    flex: none;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  &:hover,
+  &:active {
+    color: var(--accent-ink);
+  }
+
+  &:hover svg,
+  &:active svg {
+    transform: translate(2px, -2px);
   }
 }

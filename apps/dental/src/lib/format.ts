@@ -1,7 +1,15 @@
 import { NBSP } from '@mrshkn/demo-core/consts';
 import type { DemoAddress } from '@mrshkn/demo-core/types';
+import { CLINIC_TIME_ZONE } from '../consts';
 
 const amountFormat = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 });
+
+const dayFormat = new Intl.DateTimeFormat('ru-RU', {
+  timeZone: CLINIC_TIME_ZONE,
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+});
 
 /** Сумма в рублях по-русски: разряды с тысяч через неразрывный пробел, дробная часть округляется до рубля. */
 export const formatAmount = (amount: number) => amountFormat.format(amount);
@@ -21,3 +29,6 @@ export const initialsOf = (fullName: string) => {
 
   return `${name.charAt(0)}${surname.charAt(0)}`;
 };
+
+/** День по Калининграду, «ДД.ММ.ГГГГ»: срок документа врача не сдвигается из-за пояса сервера. */
+export const formatDay = (iso: string) => dayFormat.format(new Date(iso));

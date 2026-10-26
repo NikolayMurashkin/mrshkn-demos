@@ -45,5 +45,50 @@ export const Doctors: CollectionConfig = {
       fields: [{ name: 'item', label: 'Что и когда', type: 'text', required: true }],
     },
     { name: 'services', label: 'Услуги', type: 'relationship', relationTo: 'services', hasMany: true },
+    {
+      name: 'accreditation',
+      label: 'Аккредитация или сертификат специалиста',
+      type: 'group',
+      admin: { description: 'Документ, который дает врачу право лечить; на странице врача — со сроком действия' },
+      fields: [
+        {
+          name: 'kind',
+          label: 'Документ',
+          type: 'select',
+          required: true,
+          defaultValue: 'accreditation',
+          options: [
+            { label: 'Аккредитация специалиста', value: 'accreditation' },
+            { label: 'Сертификат специалиста', value: 'certificate' },
+          ],
+        },
+        { name: 'specialty', label: 'Специальность', type: 'text', required: true },
+        {
+          name: 'validUntil',
+          label: 'Действует до',
+          type: 'date',
+          required: true,
+          admin: { date: { pickerAppearance: 'dayOnly', displayFormat: 'dd.MM.yyyy' } },
+        },
+      ],
+    },
+    {
+      name: 'schedule',
+      label: 'График приема',
+      labels: { singular: 'Строка', plural: 'Строки' },
+      type: 'array',
+      required: true,
+      minRows: 1,
+      fields: [
+        {
+          name: 'days',
+          label: 'Дни',
+          type: 'text',
+          required: true,
+          admin: { description: '«Пн, ср, пт», «Ежедневно»' },
+        },
+        { name: 'hours', label: 'Часы', type: 'text', required: true, admin: { description: '«9:00–15:00»' } },
+      ],
+    },
   ],
 };

@@ -28,6 +28,13 @@ export type SeedDoctor = {
   education: string[];
   /** Адреса услуг, которые ведет врач. */
   services: string[];
+  accreditation: {
+    kind: 'accreditation' | 'certificate';
+    specialty: string;
+    /** Полдень по Калининграду последнего дня: день не сдвигается ни в одном поясе. */
+    validUntil: string;
+  };
+  schedule: { days: string; hours: string }[];
 };
 
 export type SeedReview = DemoReview;

@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 16px;
   counter-reset: policy;
-  font-size: 17px;
+  font-size: calc(17px * var(--lv-scale, 1));
   line-height: 1.6;
 }
 
@@ -68,4 +68,14 @@
 .policy a:focus-visible {
   outline: var(--demo-focus-width) solid var(--demo-focus);
   outline-offset: var(--demo-focus-offset);
+}
+
+:global(html[data-low-vision='on']) {
+  .policy {
+    container-type: inline-size;
+  }
+
+  .policy p {
+    font-size: min(calc(17px * var(--lv-scale, 1)), 8.5cqi);
+  }
 }

@@ -57,6 +57,19 @@ describe('Lighthouse CI', () => {
     expect(SERVICES.map(({ slug }) => `/services/${slug}`)).toContain(service);
   });
 
+  it('H1: демо «Клиника» меряется и на страницах сведений, поиска с запросом и анкеты', () => {
+    const urls = loadConfig('dental').ci.collect.url.map((url) => new URL(url));
+    const paths = urls.map(({ pathname }) => pathname);
+    const search = urls.find(({ pathname, search }) => `${pathname}${search}`.startsWith('/search?q='));
+
+    expect(paths).toContain('/info');
+    expect(paths).toContain('/survey');
+    expect(search, 'страница поиска с запросом /search?q=…').toBeDefined();
+    expect(search?.searchParams.get('q'), 'запрос — «лицензия»: страница с результатом, а не пустой поиск').toBe(
+      'лицензия',
+    );
+  });
+
   it('шаблон и развернутые из него демо без своих страниц меряются на главной и политике', () => {
     expect(pathsOf(loadConfig())).toEqual(['/', '/privacy']);
     expect(pathsOf(loadConfig('ci-probe'))).toEqual(['/', '/privacy']);

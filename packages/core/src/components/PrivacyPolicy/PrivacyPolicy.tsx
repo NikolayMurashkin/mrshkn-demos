@@ -10,6 +10,10 @@ type PrivacyPolicyProps = {
   withYandexMap?: boolean;
   /** Какая форма сайта собирает данные: заявка (имя и способ связи) или список ожидания (только почта). */
   form?: PolicyForm;
+  /** На сайте есть версия для слабовидящих: ее настройки хранит вторая cookie. */
+  withLowVision?: boolean;
+  /** На сайте есть анкета оценки качества: без имени и контакта, IP — только для лимита. */
+  withSurvey?: boolean;
   lang?: DemoLang;
 };
 
@@ -22,6 +26,8 @@ export const PrivacyPolicy = ({
   withYandexReviews,
   withYandexMap = false,
   form = 'lead',
+  withLowVision = false,
+  withSurvey = false,
   lang = 'ru',
 }: PrivacyPolicyProps) => {
   const texts = CORE_TEXTS[lang].policy;
@@ -38,12 +44,13 @@ export const PrivacyPolicy = ({
       </p>
       <h2>{texts.dataTitle}</h2>
       <p>{formTexts.data}</p>
+      {withSurvey && <p>{texts.survey}</p>}
       <h2>{texts.purposeTitle}</h2>
       <p>{formTexts.purpose}</p>
       <h2>{texts.storageTitle}</h2>
       <p>{formTexts.storage}</p>
       <h2>{texts.cookieTitle}</h2>
-      <p>{texts.cookie}</p>
+      <p>{withLowVision ? texts.cookieLowVision : texts.cookie}</p>
       {withYandexReviews && <p>{texts.yandexReviews}</p>}
       {withYandexMap && <p>{texts.yandexMap}</p>}
       <h2>{texts.rightsTitle}</h2>

@@ -31,6 +31,20 @@ export type CoreTexts = {
     show: string;
     note: string;
   };
+  lowVision: {
+    /** Имя значка для скринридера и подсказка. */
+    toggle: string;
+    /** Видимая подпись рядом со значком. */
+    toggleShort: string;
+    panel: string;
+    fontGroup: string;
+    font: Record<'100' | '150' | '200', { label: string; name: string }>;
+    schemeGroup: string;
+    scheme: Record<'black-on-white' | 'white-on-black' | 'blue-on-lightblue', string>;
+    imagesGroup: string;
+    images: Record<'on' | 'off', string>;
+    exit: string;
+  };
   policy: {
     title: string;
     intro: string;
@@ -45,6 +59,10 @@ export type CoreTexts = {
     storage: string;
     cookieTitle: string;
     cookie: string;
+    /** Абзац о cookie у сайта с версией для слабовидящих: вторая cookie хранит ее настройки. */
+    cookieLowVision: string;
+    /** Абзац об анкете оценки качества: без имени и контакта, IP — только в памяти сервера. */
+    survey: string;
     yandexReviews: string;
     yandexMap: string;
     rightsTitle: string;
@@ -93,6 +111,26 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       show: 'Показать карту',
       note: 'Карту загрузят Яндекс Карты',
     },
+    lowVision: {
+      toggle: 'Версия для слабовидящих',
+      toggleShort: 'Для слабовидящих',
+      panel: 'Настройки версии для слабовидящих',
+      fontGroup: 'Размер шрифта',
+      font: {
+        '100': { label: 'A', name: 'A, обычный шрифт' },
+        '150': { label: 'A+', name: 'A+, крупный шрифт' },
+        '200': { label: 'A++', name: 'A++, очень крупный шрифт' },
+      },
+      schemeGroup: `Цвета текста и${NBSP}фона`,
+      scheme: {
+        'black-on-white': `Черным по${NBSP}белому`,
+        'white-on-black': `Белым по${NBSP}черному`,
+        'blue-on-lightblue': `Синим по${NBSP}голубому`,
+      },
+      imagesGroup: `Картинки и${NBSP}фото`,
+      images: { on: 'Показать', off: 'Скрыть' },
+      exit: 'Обычный вид сайта',
+    },
     policy: {
       title: 'Политика обработки персональных данных',
       intro: `Это демо-сайт студии ${STUDIO_NAME}: дело, о${NBSP}котором он${NBSP}рассказывает, вымышлено. Заявки с${NBSP}этого сайта получает студия.`,
@@ -107,6 +145,8 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       storage: `На${NBSP}сервере студии в${NBSP}России. Заявка хранится, пока нужна для ответа, и${NBSP}удаляется по${NBSP}вашей просьбе.`,
       cookieTitle: 'Cookie',
       cookie: `Сайт ставит одну cookie: она запоминает, что вы${NBSP}закрыли уведомление о${NBSP}cookie. Тем, кто входит в${NBSP}панель управления сайтом, ставится еще cookie входа. Аналитики и${NBSP}рекламных счетчиков на${NBSP}сайте нет.`,
+      cookieLowVision: `Cookie${NBSP}— это маленькие файлы-заметки, которые сайт сохраняет в${NBSP}вашем браузере. Наш сайт сохраняет не${NBSP}больше двух. Первая запоминает, что вы закрыли сообщение о${NBSP}cookie, чтобы оно не${NBSP}появлялось снова. Вторая запоминает настройки версии для слабовидящих (размер шрифта, цвета), если вы ее включали. Тем, кто ведет сайт и${NBSP}входит в${NBSP}панель управления сайтом, ставится еще одна cookie, чтобы не${NBSP}вводить пароль на${NBSP}каждой странице. Программ, которые следят за${NBSP}посетителями для статистики или рекламы, на${NBSP}сайте нет.`,
+      survey: `В${NBSP}анкете мы не${NBSP}спрашиваем имя, телефон и${NBSP}почту. Сохраняются только ваши оценки и${NBSP}комментарий. Еще сайт видит IP-адрес${NBSP}— сетевой номер вашего устройства или интернет-подключения. По${NBSP}нему сайт не${NBSP}дает отправить слишком много анкет подряд. IP-адрес хранится только в${NBSP}памяти сервера около 10${NBSP}минут, потом стирается; в${NBSP}базу он не${NBSP}записывается и${NBSP}вместе с${NBSP}анкетой не${NBSP}сохраняется.`,
       yandexReviews: `Отзывы на${NBSP}странице показывает виджет Яндекс Карт. Его загружает Яндекс: он получает ваш IP-адрес и${NBSP}может ставить свои cookie по${NBSP}собственным правилам.`,
       yandexMap: `Карту на${NBSP}странице показывают Яндекс Карты, и${NBSP}загружается она, только когда вы${NBSP}нажмете «Показать карту». После этого Яндекс получает ваш IP-адрес, может ставить свои cookie, показывать внутри карты рекламу и${NBSP}собирать статистику по${NBSP}собственным правилам.`,
       rightsTitle: 'Ваши права',
@@ -148,6 +188,26 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       show: 'Show map',
       note: 'The map is loaded from Yandex Maps',
     },
+    lowVision: {
+      toggle: 'Low vision version',
+      toggleShort: 'Low vision',
+      panel: 'Low vision settings',
+      fontGroup: 'Font size',
+      font: {
+        '100': { label: 'A', name: 'A, standard font' },
+        '150': { label: 'A+', name: 'A+, large font' },
+        '200': { label: 'A++', name: 'A++, extra large font' },
+      },
+      schemeGroup: 'Text and background colors',
+      scheme: {
+        'black-on-white': 'Black on white',
+        'white-on-black': 'White on black',
+        'blue-on-lightblue': 'Blue on light blue',
+      },
+      imagesGroup: 'Images and photos',
+      images: { on: 'Show', off: 'Hide' },
+      exit: 'Standard version',
+    },
     policy: {
       title: 'Privacy policy',
       intro: `This is a demo site by ${STUDIO_NAME} studio: the business it describes is fictional. Requests sent through this site go to the studio.`,
@@ -165,6 +225,10 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
       cookieTitle: 'Cookies',
       cookie:
         'The site sets one cookie: it remembers that you closed the cookie notice. People who sign in to the site’s admin panel also get a sign-in cookie. There are no analytics or advertising trackers on the site.',
+      cookieLowVision:
+        'Cookies are small note files that a site saves in your browser. Our site saves no more than two. The first remembers that you closed the cookie notice, so it does not appear again. The second remembers your low vision settings (font size, colors) if you turned that version on. People who run the site and sign in to its admin panel also get one more cookie, so they do not have to enter a password on every page. There are no programs on the site that track visitors for statistics or advertising.',
+      survey:
+        'The survey does not ask for your name, phone number or email. Only your ratings and comment are saved. The site also sees your IP address, the network number of your device or internet connection, and uses it to stop too many surveys being sent in a row. The IP address is kept only in the server’s memory for about 10 minutes and then erased; it is not written to the database and is not saved with the survey.',
       yandexReviews:
         'Reviews on this page are shown by a Yandex Maps widget. It is loaded from Yandex, which receives your IP address and may set its own cookies under its own rules.',
       yandexMap:

@@ -2113,9 +2113,11 @@ __metadata:
     "@payloadcms/db-postgres": "npm:3.90.2"
     "@payloadcms/next": "npm:3.90.2"
     "@payloadcms/translations": "npm:3.90.2"
+    "@types/qrcode": "npm:^1.5.6"
     graphql: "npm:^16.8.1"
     next: "npm:16.3.5"
     payload: "npm:3.90.2"
+    qrcode: "npm:^1.5.4"
     react: "npm:19.3.0"
     react-dom: "npm:19.3.0"
   languageName: unknown

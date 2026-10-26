@@ -5,6 +5,7 @@ import { BookingLinks } from '@/components/BookingLinks';
 import { Contacts } from '@/components/Contacts';
 import { DoctorCards } from '@/components/DoctorCards';
 import { LicenseInfo } from '@/components/LicenseInfo';
+import { NumberText } from '@/components/NumberText';
 import { Section } from '@/components/Section';
 import { ServiceList } from '@/components/ServiceList';
 import { getDoctors, getReviews, getServices } from '@/cms/queries';
@@ -38,7 +39,9 @@ const HomePage = async () => {
           />
           <p className={styles.mark}>{CLINIC_KIND}</p>
           {address && <p className={styles.location}>{addressText(address)}</p>}
-          <p className={styles.hours}>{HOURS_TEXT}</p>
+          <p className={styles.hours}>
+            <NumberText text={HOURS_TEXT} />
+          </p>
         </div>
         <div className={styles.heroMain}>
           <h1

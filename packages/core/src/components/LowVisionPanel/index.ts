@@ -1,0 +1,1 @@
+export { LowVisionPanel } from './LowVisionPanel';

@@ -1,4 +1,6 @@
+import { NBSP } from '@mrshkn/demo-core/consts';
 import { LICENSE } from '@/consts';
+import { NumberText } from '../NumberText';
 import styles from './LicenseInfo.module.scss';
 
 /** Лицензия списком определений; вид — строки PlanRow DS без цены: подпись слева, значение справа. */
@@ -6,8 +8,8 @@ export const LicenseInfo = () => (
   <dl className={styles.list}>
     <div className={styles.row}>
       <dt className={styles.term}>Лицензия на&nbsp;медицинскую деятельность</dt>
-      <dd className={styles.value}>
-        №&nbsp;{LICENSE.number} от&nbsp;{LICENSE.date}
+      <dd className={`${styles.value} ${styles.number}`}>
+        <NumberText text={`№${NBSP}${LICENSE.number} от${NBSP}${LICENSE.date}`} />
       </dd>
     </div>
     <div className={styles.row}>
