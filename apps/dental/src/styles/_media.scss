@@ -1,8 +1,6 @@
 $max-1080: 1080px;
 $max-720: 720px;
 $max-480: 480px;
-$max-400: 400px;
-$max-360: 360px;
 
 @mixin max-1080 {
   @media (max-width: $max-1080) {
@@ -18,18 +16,6 @@ $max-360: 360px;
 
 @mixin max-480 {
   @media (max-width: $max-480) {
-    @content;
-  }
-}
-
-@mixin max-400 {
-  @media (max-width: $max-400) {
-    @content;
-  }
-}
-
-@mixin max-360 {
-  @media (max-width: $max-360) {
     @content;
   }
 }

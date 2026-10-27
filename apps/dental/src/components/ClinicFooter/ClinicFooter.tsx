@@ -9,7 +9,8 @@ import styles from './ClinicFooter.module.scss';
 
 /**
  * Нижняя строка подвала над подписью демо: знак клиники, контакты, лицензия, ссылки на сведения о клинике, поиск
- * и анкету (на всех страницах) и предупреждение о противопоказаниях.
+ * и анкету (на всех страницах) и предупреждение о противопоказаниях. Номер лицензии автопереводчик браузера
+ * не трогает, слова вокруг переводятся.
  */
 export const ClinicFooter = () => {
   const { name, address, telephone } = DEMO.business;
@@ -32,9 +33,11 @@ export const ClinicFooter = () => {
         </span>
       </p>
       <p className={styles.license}>
-        <NumberText
-          text={`Лицензия на${NBSP}медицинскую деятельность №${NBSP}${LICENSE.number} от${NBSP}${LICENSE.dateShort}`}
-        />
+        <NumberText text={`Лицензия на${NBSP}медицинскую деятельность`} />{' '}
+        <span translate="no">
+          <NumberText text={`№${NBSP}${LICENSE.number}`} />
+        </span>{' '}
+        <NumberText text={`от${NBSP}${LICENSE.dateShort}`} />
       </p>
       <nav
         className={styles.links}

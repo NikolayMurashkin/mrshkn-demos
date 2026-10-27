@@ -17,7 +17,12 @@ export const OrganizationInfo = () => {
       </div>
       <div className={styles.row}>
         <dt className={styles.term}>{INFO.ogrnLabel}</dt>
-        <dd className={`${styles.value} ${styles.number}`}>{ORGANIZATION.ogrn}</dd>
+        <dd
+          className={`${styles.value} ${styles.number}`}
+          translate="no"
+        >
+          {ORGANIZATION.ogrn}
+        </dd>
       </div>
       {address && (
         <div className={styles.row}>
