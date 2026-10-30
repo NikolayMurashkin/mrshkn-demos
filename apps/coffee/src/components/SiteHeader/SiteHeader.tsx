@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { BRAND, LOYALTY_HREF, LOYALTY_LABEL, NAV } from '../../consts';
+import { LOYALTY_HREF, LOYALTY_LABEL, NAV } from '../../consts';
 import type { SitePage } from '../../types';
-import { Wordmark } from '../Wordmark';
+import { Logo } from '../Logo';
 import styles from './SiteHeader.module.scss';
 
 type SiteHeaderProps = {
@@ -17,8 +17,7 @@ export const SiteHeader = ({ current }: SiteHeaderProps) => (
       href="/"
       prefetch={false}
     >
-      <Wordmark />
-      <span className={styles.kind}>{BRAND.kind}</span>
+      <Logo className={styles.logo} />
     </Link>
     <nav className={styles.nav}>
       {NAV.map(({ href, label, page }) => (

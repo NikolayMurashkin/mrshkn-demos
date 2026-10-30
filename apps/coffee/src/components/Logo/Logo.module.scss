@@ -1,0 +1,28 @@
+.logo {
+  display: block;
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ink {
+  fill: var(--ink);
+}
+
+.alt {
+  fill: var(--accent-alt);
+}
+
+.surface {
+  fill: var(--surface);
+}
+
+.inkLine {
+  stroke: var(--ink);
+}
+
+.altLine {
+  stroke: var(--accent-alt);
+}

@@ -1,1 +1,0 @@
-export { Wordmark } from './Wordmark';

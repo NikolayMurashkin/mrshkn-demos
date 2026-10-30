@@ -1,7 +1,7 @@
-import { BRAND, POSTER } from '../../consts';
+import { POSTER } from '../../consts';
 import { DEMO } from '../../demo.config';
 import { Star } from '../Star';
-import { Wordmark } from '../Wordmark';
+import { Logo } from '../Logo';
 import styles from './Poster.module.scss';
 
 type PosterProps = {
@@ -14,10 +14,7 @@ type PosterProps = {
 export const Poster = ({ url, qrSvg }: PosterProps) => (
   <article className={styles.poster}>
     <div className={styles.sheet}>
-      <p className={styles.brand}>
-        <Wordmark className={styles.wordmark} />
-        <span className={styles.kind}>{BRAND.kind}</span>
-      </p>
+      <Logo className={styles.logo} />
       <h1 className={styles.title}>{POSTER.title}</h1>
       <div
         className={styles.qr}

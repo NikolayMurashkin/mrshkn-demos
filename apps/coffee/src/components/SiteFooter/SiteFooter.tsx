@@ -1,6 +1,6 @@
 import { DEMO } from '../../demo.config';
 import { addressText, phoneHref } from '../../lib/format';
-import { Wordmark } from '../Wordmark';
+import { Logo } from '../Logo';
 import styles from './SiteFooter.module.scss';
 
 /** Строка кофейни над подписью демо в общем подвале: знак, адрес, телефон. */
@@ -9,7 +9,7 @@ export const SiteFooter = () => {
 
   return (
     <div className={styles.bar}>
-      <Wordmark className={styles.wordmark} />
+      <Logo className={styles.logo} />
       <div className={styles.info}>
         {address && <span>{addressText(address)}</span>}
         {telephone && (

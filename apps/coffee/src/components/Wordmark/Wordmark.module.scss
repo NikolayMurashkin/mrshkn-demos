@@ -1,6 +1,0 @@
-@use '../../styles/type';
-
-.wordmark {
-  @include type.wordmark;
-  @include type.backend-text;
-}

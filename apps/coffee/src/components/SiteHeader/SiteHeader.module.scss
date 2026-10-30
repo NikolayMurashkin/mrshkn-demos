@@ -1,6 +1,5 @@
 @use '../../styles/button';
 @use '../../styles/media';
-@use '../../styles/type';
 
 .header {
   display: grid;
@@ -15,22 +14,13 @@
 .brand {
   grid-area: brand;
   justify-self: start;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-4) 14px;
+  display: block;
   min-width: 0;
-
-  &:hover .kind {
-    color: var(--ink);
-  }
+  max-width: 100%;
 }
 
-.kind {
-  @include type.kind;
-  @include type.backend-text;
-
-  transition: color var(--duration-fast) var(--ease-out);
+.logo {
+  width: 168px;
 }
 
 .nav {
@@ -98,15 +88,8 @@
     min-height: 44px;
     padding: var(--space-12) 18px;
   }
-}
 
-@include media.max-480 {
-  .brand {
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .brand > :first-child {
-    font-size: 24px;
+  .logo {
+    width: 152px;
   }
 }

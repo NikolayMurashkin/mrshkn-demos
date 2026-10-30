@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="1.5" y="1.5" width="29" height="29" rx="8" fill="#ffd43b" stroke="#1c1035" stroke-width="3"/><path d="M11 24V9h10.5" fill="none" stroke="#1c1035" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496" width="496" height="496" role="img" aria-label="Гуща — кофейня">
+<title>Гуща</title>
+<path d="M480.00 248.00C480.00 376.13 376.13 480.00 248.00 480.00C119.87 480.00 16.00 376.13 16.00 248.00C16.00 119.87 119.87 16.00 248.00 16.00C376.13 16.00 480.00 119.87 480.00 248.00Z" fill="#ffd43b" stroke="#1c1035" stroke-width="32" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M412.00 248.00C412.00 338.57 338.57 412.00 248.00 412.00C157.43 412.00 84.00 338.57 84.00 248.00C84.00 157.43 157.43 84.00 248.00 84.00C338.57 84.00 412.00 157.43 412.00 248.00Z" fill="#ffffff" stroke="#1c1035" stroke-width="28" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M370.00 248.00C370.00 315.38 315.38 370.00 248.00 370.00C180.62 370.00 126.00 315.38 126.00 248.00C126.00 180.62 180.62 126.00 248.00 126.00C315.38 126.00 370.00 180.62 370.00 248.00Z" fill="#1c1035"/>
+<path d="M231.33 159.46L266.41 216.25L332.76 208.93L289.59 259.85L317.06 320.69L255.29 295.36L205.92 340.28L210.92 273.72L152.93 240.64L217.79 224.82Z" fill="#ffd43b" stroke="#ffd43b" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,6 +1,6 @@
 import { STAMP_CELLS } from '../../consts';
 import { Star } from '../Star';
-import { Wordmark } from '../Wordmark';
+import { Logo } from '../Logo';
 import styles from './StampCard.module.scss';
 
 /** Карта-штамп как образ «10-я чашка — от нас»: не состояние гостя, поэтому без номеров и отметок. */
@@ -9,7 +9,7 @@ export const StampCard = () => (
     className={styles.card}
     aria-hidden="true"
   >
-    <Wordmark className={styles.wordmark} />
+    <Logo className={styles.logo} />
     <div className={styles.grid}>
       {STAMP_CELLS.map((cell) => (
         <span
