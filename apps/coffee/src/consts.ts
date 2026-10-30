@@ -42,7 +42,7 @@ export const VISIT = {
 };
 
 export const PLATE = {
-  title: 'Копите чашки в Telegram и MAX',
+  title: 'Копите чашки в Telegram',
 };
 
 export const MENU = {
