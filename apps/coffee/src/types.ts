@@ -6,6 +6,8 @@ export type MenuItem = {
   price: number;
   category: string;
   tags: string[];
+  /** Ключ кадра из `src/assets/photos/index.ts`; нет — без фото. */
+  photo?: string;
 };
 
 /** Категория или признак меню: slug для адреса и название для чипа. */

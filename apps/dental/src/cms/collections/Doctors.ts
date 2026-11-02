@@ -1,4 +1,6 @@
+import { validatePhotoKey } from '@mrshkn/demo-core/photo';
 import type { CollectionConfig } from 'payload';
+import { PHOTO_KEYS } from '../../assets/photos/keys';
 import { PRACTICE_SINCE_MIN } from '../consts';
 import { validatePageSlug } from '../validate';
 
@@ -23,6 +25,13 @@ export const Doctors: CollectionConfig = {
       admin: { description: 'Страница врача откроется по адресу /doctors/<адрес>' },
     },
     { name: 'position', label: 'Специальность', type: 'text', required: true },
+    {
+      name: 'photo',
+      label: 'Фото (ключ кадра)',
+      type: 'text',
+      validate: validatePhotoKey(PHOTO_KEYS),
+      admin: { description: 'Ключ из src/assets/photos/index.ts приложения; пусто — без фото' },
+    },
     {
       name: 'practiceSince',
       label: 'В профессии с (год)',

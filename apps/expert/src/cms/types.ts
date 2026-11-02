@@ -21,6 +21,8 @@ export type SeedArticle = {
   publishedAt: string;
   lead: string;
   sections: SeedArticleSection[];
+  /** Ключ кадра из `src/assets/photos/index.ts`; нет — без фото. */
+  photo?: string;
 };
 
 /** Узел Lexical в том виде, в каком его хранит поле richText: страницам нужны тип, тег заголовка и текст. */

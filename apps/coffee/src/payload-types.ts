@@ -172,6 +172,10 @@ export interface MenuItem {
    * Объем или состав одной строкой: «250 мл», «на сливочном масле»
    */
   description?: string | null;
+  /**
+   * Ключ из src/assets/photos/index.ts приложения; пусто — без фото
+   */
+  photo?: string | null;
   price: number;
   category: 'coffee' | 'tea' | 'bakery' | 'breakfast';
   tags?: ('oat' | 'no-sugar' | 'vegan' | 'decaf')[] | null;
@@ -301,6 +305,7 @@ export interface MenuItemsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   description?: T;
+  photo?: T;
   price?: T;
   category?: T;
   tags?: T;

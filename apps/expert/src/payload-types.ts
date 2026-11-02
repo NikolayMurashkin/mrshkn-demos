@@ -202,6 +202,10 @@ export interface Article {
   publishedAt: string;
   lead: string;
   /**
+   * Ключ из src/assets/photos/index.ts приложения; пусто — без фото
+   */
+  photo?: string | null;
+  /**
    * Заголовки второго уровня попадают в оглавление статьи
    */
   content: {
@@ -389,6 +393,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   slug?: T;
   publishedAt?: T;
   lead?: T;
+  photo?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;

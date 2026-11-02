@@ -35,6 +35,8 @@ export type SeedDoctor = {
     validUntil: string;
   };
   schedule: { days: string; hours: string }[];
+  /** Ключ кадра из `src/assets/photos/index.ts`; нет — без фото. */
+  photo?: string;
 };
 
 export type SeedReview = DemoReview;

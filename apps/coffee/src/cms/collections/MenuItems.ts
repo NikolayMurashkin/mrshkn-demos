@@ -1,4 +1,6 @@
+import { validatePhotoKey } from '@mrshkn/demo-core/photo';
 import type { CollectionConfig } from 'payload';
+import { PHOTO_KEYS } from '../../assets/photos/keys';
 import { MENU_ITEMS_COLLECTION } from '../consts';
 import { MENU_CATEGORIES, MENU_TAGS } from '../seed/data';
 import { validateMenuSlug, validatePrice } from '../validate';
@@ -34,6 +36,13 @@ export const MenuItems: CollectionConfig = {
       label: 'Описание',
       type: 'text',
       admin: { description: 'Объем или состав одной строкой: «250 мл», «на сливочном масле»' },
+    },
+    {
+      name: 'photo',
+      label: 'Фото (ключ кадра)',
+      type: 'text',
+      validate: validatePhotoKey(PHOTO_KEYS),
+      admin: { description: 'Ключ из src/assets/photos/index.ts приложения; пусто — без фото' },
     },
     { name: 'price', label: 'Цена, ₽', type: 'number', required: true, min: 1, validate: validatePrice },
     {

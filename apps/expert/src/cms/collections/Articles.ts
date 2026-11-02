@@ -11,7 +11,9 @@ import {
   ParagraphFeature,
   UnorderedListFeature,
 } from '@payloadcms/richtext-lexical';
+import { validatePhotoKey } from '@mrshkn/demo-core/photo';
 import type { CollectionConfig } from 'payload';
+import { PHOTO_KEYS } from '../../assets/photos/keys';
 import { validatePageSlug } from '../validate';
 
 export const Articles: CollectionConfig = {
@@ -36,6 +38,13 @@ export const Articles: CollectionConfig = {
     },
     { name: 'publishedAt', label: 'Дата', type: 'date', required: true, index: true },
     { name: 'lead', label: 'Лид', type: 'textarea', required: true },
+    {
+      name: 'photo',
+      label: 'Фото (ключ кадра)',
+      type: 'text',
+      validate: validatePhotoKey(PHOTO_KEYS),
+      admin: { description: 'Ключ из src/assets/photos/index.ts приложения; пусто — без фото' },
+    },
     {
       name: 'content',
       label: 'Текст',

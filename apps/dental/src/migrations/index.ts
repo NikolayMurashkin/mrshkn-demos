@@ -1,6 +1,7 @@
 import * as migration_20260926_195027_initial from './20260926_195027_initial';
 import * as migration_20260927_114253_clinic_content from './20260927_114253_clinic_content';
 import * as migration_20261026_125503_doctor_documents_surveys from './20261026_125503_doctor_documents_surveys';
+import * as migration_20261102_131650_photo from './20261102_131650_photo';
 
 export const migrations = [
   {
@@ -16,6 +17,11 @@ export const migrations = [
   {
     up: migration_20261026_125503_doctor_documents_surveys.up,
     down: migration_20261026_125503_doctor_documents_surveys.down,
-    name: '20261026_125503_doctor_documents_surveys'
+    name: '20261026_125503_doctor_documents_surveys',
+  },
+  {
+    up: migration_20261102_131650_photo.up,
+    down: migration_20261102_131650_photo.down,
+    name: '20261102_131650_photo'
   },
 ];

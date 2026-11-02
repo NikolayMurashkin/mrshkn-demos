@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: root,
   turbopack: { root },
   transpilePackages: ['@mrshkn/demo-core'],
+  // оптимизатор кадров отдает AVIF, браузеру без него — WebP: выбор по заголовку Accept
+  images: { formats: ['image/avif', 'image/webp'] },
   // next dev иначе создает в приложении свои файлы правил для агентов
   agentRules: false,
   sassOptions: {

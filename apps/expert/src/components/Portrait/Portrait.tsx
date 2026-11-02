@@ -1,7 +1,6 @@
 import { EXPERT } from '@/consts';
 import styles from './Portrait.module.scss';
 
-/** Вместо фото — плита с инициалами: стоковое лицо выдавало бы себя за настоящего специалиста (D14). */
 export const Portrait = () => (
   <figure className={styles.portrait}>
     <span

@@ -208,6 +208,10 @@ export interface Doctor {
    */
   slug: string;
   position: string;
+  /**
+   * Ключ из src/assets/photos/index.ts приложения; пусто — без фото
+   */
+  photo?: string | null;
   practiceSince: number;
   /**
    * Абзацы разделяются пустой строкой
@@ -433,6 +437,7 @@ export interface DoctorsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   position?: T;
+  photo?: T;
   practiceSince?: T;
   about?: T;
   education?:

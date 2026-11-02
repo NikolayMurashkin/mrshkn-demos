@@ -1,0 +1,17 @@
+.picture {
+  display: block;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.alt {
+  display: none;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  hyphens: none;
+}
