@@ -1,3 +1,4 @@
 {
-  "paths": ["/", "/formats", "/articles/night-anxiety", "/quiz", "/booking"]
+  "paths": ["/", "/formats", "/articles", "/articles/night-anxiety", "/quiz", "/booking"],
+  "minScores": { "accessibility": 1 }
 }

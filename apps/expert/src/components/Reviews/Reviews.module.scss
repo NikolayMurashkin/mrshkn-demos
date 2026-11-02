@@ -1,0 +1,64 @@
+@use '../../styles/layout';
+@use '../../styles/media';
+@use '../../styles/type';
+
+.section {
+  @include layout.section;
+}
+
+.list {
+  --reviews-per-row: 3;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-32) var(--e-column-gap);
+  margin: 0 var(--e-gutter);
+}
+
+.item {
+  flex: 1 1 calc((100% - (var(--reviews-per-row) - 1) * var(--e-column-gap)) / var(--reviews-per-row));
+  display: flex;
+  min-width: 0;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.quote {
+  @include type.backend-text;
+
+  flex: 1;
+  padding: 22px 0;
+  border-top: var(--border-width-strong) double var(--ink);
+  border-bottom: var(--border-width-strong) double var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--font-size-quote);
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.author {
+  @include type.kicker;
+  @include type.backend-text;
+
+  display: block;
+  font-style: normal;
+  color: var(--muted);
+}
+
+@include media.max-1080 {
+  .list {
+    --reviews-per-row: 2;
+  }
+}
+
+@include media.max-720 {
+  .list {
+    --reviews-per-row: 1;
+  }
+}

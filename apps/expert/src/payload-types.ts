@@ -71,6 +71,7 @@ export interface Config {
     leads: Lead;
     formats: Format;
     articles: Article;
+    reviews: Review;
     bookings: Booking;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -83,6 +84,7 @@ export interface Config {
     leads: LeadsSelect<false> | LeadsSelect<true>;
     formats: FormatsSelect<false> | FormatsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     bookings: BookingsSelect<false> | BookingsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -228,6 +230,24 @@ export interface Article {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  /**
+   * Имя и первая буква фамилии: «Ирина С.»
+   */
+  author: string;
+  text: string;
+  /**
+   * Услуга или врач: «Имплантация, Бережной А. О.»
+   */
+  subject?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "bookings".
  */
 export interface Booking {
@@ -286,6 +306,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articles';
         value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'reviews';
+        value: number | Review;
       } | null)
     | ({
         relationTo: 'bookings';
@@ -395,6 +419,17 @@ export interface ArticlesSelect<T extends boolean = true> {
   lead?: T;
   photo?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  author?: T;
+  text?: T;
+  subject?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -17,6 +17,14 @@ export const getArticles = cache(async () => {
   return docs;
 });
 
+/** Отзывы вымышленных клиентов в порядке засева: старые выше. */
+export const getReviews = cache(async () => {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({ collection: 'reviews', sort: 'createdAt', limit: 0, depth: 0 });
+
+  return docs;
+});
+
 /** Статья со ссылками на другие статьи: внутренней ссылке в тексте нужен адрес связанной статьи. */
 export const getArticle = cache(async (slug: string) => {
   const payload = await getPayload({ config });

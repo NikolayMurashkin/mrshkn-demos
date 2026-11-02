@@ -1,0 +1,59 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.head {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin: 0 var(--e-gutter);
+  min-width: 0;
+}
+
+.rubric {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+
+  &::after {
+    content: '';
+    flex: 1;
+    min-width: 24px;
+    height: var(--border-width);
+    background: var(--ink);
+  }
+}
+
+.label {
+  @include type.kicker;
+
+  flex: none;
+  max-width: 50%;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+.title {
+  @include type.page-title;
+  @include type.backend-text;
+
+  max-width: 16ch;
+}
+
+@include media.max-720 {
+  .rubric {
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    padding-top: 12px;
+    border-top: var(--border-width) solid var(--ink);
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .label {
+    max-width: none;
+  }
+}

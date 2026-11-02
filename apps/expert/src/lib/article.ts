@@ -1,6 +1,6 @@
 import { NBSP } from '@mrshkn/demo-core/consts';
 import { typograph } from '@mrshkn/demo-core/typograph';
-import { MINUTE_FORMS, READING_SUFFIX, READING_WORDS_PER_MINUTE } from '../consts';
+import { ARTICLE_COVER_SIZES, MINUTE_FORMS, READING_SUFFIX, READING_WORDS_PER_MINUTE } from '../consts';
 import type { LexicalNode, LexicalState, TocItem } from '../cms/types';
 import { plural } from './format';
 
@@ -99,4 +99,17 @@ export const readingTime = (content: LexicalState, lead: string) => {
   const minutes = Math.max(1, Math.ceil(words / READING_WORDS_PER_MINUTE));
 
   return `${minutes}${NBSP}${plural(minutes, MINUTE_FORMS)} ${READING_SUFFIX}`;
+};
+
+/** Последние `count` статей по дате публикации, от новой к старой; входной массив не меняется. */
+export const latestArticles = <T extends { publishedAt: string }>(articles: T[], count: number): T[] =>
+  [...articles].sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)).slice(0, count);
+
+/** `sizes` обложки по месту карточки в раскладке материалов номера: главная, боковые, ряды с четвертой. */
+export const coverSizes = (index: number, total: number) => {
+  if (index === 0) {
+    return total === 1 ? ARTICLE_COVER_SIZES.single : ARTICLE_COVER_SIZES.lead;
+  }
+
+  return index < 3 ? ARTICLE_COVER_SIZES.side : ARTICLE_COVER_SIZES.row;
 };

@@ -1,0 +1,18 @@
+@use '../../styles/button';
+@use '../../styles/layout';
+
+.section {
+  @include layout.section;
+
+  align-items: flex-start;
+
+  > ul {
+    align-self: stretch;
+  }
+}
+
+.all {
+  @include button.arrow-link;
+
+  margin: 0 var(--e-gutter);
+}

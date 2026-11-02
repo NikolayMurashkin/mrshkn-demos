@@ -19,7 +19,10 @@ const ArticlesPage = async () => {
         title={ARTICLES_PAGE.title}
         lead={ARTICLES_PAGE.lead}
       />
-      <ArticleList articles={articles} />
+      <ArticleList
+        articles={articles}
+        priority
+      />
     </main>
   );
 };

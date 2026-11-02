@@ -5,6 +5,18 @@
   @include layout.page;
 }
 
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 66ch;
+
+  p {
+    @include type.prose;
+    @include type.backend-text;
+  }
+}
+
 .list {
   display: flex;
   flex-direction: column;

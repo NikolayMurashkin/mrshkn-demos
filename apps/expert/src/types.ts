@@ -6,7 +6,9 @@ export type NavItem = {
 export type AboutSection = {
   id: string;
   title: string;
-  /** Нумерованный список: шаги работы идут по порядку. */
+  /** Абзацы над списком: рассказ, а не перечень. */
+  paragraphs: string[];
+  /** Нумерованный список: шаги идут по порядку. */
   numbered?: boolean;
   items: string[];
 };
