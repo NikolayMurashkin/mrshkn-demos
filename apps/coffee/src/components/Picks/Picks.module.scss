@@ -78,6 +78,69 @@
   }
 }
 
+.shot {
+  position: relative;
+  display: block;
+  margin-bottom: var(--space-8);
+}
+
+.photo {
+  aspect-ratio: 4 / 3;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-inner);
+  background: var(--surface-soft);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.stickers {
+  position: absolute;
+  top: -12px;
+  right: -14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-8);
+  max-width: calc(100% + 14px);
+}
+
+.sticker {
+  @include type.backend-text;
+
+  max-width: 100%;
+  padding: var(--space-8) var(--space-16);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-mark);
+  background: var(--accent-alt);
+  color: var(--ink-on-alt);
+  box-shadow: var(--shadow-floating);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  transform: rotate(4deg);
+
+  &:nth-child(2n) {
+    background: var(--surface);
+    color: var(--ink);
+    transform: rotate(-3deg);
+  }
+
+  .plan:nth-child(4n + 2) &:nth-child(2n + 1) {
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  .plan:nth-child(4n + 2) &:nth-child(2n) {
+    background: var(--accent-warm);
+    color: var(--ink-on-alt);
+  }
+}
+
 .tag {
   @include type.tag;
   @include type.backend-text;
@@ -159,6 +222,10 @@
 @include media.max-720 {
   .section {
     gap: var(--space-40);
+  }
+
+  .photo {
+    aspect-ratio: 3 / 2;
   }
 
   .plans {

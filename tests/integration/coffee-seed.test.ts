@@ -23,6 +23,7 @@ type MenuItem = {
   slug: string;
   name: string;
   description?: string;
+  photo?: string;
   price: number;
   category: string;
   tags: string[];
@@ -30,7 +31,7 @@ type MenuItem = {
 
 type MenuItemDoc = MenuItem & { id: number | string; _order: string };
 
-const MENU_ITEM_FIELDS = ['slug', 'name', 'description', 'price', 'category', 'tags'];
+const MENU_ITEM_FIELDS = ['slug', 'name', 'description', 'photo', 'price', 'category', 'tags'];
 
 const COLLECTION = 'menu-items';
 

@@ -3,8 +3,9 @@ import { JsonLd } from '@mrshkn/demo-core/components/JsonLd';
 import { buildBusinessJsonLd } from '@mrshkn/demo-core/schema';
 import { getPayload } from 'payload';
 import { getMenuItems } from '@/cms/queries';
-import { MENU_CATEGORIES } from '@/cms/seed/data';
+import { MENU_CATEGORIES, MENU_TAGS } from '@/cms/seed/data';
 import { Hero } from '@/components/Hero';
+import { Inside } from '@/components/Inside';
 import { Picks } from '@/components/Picks';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SitePlate } from '@/components/SitePlate';
@@ -24,7 +25,9 @@ const HomePage = async () => {
         <Picks
           items={items}
           categories={MENU_CATEGORIES}
+          tags={MENU_TAGS}
         />
+        <Inside />
         <VisitSection />
       </main>
       <SitePlate />

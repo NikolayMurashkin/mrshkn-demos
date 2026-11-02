@@ -1,3 +1,5 @@
+import type { PhotoKey } from './assets/photos/keys';
+
 /** Позиция меню: цена — целые рубли, категория и признаки — slug из констант засева. */
 export type MenuItem = {
   slug: string;
@@ -9,6 +11,15 @@ export type MenuItem = {
   /** Ключ кадра из `src/assets/photos/index.ts`; нет — без фото. */
   photo?: string;
 };
+
+/** Кадр страницы из кода: ключ карты кадров и описание для экранного диктора. */
+export type Shot = {
+  photo: PhotoKey;
+  alt: string;
+};
+
+/** Кадр «Как у нас» с подписью под ним. */
+export type InsideShot = Shot & { caption: string };
 
 /** Категория или признак меню: slug для адреса и название для чипа. */
 export type MenuOption = {
