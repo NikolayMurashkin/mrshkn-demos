@@ -1,7 +1,10 @@
 import { DemoReviews } from '@mrshkn/demo-core/components/DemoReviews';
+import { Photo } from '@mrshkn/demo-core/components/Photo';
 import Link from 'next/link';
+import { PHOTOS } from '@/assets/photos';
 import { Arrow } from '@/components/Arrow';
 import { BookingLinks } from '@/components/BookingLinks';
+import { ClinicInside } from '@/components/ClinicInside';
 import { Contacts } from '@/components/Contacts';
 import { DoctorCards } from '@/components/DoctorCards';
 import { LicenseInfo } from '@/components/LicenseInfo';
@@ -9,7 +12,17 @@ import { NumberText } from '@/components/NumberText';
 import { Section } from '@/components/Section';
 import { ServiceList } from '@/components/ServiceList';
 import { getDoctors, getReviews, getServices } from '@/cms/queries';
-import { CLINIC_KIND, CONTACTS_ID, FACTS, GUIDES, HERO, HOURS_TEXT } from '@/consts';
+import {
+  CLINIC_INSIDE,
+  CLINIC_KIND,
+  CONTACTS_ID,
+  FACTS,
+  GUIDES,
+  HERO,
+  HERO_PHOTO,
+  HERO_PHOTO_SIZES,
+  HOURS_TEXT,
+} from '@/consts';
 import { DEMO } from '@/demo.config';
 import { addressText } from '@/lib/format';
 import styles from './page.module.scss';
@@ -64,6 +77,13 @@ const HomePage = async () => {
               </Link>
             </div>
           </div>
+          <Photo
+            className={styles.photo}
+            src={PHOTOS[HERO_PHOTO.photo]}
+            alt={HERO_PHOTO.alt}
+            sizes={HERO_PHOTO_SIZES}
+            priority
+          />
         </div>
         <span
           className={styles.rule}
@@ -107,6 +127,14 @@ const HomePage = async () => {
         wide
       >
         <DoctorCards doctors={doctors} />
+      </Section>
+      <Section
+        id="clinic"
+        label={CLINIC_INSIDE.label}
+        title={CLINIC_INSIDE.title}
+        wide
+      >
+        <ClinicInside />
       </Section>
       <Section
         id="reviews"

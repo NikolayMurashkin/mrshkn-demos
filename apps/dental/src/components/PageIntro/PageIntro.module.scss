@@ -65,6 +65,26 @@
   color: var(--accent-ink);
 }
 
+.withPortrait {
+  grid-template-rows: auto 1fr;
+}
+
+.withPortrait .aside {
+  grid-row: 1;
+}
+
+.portrait {
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  align-self: start;
+  background: var(--surface-soft);
+}
+
+.portrait img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
 .main {
   grid-column: 4 / -1;
   display: flex;
@@ -72,6 +92,10 @@
   align-items: flex-start;
   gap: var(--space-24);
   min-width: 0;
+}
+
+.withPortrait .main {
+  grid-row: 1 / span 2;
 }
 
 .title {
@@ -116,6 +140,21 @@
 
   .main {
     grid-column: 1 / -1;
+  }
+
+  .withPortrait {
+    grid-template-rows: none;
+  }
+
+  .withPortrait .aside,
+  .withPortrait .main,
+  .withPortrait .portrait {
+    grid-row: auto;
+  }
+
+  .portrait {
+    grid-column: 1 / -1;
+    width: min(100%, 280px);
   }
 }
 

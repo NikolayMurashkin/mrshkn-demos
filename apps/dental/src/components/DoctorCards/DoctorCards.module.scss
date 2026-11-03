@@ -2,6 +2,14 @@
 @use '../../styles/media';
 @use '../../styles/type';
 
+@mixin photo-thumb($width) {
+  .photo {
+    flex: none;
+    align-self: flex-start;
+    width: $width;
+  }
+}
+
 @mixin initials-square {
   .initials {
     flex: none;
@@ -30,12 +38,21 @@
   min-width: 0;
 }
 
+.photo {
+  background: var(--surface-soft);
+}
+
+.photo img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
 .initials {
   @include type.numeral;
 
   display: flex;
   align-items: flex-end;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   padding: var(--space-16);
   background: var(--surface-soft);
   color: var(--ink);
@@ -119,6 +136,7 @@
     align-items: stretch;
   }
 
+  @include photo-thumb(clamp(88px, 32cqi, 128px));
   @include initials-square;
 }
 
@@ -136,6 +154,7 @@
     font-size: min(var(--font-size-button), 10cqi);
   }
 
+  @include photo-thumb(128px);
   @include initials-square;
 
   @include media.max-720 {
