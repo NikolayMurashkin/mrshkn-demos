@@ -9,6 +9,7 @@ import { ServiceList } from '@/components/ServiceList';
 import { getDoctor } from '@/cms/queries';
 import { DOCTOR_DOCUMENTS } from '@/consts';
 import { practiceSinceText } from '@/lib/format';
+import { photoOf } from '@/lib/photo';
 import type { Service } from '@/payload-types';
 import styles from '../../content.module.scss';
 
@@ -39,6 +40,7 @@ const DoctorPage = async ({ params }: DoctorPageProps) => {
         title={doctor.name}
         lead={practiceSinceText(doctor.practiceSince)}
         back={{ href: '/doctors', label: 'Все врачи' }}
+        portrait={photoOf(doctor.photo)}
       >
         <BookingLinks />
       </PageIntro>

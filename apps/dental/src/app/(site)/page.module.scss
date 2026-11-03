@@ -125,6 +125,15 @@
   @include button.lg;
 }
 
+.photo {
+  background: var(--surface-soft);
+}
+
+.photo img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .rule {
   grid-column: 1 / -1;
   height: var(--border-width-strong);
@@ -318,6 +327,10 @@
 
   .actions > a {
     width: auto;
+  }
+
+  .photo img {
+    aspect-ratio: 3 / 2;
   }
 
   .rule {

@@ -1,4 +1,5 @@
 import type { DemoReview } from '@mrshkn/demo-core/types';
+import type { PhotoKey } from '../assets/photos/keys';
 
 export type SeedPrice = {
   name: string;
@@ -36,7 +37,7 @@ export type SeedDoctor = {
   };
   schedule: { days: string; hours: string }[];
   /** Ключ кадра из `src/assets/photos/index.ts`; нет — без фото. */
-  photo?: string;
+  photo?: PhotoKey;
 };
 
 export type SeedReview = DemoReview;

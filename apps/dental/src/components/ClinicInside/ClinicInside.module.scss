@@ -1,0 +1,41 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-56) var(--space-24);
+}
+
+.shot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  min-width: 0;
+  margin: 0;
+}
+
+.photo {
+  background: var(--surface-soft);
+}
+
+.photo img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.caption {
+  @include type.kicker;
+  @include type.backend-text;
+
+  padding-top: var(--space-12);
+  border-top: var(--border-width) solid var(--ink);
+  color: var(--muted);
+}
+
+@include media.max-720 {
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-24);
+  }
+}

@@ -1,5 +1,5 @@
 import { NBSP, POLICY_HREF } from '@mrshkn/demo-core/consts';
-import type { SurveyQuestion } from './types';
+import type { ClinicInside, ClinicShot, SurveyQuestion } from './types';
 
 /** Постоянные сведения клиники, которые не правят в админке: вывеска, меню, лицензия, как добраться. */
 export const CLINIC_BRAND = 'Точно';
@@ -22,6 +22,53 @@ export const HERO = {
   title: 'Лечим зубы точно по плану',
   lead: 'Сначала снимок и план лечения с ценой, потом работа. Сумма в плане не меняется без вашего согласия.',
 };
+
+/** Кадр первого экрана: кабинет клиники под заголовком, в колонках 4–12 (≤ 1080 — во всю ширину). */
+export const HERO_PHOTO: ClinicShot = {
+  photo: 'interior',
+  alt: `Светлый кабинет клиники: серое стоматологическое кресло, монитор, белые шкафы и${NBSP}деревянный пол`,
+};
+
+/** Ширина кадра первого экрана для `sizes`: 9 колонок из 12 на > 1080, иначе ширина листа без полей. */
+export const HERO_PHOTO_SIZES = '(max-width: 1080px) 92vw, 72vw';
+
+/**
+ * «Клиника изнутри» на главной: подпись — `kicker` под кадром, `alt` — то, чего нет в подписи (в режиме «без
+ * картинок» `alt` стоит над подписью, повтор читался бы опечаткой).
+ */
+export const CLINIC_INSIDE: ClinicInside = {
+  label: 'Клиника',
+  title: 'Клиника изнутри',
+  shots: [
+    {
+      photo: 'waiting',
+      caption: 'Зона ожидания',
+      alt: `Светлый зал с${NBSP}диванами вдоль стены и${NBSP}деревом в${NBSP}центре`,
+    },
+    {
+      photo: 'cabinet',
+      caption: 'Кабинет врача',
+      alt: `Серое стоматологическое кресло и${NBSP}белые шкафы вдоль стены`,
+    },
+    {
+      photo: 'instruments',
+      caption: `Зеркальце и${NBSP}зонд для${NBSP}осмотра`,
+      alt: `Крупным планом маленькое зеркальце на${NBSP}ручке и${NBSP}зонд${NBSP}— тонкий металлический инструмент. Зондом врач проверяет поверхность зуба.`,
+    },
+  ],
+};
+
+/** Кадр «Клиники изнутри» для `sizes`: треть ширины листа на > 720, иначе во всю ширину. */
+export const CLINIC_PHOTO_SIZES = '(max-width: 720px) 92vw, 31vw';
+
+/**
+ * Портрет в карточке врача для `sizes`: 4 колонки на > 1080, 2 — на 721–1080; ≤ 720 — миниатюра слева от текста,
+ * не шире 128 px (`DoctorCards.module.scss`).
+ */
+export const DOCTOR_CARD_PHOTO_SIZES = '(max-width: 720px) 128px, (max-width: 1080px) 46vw, 22vw';
+
+/** Портрет в головке страницы врача для `sizes`: 3 колонки из 12 на > 1080, иначе не шире 280 px. */
+export const DOCTOR_PAGE_PHOTO_SIZES = '(max-width: 1080px) 280px, 22vw';
 
 /** Подписи записи на первом экране, у врача и услуги: главная кнопка — Telegram, вторая — MAX. В шапке — «Записаться». */
 export const BOOKING = {

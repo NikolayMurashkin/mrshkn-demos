@@ -1,0 +1,1 @@
+export { ClinicInside } from './ClinicInside';

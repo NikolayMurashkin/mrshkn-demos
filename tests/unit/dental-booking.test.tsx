@@ -34,6 +34,7 @@ const fixtures = vi.hoisted(() => {
     name: 'Иванова Анна Сергеевна',
     slug: 'ivanova',
     position: 'Стоматолог-терапевт',
+    photo: 'lisitsyna',
     practiceSince: 2012,
     about: 'Лечит кариес и пульпит.',
     education: [{ id: 'university', item: 'Медицинский университет, 2011' }],
@@ -61,6 +62,17 @@ vi.mock('../../apps/dental/src/cms/queries', () => ({
   getDoctorsOfService: async () => [fixtures.doctor],
   getReviews: async () => [fixtures.review],
 }));
+
+/** Тот же объект, что дает статический импорт картинки в Next: импорт `.jpg` в unit не грузится. */
+vi.mock('../../apps/dental/src/assets/photos/index.ts', async () => {
+  const { PHOTO_KEYS } = await import('../../apps/dental/src/assets/photos/keys');
+
+  return {
+    PHOTOS: Object.fromEntries(
+      PHOTO_KEYS.map((key) => [key, { src: `/_next/static/media/${key}.0a1b2c3d.jpg`, width: 1600, height: 1200 }]),
+    ),
+  };
+});
 
 /** Меню шапки — клиентский компонент с текущим адресом; фикстуры находятся, страница 404 не отдает. */
 vi.mock('next/navigation', () => ({
