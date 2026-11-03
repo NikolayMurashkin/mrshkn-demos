@@ -10,10 +10,11 @@ import { MENU_ITEMS_COLLECTION } from './consts';
 export const getMenuItems = cache(async (payload: Payload): Promise<MenuItem[]> => {
   const { docs } = await payload.find({ collection: MENU_ITEMS_COLLECTION, sort: '_order', limit: 0, depth: 0 });
 
-  return docs.map(({ slug, name, description, price, category, tags }) => ({
+  return docs.map(({ slug, name, description, photo, price, category, tags }) => ({
     slug,
     name,
     description: description ?? undefined,
+    photo: photo ?? undefined,
     price,
     category,
     tags: tags ?? [],

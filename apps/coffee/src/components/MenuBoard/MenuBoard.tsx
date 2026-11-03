@@ -1,7 +1,9 @@
+import { Photo } from '@mrshkn/demo-core/components/Photo';
 import { typograph } from '@mrshkn/demo-core/typograph';
-import { MENU } from '../../consts';
+import { MENU, MENU_PHOTO_SIZES } from '../../consts';
 import { formatPrice } from '../../lib/format';
 import { groupMenu } from '../../lib/menu';
+import { photoOf } from '../../lib/photo';
 import type { MenuItem, MenuOption } from '../../types';
 import styles from './MenuBoard.module.scss';
 
@@ -11,11 +13,14 @@ type MenuBoardProps = {
   tags: MenuOption[];
   /** Сброс фильтра: в компактном виде сохраняет `qr=1`, чтобы гость у стойки не потерял его. */
   resetHref: string;
-  /** Одна колонка — в компактном меню на любой ширине. */
+  /** Одна колонка и без кадров — компактное меню у стойки: страница легкая, грузится быстро и по мобильной сети. */
   single?: boolean;
 };
 
-/** Позиции по категориям: категория — стикер с ярлыком на кромке, строка — название, лидеры и цена. */
+/**
+ * Позиции по категориям: категория — стикер с ярлыком на кромке, строка — миниатюра, название, лидеры и цена.
+ * Миниатюра без подписи: название позиции рядом текстом.
+ */
 export const MenuBoard = ({ items, categories, tags, resetHref, single = false }: MenuBoardProps) => {
   const groups = groupMenu(items, categories);
   const tagNames = new Map(tags.map(({ slug, name }) => [slug, name]));
@@ -51,12 +56,21 @@ export const MenuBoard = ({ items, categories, tags, resetHref, single = false }
           <ul className={styles.items}>
             {groupItems.map((item) => {
               const itemTags = item.tags.flatMap((tag) => tagNames.get(tag) ?? []);
+              const photo = single ? undefined : photoOf(item.photo);
 
               return (
                 <li
                   key={item.slug}
-                  className={styles.item}
+                  className={photo ? `${styles.item} ${styles.withPhoto}` : styles.item}
                 >
+                  {photo && (
+                    <Photo
+                      className={styles.photo}
+                      src={photo}
+                      alt=""
+                      sizes={MENU_PHOTO_SIZES}
+                    />
+                  )}
                   <span className={styles.name}>{typograph(item.name)}</span>
                   <span
                     className={styles.dots}

@@ -1,5 +1,6 @@
 import { STUDIO_NAME, STUDIO_URL } from '@mrshkn/demo-core/consts';
-import type { LoyaltyAppEnv, NavItem } from './types';
+import { typograph } from '@mrshkn/demo-core/typograph';
+import type { InsideShot, LoyaltyAppEnv, NavItem, Shot } from './types';
 
 /** Знак в шапке, подвале, на карте-штампе и плакате: короткое имя заведения на желтой метке. */
 export const BRAND = { name: 'Гуща', kind: 'кофейня' };
@@ -28,10 +29,55 @@ export const HERO = {
   },
 };
 
+/** Кадр зала на доске стикеров hero. */
+export const HERO_PHOTO = {
+  photo: 'hall',
+  alt: typograph('Зал кофейни: желтая стена, столики и стойка в глубине'),
+} satisfies Shot;
+
+/**
+ * Ширина отрисовки кадра для `sizes`: на > 1080 рамка ≈ 364×302, кадр 3:2 при `cover` рисуется по высоте — ≈ 455 px,
+ * с запасом 480; на ≤ 1080 рамка 16:10 шире кадра — по ширине строки за вычетом боковых полей страницы.
+ */
+export const HERO_PHOTO_SIZES = '(max-width: 1080px) 92vw, 480px';
+
+/** `cardLabel` — доступное имя карточки-ссылки: название позиции, а не тексты стикеров на кадре. */
 export const PICKS = {
   title: 'Что взять',
   all: 'Все меню',
+  cardLabel: (name: string) => `${name} — подробнее`,
 };
+
+/** Кадр карточки «Что взять»: колонка карточки без внутренних полей — одна на ≤ 720, две на ≤ 1080, четыре шире. */
+export const PICKS_PHOTO_SIZES = '(max-width: 720px) calc(100vw - 112px), (max-width: 1080px) calc(50vw - 90px), 22vw';
+
+/** Миниатюра строки меню: квадрат 88 px, на ≤ 480 — 72 px. */
+export const MENU_PHOTO_SIZES = '(max-width: 480px) 72px, 88px';
+
+/** «Как у нас» на главной: подписи — то, что гость видит, `alt` — то, что на кадре, для экранного диктора. */
+export const INSIDE = {
+  title: typograph('Как у нас в «Гуще»'),
+  shots: [
+    {
+      photo: 'barista',
+      caption: typograph('Кофе варим при вас'),
+      alt: typograph('Бариста рисует узор на молочной пенке'),
+    },
+    {
+      photo: 'bakery',
+      caption: typograph('Свежая выпечка — каждое утро'),
+      alt: typograph('Круассаны на противне'),
+    },
+    {
+      photo: 'window',
+      caption: typograph('Есть столики у окна — можно не спешить'),
+      alt: typograph('Деревянные столики у светлого окна'),
+    },
+  ] satisfies InsideShot[],
+};
+
+/** Кадр «Как у нас»: три колонки, на ≤ 720 — одна, без полей рамки. */
+export const INSIDE_PHOTO_SIZES = '(max-width: 720px) calc(100vw - 80px), 30vw';
 
 export const VISIT = {
   title: 'Как найти',

@@ -1,9 +1,14 @@
-import { HERO, LOYALTY_HREF, MENU_HREF } from '../../consts';
+import { Photo } from '@mrshkn/demo-core/components/Photo';
+import { PHOTOS } from '../../assets/photos';
+import { HERO, HERO_PHOTO, HERO_PHOTO_SIZES, LOYALTY_HREF, MENU_HREF } from '../../consts';
 import { Arrow } from '../Arrow';
 import { Star } from '../Star';
 import styles from './Hero.module.scss';
 
-/** Первый экран — стикерборд: заголовок и кнопки, рядом три стикера-обещания; последний ведет в лояльность. */
+/**
+ * Первый экран — стикерборд: заголовок и кнопки, рядом кадр зала и поверх него три стикера-обещания; последний ведет
+ * в лояльность. Кадр — первый экран, грузится сразу.
+ */
 export const Hero = () => (
   <section
     className={styles.hero}
@@ -34,6 +39,13 @@ export const Hero = () => (
       </div>
     </div>
     <div className={styles.stickers}>
+      <Photo
+        className={styles.photo}
+        src={PHOTOS[HERO_PHOTO.photo]}
+        alt={HERO_PHOTO.alt}
+        sizes={HERO_PHOTO_SIZES}
+        priority
+      />
       <p className={`${styles.sticker} ${styles.alt}`}>{HERO.stickers.opens}</p>
       <p className={`${styles.sticker} ${styles.warm}`}>{HERO.stickers.oat}</p>
       <a
