@@ -1,0 +1,144 @@
+@use './media';
+
+:root {
+  --bg: #f2f1f3;
+  --surface: #ffffff;
+  --surface-soft: #e8e7ea;
+  --ink: #151317;
+  --ink-inverse: #f2f1f3;
+  --muted: #66636b;
+  --line: #d9d7dc;
+  --line-strong: #85828b;
+  --accent: #ff6a2b;
+  --accent-ink: #b64211;
+  --accent-contrast: #151317;
+  --tap-highlight: rgb(255 106 43 / 18%);
+  --shadow-floating: 0 8px 24px rgb(0 0 0 / 18%);
+
+  --font-display: 'Unbounded', 'Unbounded Metric Fallback', 'Arial Black', Impact, sans-serif;
+  --font-text: 'Golos Text', 'Golos Text Metric Fallback', 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-hero-title: min(clamp(30px, 8.5vw, 128px), 10cqi);
+  --font-size-footer-title: clamp(36px, 8vw, 120px);
+  --font-size-section-title: clamp(36px, 5.6vw, 80px);
+  --font-size-page-title: clamp(32px, 4.8vw, 64px);
+  --font-size-plan-name: clamp(22px, 2.4vw, 32px);
+  --font-size-amount: clamp(28px, 4vw, 40px);
+  --font-size-card-title: 24px;
+  --font-size-tape: 24px;
+  --font-size-wordmark: 26px;
+  --font-size-lead: clamp(16px, 1.5vw, 20px);
+  --font-size-prose: 17px;
+  --font-size-body: 16px;
+  --font-size-button: 16px;
+  --font-size-small: 14px;
+  --font-size-kicker: 13px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-40: 40px;
+  --space-56: 56px;
+  --space-72: 72px;
+  --space-120: 120px;
+
+  --k-gutter: clamp(20px, 4vw, 56px);
+  --k-section-y: var(--space-120);
+  --k-header-height: 95px;
+
+  --radius-control: 999px;
+  --radius-surface: 24px;
+  --radius-inner: 16px;
+  --border-width: 1.5px;
+  --border-width-strong: 2px;
+
+  --duration-fast: 160ms;
+  --duration-base: 250ms;
+  --duration-rise: 900ms;
+  --duration-stagger: 120ms;
+  --duration-spin: 14s;
+  --duration-tape: 22s;
+  --duration-tape-reverse: 28s;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-linear: linear;
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--surface);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--line-strong);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-strong);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-strong);
+  --demo-radius: var(--radius-surface);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-display);
+  --demo-control-height: 56px;
+  --demo-control-height-sm: 46px;
+  --demo-button-padding-x: 26px;
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 600;
+  --demo-label-size: var(--font-size-kicker);
+  --demo-label-weight: 600;
+  --demo-label-tracking: 0.12em;
+  --demo-label-case: uppercase;
+  --demo-title-size: var(--font-size-page-title);
+  --demo-title-weight: 700;
+  --demo-title-leading: 1.05;
+  --demo-title-tracking: 0;
+  --demo-section-gap: var(--space-56);
+  --demo-gutter: var(--k-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-out);
+  --demo-ease-move: var(--ease-out);
+
+  color-scheme: light;
+}
+
+:root:lang(en) {
+  --font-display: 'Unbounded', 'Unbounded Metric Fallback En', 'Arial Black', Impact, sans-serif;
+  --font-text: 'Golos Text', 'Golos Text Metric Fallback En', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121114;
+    --surface: #1a181d;
+    --surface-soft: #1f1d23;
+    --ink: #f1efe9;
+    --ink-inverse: #121114;
+    --muted: #9d9a93;
+    --line: #2b292e;
+    --line-strong: #6b6870;
+    --accent-ink: #ff6a2b;
+    --shadow-floating: 0 8px 24px rgb(0 0 0 / 45%);
+
+    color-scheme: dark;
+  }
+}
+
+@include media.max-1080 {
+  :root {
+    --k-section-y: var(--space-72);
+  }
+}
+
+@include media.max-480 {
+  :root {
+    --k-header-height: 81px;
+  }
+}

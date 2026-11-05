@@ -1,0 +1,13 @@
+@use '../../styles/type';
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-56);
+  padding: var(--k-section-y) var(--k-gutter);
+  container-type: inline-size;
+}
+
+.title {
+  @include type.section-title;
+}

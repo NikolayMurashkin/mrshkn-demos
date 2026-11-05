@@ -1,0 +1,9 @@
+.footer {
+  --demo-fg: var(--ink-inverse);
+  --demo-muted: color-mix(in srgb, var(--ink-inverse) 72%, var(--ink));
+  --demo-border: color-mix(in srgb, var(--ink-inverse) 40%, var(--ink));
+  --demo-accent-ink: var(--ink-inverse);
+  --demo-focus: var(--ink-inverse);
+
+  background: var(--ink);
+}

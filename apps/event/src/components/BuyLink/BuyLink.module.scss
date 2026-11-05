@@ -1,0 +1,34 @@
+@use '../../styles/button';
+@use '../../styles/media';
+
+.link {
+  @include button.base;
+}
+
+.primary {
+  @include button.primary;
+}
+
+.primary-on-ink {
+  @include button.primary;
+  @include button.primary-on-ink;
+}
+
+.sm {
+  @include button.sm;
+}
+
+.lg {
+  @include button.lg;
+}
+
+.base,
+.lg {
+  @include button.full-on-phone;
+}
+
+.lg {
+  @include media.max-480 {
+    min-height: 64px;
+  }
+}

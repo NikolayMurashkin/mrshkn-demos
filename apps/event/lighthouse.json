@@ -1,0 +1,4 @@
+{
+  "paths": ["/ru", "/en"],
+  "minScores": { "accessibility": 1 }
+}

@@ -1,0 +1,65 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-28);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  min-width: 0;
+  padding: 32px;
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+}
+
+.name {
+  @include type.display(var(--font-size-plan-name), 700, 1.15);
+
+  text-wrap: balance;
+}
+
+.price {
+  padding-block: 20px;
+  border-block: var(--border-width) solid var(--line);
+  font-family: var(--font-display);
+  font-size: var(--font-size-amount);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.text {
+  flex-grow: 1;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.buy {
+  width: 100%;
+}
+
+.note {
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@include media.max-1080 {
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+@include media.max-480 {
+  .card {
+    padding: var(--space-24);
+  }
+}
