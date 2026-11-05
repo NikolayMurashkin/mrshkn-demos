@@ -1,0 +1,8 @@
+.page {
+  flex: 1;
+  padding: var(--space-40) var(--k-gutter) 96px;
+
+  h2::before {
+    font-weight: 700;
+  }
+}

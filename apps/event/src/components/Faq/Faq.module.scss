@@ -1,0 +1,38 @@
+@use '../../styles/media';
+@use '../../styles/type';
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-12) var(--space-56);
+  padding-block: var(--space-28);
+  border-top: var(--border-width) solid var(--ink);
+
+  &:last-child {
+    border-bottom: var(--border-width) solid var(--ink);
+  }
+}
+
+.question {
+  @include type.card-title;
+
+  text-wrap: balance;
+}
+
+.answer {
+  @include type.prose;
+
+  max-width: 68ch;
+  margin: 0;
+}
+
+@include media.max-1080 {
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -15,6 +15,30 @@
 | `packages/core/src/texts.ts` → `policy.survey`          | абзац об анонимной анкете и IP-адресе в памяти сервера около 10 минут                                                                              |
 | `packages/core/src/texts.ts` → `lowVision.font.*.name`  | имя кнопки шрифта начинается с видимой подписи (WCAG 2.5.3): «A, standard font», «A+, large font», «A++, extra large font»                         |
 
+Написано 02.11.2026 (демо «Концерт», `apps/event`). Тексты страницы — из тест-плана, утверждены Николаем вместе с русскими;
+подписи кадров написал исполнитель.
+
+| Где                                                     | Что внутри и на что смотреть                                                                                     |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `apps/event/src/texts.ts` → `TEXTS.en`                  | страница концерта: Slow Tide, Pier 9 club, программа (6 pm … 9:30 pm), билеты (Balcony, Stalls, Front rows), FAQ |
+| `apps/event/src/texts.ts` → `*.posterAlt`, `*.photoAlt` | описания кадров афиши, квартета и зала для скринридера                                                           |
+| `apps/event/src/texts.ts` → `gallery.alts`              | описания шести кадров галереи «From past concerts»                                                               |
+| `apps/event/src/demo.config.ts` → `DEMOS.en`            | адрес клуба для schema.org: «Oktyabrskaya St», Kaliningrad — без номера дома                                     |
+
+Написано 03.11.2026 (демо «Концерт», тексты версий 3 и 4 — утверждены Николаем вместе с русскими; en версии 4 — перевод
+сессии).
+
+| Где                                                                    | Что внутри и на что смотреть                                                                              |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `apps/event/src/texts.ts` → `en.hero.kicker`, `en.hero.lead`           | «Jazz in Kaliningrad · 12+»; лид «well-known jazz and its own music, Lights on the Water»                 |
+| `apps/event/src/texts.ts` → `en.hero.plateNote`                        | «the buttons lead to all Kaliningrad events on Yandex Afisha»                                             |
+| `apps/event/src/texts.ts` → `en.program.items[3]`                      | «second set: Lights on the Water, music the quartet wrote itself»                                         |
+| `apps/event/src/texts.ts` → `en.venue.address`, `en.venue.addressNote` | адрес без номера дома; строка под ним «The address and the map pin are only an example: …»                |
+| `apps/event/src/texts.ts` → `en.tickets.items.front.text`              | место по номеру в первых рядах                                                                            |
+| `apps/event/src/texts.ts` → `en.tickets.note`                          | концерт вымышленный → кнопка открывает Калининград на Афише; на сайте настоящего — страницу концерта      |
+| `apps/event/src/texts.ts` → `en.faq.items[2].a`                        | возврат: за 10 дней и раньше — вся цена без сервисного сбора, позже — часть, меньше 3 дней — может ничего |
+| `apps/event/src/texts.ts` → `en.finale.note`                           | строка под кнопкой финальной плиты: «from ₽1,500 · the concert is fictional, so the button opens…»        |
+
 Строки ниже Николай вычитал 16.10.2026, перед публикацией `auto.mrshkn.com`.
 
 ## Вычитано Николаем 16.10.2026
