@@ -36,7 +36,7 @@ export const DemoReviews = ({ title, reviews }: DemoReviewsProps) => {
             <figure className={styles.review}>
               <blockquote className={styles.text}>{typograph(review.text)}</blockquote>
               <figcaption className={styles.caption}>
-                <cite className={styles.author}>{review.author}</cite>
+                <cite className={styles.author}>{typograph(review.author)}</cite>
                 {review.subject && <span className={styles.subject}>{typograph(review.subject)}</span>}
               </figcaption>
             </figure>

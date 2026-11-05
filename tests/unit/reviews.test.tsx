@@ -81,7 +81,7 @@ describe('отзывы в демо вымышленного дела', () => {
     );
 
     expect(quotes).toEqual(REVIEWS.map((review) => review.text));
-    expect([...body.querySelectorAll('cite')].map((cite) => cite.textContent)).toEqual(
+    expect([...body.querySelectorAll('cite')].map((cite) => cite.textContent?.replace(/ /g, ' '))).toEqual(
       REVIEWS.map((review) => review.author),
     );
   });

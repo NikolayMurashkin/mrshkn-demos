@@ -88,8 +88,13 @@ const importExpert = async <T,>(relative: string): Promise<T> => {
   return (await import(/* @vite-ignore */ file)) as T;
 };
 
-/** Текст с обычными пробелами вместо неразрывных: типограф ставит их по-своему. */
-const plain = (text: string | null | undefined) => (text ?? '').replace(/[  ]/g, ' ').replace(/\s+/g, ' ').trim();
+/** Текст с обычными пробелами и дефисами вместо неразрывных: типограф ставит их по-своему. */
+const plain = (text: string | null | undefined) =>
+  (text ?? '')
+    .replace(/[  ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\u2011/g, '-')
+    .trim();
 
 /** Разметка целиком, с асинхронными компонентами внутри: блок страницы может сам ждать данные. */
 const renderBody = async (node: ReactNode) => {
