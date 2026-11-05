@@ -8,7 +8,7 @@ type PrivacyPolicyProps = {
   withYandexReviews: boolean;
   /** На сайте есть карта Яндекса, которая грузится по нажатию «Показать карту». */
   withYandexMap?: boolean;
-  /** Какая форма сайта собирает данные: заявка (имя и способ связи) или список ожидания (только почта). */
+  /** Какая форма сайта собирает данные: заявка (имя и способ связи), список ожидания (только почта) или форм нет. */
   form?: PolicyForm;
   /** На сайте есть версия для слабовидящих: ее настройки хранит вторая cookie. */
   withLowVision?: boolean;
@@ -19,8 +19,8 @@ type PrivacyPolicyProps = {
 
 /**
  * Общая для всех демо политика: дело в демо вымышлено, а данные с формы сайта — заявки или адреса списка
- * ожидания — получает студия. Абзацы о данных, цели и хранении зависят от формы. Текст — черновик до пакета
- * документов студии и вычитки юристом.
+ * ожидания — получает студия; у сайта без форм данных посетителей нет. Абзацы о данных, цели и хранении зависят
+ * от формы. Текст — черновик до пакета документов студии и вычитки юристом.
  */
 export const PrivacyPolicy = ({
   withYandexReviews,
@@ -31,7 +31,7 @@ export const PrivacyPolicy = ({
   lang = 'ru',
 }: PrivacyPolicyProps) => {
   const texts = CORE_TEXTS[lang].policy;
-  const formTexts = form === 'waitlist' ? texts.waitlist : texts;
+  const formTexts = form === 'lead' ? texts : texts[form];
 
   return (
     <article className={styles.policy}>
@@ -55,9 +55,9 @@ export const PrivacyPolicy = ({
       {withYandexMap && <p>{texts.yandexMap}</p>}
       <h2>{texts.rightsTitle}</h2>
       <p>
-        {texts.rightsBefore}
+        {formTexts.rightsBefore ?? texts.rightsBefore}
         <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
-        {texts.rightsAfter}
+        {formTexts.rightsAfter ?? texts.rightsAfter}
       </p>
     </article>
   );

@@ -1,6 +1,17 @@
 import { NBSP, STUDIO_NAME } from './consts';
 import type { DemoLang } from './types';
 
+/** Абзацы политики, которые зависят от формы сайта. */
+type PolicyFormTexts = {
+  intro: string;
+  data: string;
+  purpose: string;
+  storage: string;
+  /** Свой абзац прав вместо общего: у сайта без форм исправлять и удалять нечего. Почта — между частями. */
+  rightsBefore?: string;
+  rightsAfter?: string;
+};
+
 export type CoreTexts = {
   footer: {
     /** Подпись «Демо-проект студии»: текст до ссылки и сама ссылка на сайт студии. */
@@ -69,12 +80,9 @@ export type CoreTexts = {
     rightsBefore: string;
     rightsAfter: string;
     /** Абзацы политики сайта со списком ожидания: вместо формы заявки — только почта. */
-    waitlist: {
-      intro: string;
-      data: string;
-      purpose: string;
-      storage: string;
-    };
+    waitlist: PolicyFormTexts;
+    /** Абзацы политики сайта без форм: данные посетителей не собираются. */
+    none: PolicyFormTexts;
   };
 };
 
@@ -157,6 +165,14 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
         data: `Из${NBSP}формы списка ожидания${NBSP}— только адрес почты. Сервер видит IP-адрес и${NBSP}по${NBSP}нему ограничивает частоту отправок; в${NBSP}базе IP-адрес не${NBSP}хранится.`,
         purpose: `Чтобы показать, как работает список ожидания. Сервис вымышлен, поэтому писем на${NBSP}этот адрес не${NBSP}будет. Рассылок нет.`,
         storage: `На${NBSP}сервере студии в${NBSP}России. Адрес хранится, пока работает демо-сайт, и${NBSP}удаляется по${NBSP}вашей просьбе.`,
+      },
+      none: {
+        intro: `Это пример сайта: его сделала студия ${STUDIO_NAME}, чтобы показать, какие сайты мы${NBSP}делаем. Все, о${NBSP}чем здесь рассказано, вымышлено. На${NBSP}сайте нет полей, куда вписывают имя, телефон или почту.`,
+        data: `Никаких: сайт ничего о${NBSP}вас не${NBSP}собирает. Когда вы${NBSP}открываете страницу, сервер (компьютер, на${NBSP}котором работает сайт) видит ваш IP-адрес${NBSP}— сетевой номер устройства: без него страницу некуда отправить. Адрес сервер не${NBSP}записывает: ни${NBSP}в${NBSP}базу, ни${NBSP}в${NBSP}журнал посещений.`,
+        purpose: `Ни${NBSP}для чего. Писем и${NBSP}сообщений сайт не${NBSP}присылает: он${NBSP}не${NBSP}знает ни${NBSP}вашей почты, ни${NBSP}телефона.`,
+        storage: `О${NBSP}вас у${NBSP}нас не${NBSP}хранится ничего. В${NBSP}вашем браузере сайт оставляет одну отметку${NBSP}— cookie, о${NBSP}ней ниже.`,
+        rightsBefore: `Есть вопросы о${NBSP}данных${NBSP}— напишите на${NBSP}`,
+        rightsAfter: `, ответим. Данные, которые получил Яндекс через карту, хранит Яндекс, а${NBSP}не${NBSP}мы.`,
       },
     },
   },
@@ -243,6 +259,15 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
           'To show how a waitlist works. The service is fictional, so no emails will be sent to this address. No newsletters.',
         storage:
           'On the studio’s server in Russia. The address is kept while the demo site is online and is deleted on your request.',
+      },
+      none: {
+        intro: `This is an example site: ${STUDIO_NAME} studio made it to show the kind of sites we build. Everything described here is fictional. The site has no fields where you type your name, phone or email.`,
+        data: 'None: the site collects nothing about you. When you open a page, the server (the computer the site runs on) sees your IP address, the network number of your device: without it the page has nowhere to go. The server does not record this address, neither in a database nor in a visit log.',
+        purpose: 'For nothing. The site sends no emails or messages: it knows neither your email nor your phone.',
+        storage:
+          'Nothing about you is stored on our side. The site leaves one note in your browser, a cookie, described below.',
+        rightsBefore: 'Questions about your data? Email ',
+        rightsAfter: ' and we’ll answer. Data that Yandex received through the map is kept by Yandex, not by us.',
       },
     },
   },

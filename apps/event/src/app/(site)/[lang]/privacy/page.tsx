@@ -42,6 +42,7 @@ const PrivacyPage = async ({ params }: LangPageProps) => {
         <PrivacyPolicy
           lang={lang}
           withYandexReviews={false}
+          form="none"
           withYandexMap={Boolean(DEMOS[lang].business.geo)}
         />
       </main>

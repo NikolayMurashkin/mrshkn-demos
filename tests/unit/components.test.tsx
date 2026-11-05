@@ -213,4 +213,22 @@ describe('политика обработки данных', () => {
     expect(text).toContain('IP-адрес');
     expect(text).toContain('рекламу');
   });
+
+  it('у сайта без форм не обещает ответить на заявку, исправить или удалить данные и говорит, что их не собирают', () => {
+    const text =
+      parse(
+        renderToStaticMarkup(
+          <PrivacyPolicy
+            withYandexReviews={false}
+            form="none"
+          />,
+        ),
+      ).textContent?.replace(/\u00a0/g, ' ') ?? '';
+
+    expect(text).toContain('На сайте нет полей, куда вписывают имя, телефон или почту');
+    expect(text).toContain('Никаких: сайт ничего о вас не собирает');
+    expect(text).toContain('Есть вопросы о данных — напишите на');
+    expect(text).not.toMatch(/заявк|Telegram|списка ожидания|исправим или удалим/);
+    expect(text).toContain('Мурашкина Вероника Викторовна');
+  });
 });

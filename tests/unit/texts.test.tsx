@@ -113,6 +113,16 @@ describe('тексты на ru и en', () => {
         />
       ),
     ],
+    [
+      'PrivacyPolicy без форм',
+      () => (
+        <PrivacyPolicy
+          lang="en"
+          withYandexReviews={false}
+          form="none"
+        />
+      ),
+    ],
   ])('%s на en — без кириллицы', (_, render) => {
     const markup = renderToStaticMarkup(render());
 
