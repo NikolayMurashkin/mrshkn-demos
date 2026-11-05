@@ -32,6 +32,7 @@ export const PrivacyPolicy = ({
 }: PrivacyPolicyProps) => {
   const texts = CORE_TEXTS[lang].policy;
   const formTexts = form === 'lead' ? texts : texts[form];
+  const rightsYandexMap = form === 'lead' ? undefined : texts[form].rightsYandexMap;
 
   return (
     <article className={styles.policy}>
@@ -58,6 +59,7 @@ export const PrivacyPolicy = ({
         {formTexts.rightsBefore ?? texts.rightsBefore}
         <a href={`mailto:${STUDIO_EMAIL}`}>{STUDIO_EMAIL}</a>
         {formTexts.rightsAfter ?? texts.rightsAfter}
+        {withYandexMap && rightsYandexMap}
       </p>
     </article>
   );

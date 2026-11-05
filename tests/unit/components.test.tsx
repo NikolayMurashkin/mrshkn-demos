@@ -214,7 +214,7 @@ describe('политика обработки данных', () => {
     expect(text).toContain('рекламу');
   });
 
-  it('у сайта без форм не обещает ответить на заявку, исправить или удалить данные и говорит, что их не собирают', () => {
+  it('у сайта без форм не говорит о заявке и общем обещании исправить данные и говорит, что их не просит и не хранит', () => {
     const text =
       parse(
         renderToStaticMarkup(
@@ -226,9 +226,44 @@ describe('политика обработки данных', () => {
       ).textContent?.replace(/\u00a0/g, ' ') ?? '';
 
     expect(text).toContain('На сайте нет полей, куда вписывают имя, телефон или почту');
-    expect(text).toContain('Никаких: сайт ничего о вас не собирает');
+    expect(text).toContain('Сайт не просит ваших данных и не сохраняет их');
     expect(text).toContain('Есть вопросы о данных — напишите на');
     expect(text).not.toMatch(/заявк|Telegram|списка ожидания|исправим или удалим/);
     expect(text).toContain('Мурашкина Вероника Викторовна');
+    expect(text).not.toContain('Карту поставили мы');
+  });
+
+  it('у сайта без форм с картой говорит в абзаце прав, что данные карты к нам не попадают', () => {
+    const text =
+      parse(
+        renderToStaticMarkup(
+          <PrivacyPolicy
+            withYandexReviews={false}
+            withYandexMap
+            form="none"
+          />,
+        ),
+      ).textContent?.replace(/ /g, ' ') ?? '';
+
+    expect(text).toContain(
+      'вместе с нашими ответами. Карту поставили мы, но то, что получил через нее Яндекс, к нам не попадает',
+    );
+  });
+
+  it('у сайта без форм на en — свой абзац прав, без общего «correct or delete»', () => {
+    const text =
+      parse(
+        renderToStaticMarkup(
+          <PrivacyPolicy
+            lang="en"
+            withYandexReviews={false}
+            form="none"
+          />,
+        ),
+      ).textContent ?? '';
+
+    expect(text).toContain('Questions about your data? Email');
+    expect(text).not.toMatch(/correct or delete/);
+    expect(text).not.toContain('We placed the map');
   });
 });

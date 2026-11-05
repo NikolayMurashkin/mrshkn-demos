@@ -10,6 +10,8 @@ type PolicyFormTexts = {
   /** Свой абзац прав вместо общего: у сайта без форм исправлять и удалять нечего. Почта — между частями. */
   rightsBefore?: string;
   rightsAfter?: string;
+  /** Фраза в конце абзаца прав — только у сайта с картой (`withYandexMap`). */
+  rightsYandexMap?: string;
 };
 
 export type CoreTexts = {
@@ -81,7 +83,10 @@ export type CoreTexts = {
     rightsAfter: string;
     /** Абзацы политики сайта со списком ожидания: вместо формы заявки — только почта. */
     waitlist: PolicyFormTexts;
-    /** Абзацы политики сайта без форм: данные посетителей не собираются. */
+    /**
+     * Абзацы политики сайта без форм: данные посетителей не собираются. Хранение называет одну cookie, данные — «ничего
+     * не собирает» → вариант не для сайта с версией для слабовидящих (`withLowVision`) и анкетой (`withSurvey`).
+     */
     none: PolicyFormTexts;
   };
 };
@@ -167,12 +172,13 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
         storage: `На${NBSP}сервере студии в${NBSP}России. Адрес хранится, пока работает демо-сайт, и${NBSP}удаляется по${NBSP}вашей просьбе.`,
       },
       none: {
-        intro: `Это пример сайта: его сделала студия ${STUDIO_NAME}, чтобы показать, какие сайты мы${NBSP}делаем. Все, о${NBSP}чем здесь рассказано, вымышлено. На${NBSP}сайте нет полей, куда вписывают имя, телефон или почту.`,
-        data: `Никаких: сайт ничего о${NBSP}вас не${NBSP}собирает. Когда вы${NBSP}открываете страницу, сервер (компьютер, на${NBSP}котором работает сайт) видит ваш IP-адрес${NBSP}— сетевой номер устройства: без него страницу некуда отправить. Адрес сервер не${NBSP}записывает: ни${NBSP}в${NBSP}базу, ни${NBSP}в${NBSP}журнал посещений.`,
-        purpose: `Ни${NBSP}для чего. Писем и${NBSP}сообщений сайт не${NBSP}присылает: он${NBSP}не${NBSP}знает ни${NBSP}вашей почты, ни${NBSP}телефона.`,
+        intro: `Это пример сайта: его сделала студия ${STUDIO_NAME}, чтобы показать, какие сайты мы${NBSP}делаем. Все, о${NBSP}чем рассказывает сайт, вымышлено. Настоящие${NBSP}— эта политика, оператор данных и${NBSP}почта студии (ниже). На${NBSP}сайте нет полей, куда вписывают имя, телефон или почту.`,
+        data: `Сайт не${NBSP}просит ваших данных и${NBSP}не${NBSP}сохраняет их. Когда вы${NBSP}открываете страницу, сервер (компьютер, на${NBSP}котором работает сайт) видит ваш IP-адрес${NBSP}— сетевой номер устройства: без${NBSP}него страницу некуда отправить. Ни${NBSP}сайт, ни${NBSP}программа, которая принимает запросы на${NBSP}сервере, этот адрес не${NBSP}записывают: ни${NBSP}в${NBSP}базу, ни${NBSP}в${NBSP}журнал посещений.`,
+        purpose: `IP-адрес${NBSP}— только чтобы отправить вам страницу, cookie${NBSP}— чтобы не${NBSP}показывать уведомление о${NBSP}cookie снова. Больше ни${NBSP}для чего: писем и${NBSP}сообщений сайт не${NBSP}присылает, он${NBSP}не${NBSP}знает ни${NBSP}вашей почты, ни${NBSP}телефона. Если напишете нам на${NBSP}почту, адрес нужен только для ответа: рассылок не${NBSP}будет.`,
         storage: `О${NBSP}вас у${NBSP}нас не${NBSP}хранится ничего. В${NBSP}вашем браузере сайт оставляет одну отметку${NBSP}— cookie, о${NBSP}ней ниже.`,
         rightsBefore: `Есть вопросы о${NBSP}данных${NBSP}— напишите на${NBSP}`,
-        rightsAfter: `, ответим. Данные, которые получил Яндекс через карту, хранит Яндекс, а${NBSP}не${NBSP}мы.`,
+        rightsAfter: `, ответим в${NBSP}течение 10${NBSP}рабочих дней. Письмо и${NBSP}ваш адрес храним в${NBSP}почте студии (она работает на${NBSP}Яндекс 360), пока вы${NBSP}не${NBSP}попросите удалить; тогда удалим всю переписку вместе с${NBSP}нашими ответами.`,
+        rightsYandexMap: ` Карту поставили мы, но${NBSP}то, что получил через нее Яндекс, к${NBSP}нам не${NBSP}попадает: с${NBSP}вопросами об${NBSP}этих данных${NBSP}— только к${NBSP}Яндексу.`,
       },
     },
   },
@@ -261,13 +267,17 @@ export const CORE_TEXTS: Record<DemoLang, CoreTexts> = {
           'On the studio’s server in Russia. The address is kept while the demo site is online and is deleted on your request.',
       },
       none: {
-        intro: `This is an example site: ${STUDIO_NAME} studio made it to show the kind of sites we build. Everything described here is fictional. The site has no fields where you type your name, phone or email.`,
-        data: 'None: the site collects nothing about you. When you open a page, the server (the computer the site runs on) sees your IP address, the network number of your device: without it the page has nowhere to go. The server does not record this address, neither in a database nor in a visit log.',
-        purpose: 'For nothing. The site sends no emails or messages: it knows neither your email nor your phone.',
+        intro: `This is an example site: ${STUDIO_NAME} studio made it to show the kind of sites we build. Everything the site describes is fictional. What is real: this policy, the data operator and the studio’s email (below). The site has no fields where you type your name, phone or email.`,
+        data: 'The site does not ask for your data and does not store it. When you open a page, the server (the computer the site runs on) sees your IP address, the network number of your device: without it the page has nowhere to go. Neither the site nor the program that receives requests on the server records this address: not in a database, not in a visit log.',
+        purpose:
+          'Your IP address is used only to send you the page, and the cookie only to stop the cookie notice from showing again. Nothing else: the site sends no emails or messages, it knows neither your email nor your phone. If you email us, your address is used only to reply: no newsletters.',
         storage:
           'Nothing about you is stored on our side. The site leaves one note in your browser, a cookie, described below.',
         rightsBefore: 'Questions about your data? Email ',
-        rightsAfter: ' and we’ll answer. Data that Yandex received through the map is kept by Yandex, not by us.',
+        rightsAfter:
+          ' and we’ll answer within 10 working days. We keep your email and address in the studio’s mailbox (it runs on Yandex 360) until you ask us to delete them; then we’ll delete the whole conversation, our replies included.',
+        rightsYandexMap:
+          ' We placed the map, but what Yandex received through it does not reach us: questions about this data go to Yandex only.',
       },
     },
   },
