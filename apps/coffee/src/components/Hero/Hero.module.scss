@@ -7,21 +7,24 @@
   grid-template-columns: minmax(0, 1fr) 420px;
   gap: var(--space-40);
   align-items: center;
-  padding: var(--space-56) var(--p-gutter) var(--space-72);
+  padding: var(--space-32) var(--p-gutter) var(--space-72);
   overflow: hidden;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: var(--space-24);
   min-width: 0;
   animation: bounce var(--duration-bounce) var(--ease-out) both;
+  container-type: inline-size;
 }
 
 .title {
   @include type.hero-title;
   @include type.backend-text;
+
+  font-size: min(var(--font-size-hero-title), 11.8cqi);
 }
 
 .lead {
@@ -120,7 +123,8 @@
   text-underline-offset: 4px;
   transition: box-shadow var(--duration-fast) var(--ease-out);
 
-  &:hover {
+  &:hover,
+  &:active {
     box-shadow: var(--shadow-band);
   }
 }
@@ -172,6 +176,10 @@
   .hero {
     grid-template-columns: minmax(0, 1fr);
     padding-top: var(--space-40);
+  }
+
+  .content {
+    gap: 36px;
   }
 
   .stickers {

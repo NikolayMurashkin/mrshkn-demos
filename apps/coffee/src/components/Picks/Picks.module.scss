@@ -68,11 +68,13 @@
   }
 
   &:hover,
+  &:active,
   &:focus-visible {
     transform: rotate(0deg) translateY(-6px);
   }
 
   &:hover .round,
+  &:active .round,
   &:focus-visible .round {
     transform: rotate(-45deg);
   }
@@ -204,11 +206,13 @@
     transition: transform var(--duration-base) var(--ease-out);
   }
 
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--accent-ink);
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:active svg {
     transform: translate(2px, -2px);
   }
 }

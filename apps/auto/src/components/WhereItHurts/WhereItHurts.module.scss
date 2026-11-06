@@ -75,11 +75,13 @@
   @include type.backend-text;
 }
 
-.symptom:hover {
+.symptom:hover,
+.symptom:active {
   color: var(--auto-xray);
 }
 
-.symptom:hover .lamp {
+.symptom:hover .lamp,
+.symptom:active .lamp {
   border-color: var(--auto-xray);
 }
 
@@ -188,7 +190,8 @@
   @include type.backend-text;
 }
 
-.node:hover .nodeName {
+.node:hover .nodeName,
+.node:active .nodeName {
   color: var(--auto-xray);
 }
 
@@ -206,7 +209,8 @@
   cursor: pointer;
 }
 
-.close:hover {
+.close:hover,
+.close:active {
   border-color: var(--demo-fg);
 }
 

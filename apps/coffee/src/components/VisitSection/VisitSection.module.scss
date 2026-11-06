@@ -63,7 +63,8 @@
   font-variant-numeric: tabular-nums;
   transition: color var(--duration-fast) var(--ease-out);
 
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--accent-ink);
   }
 }

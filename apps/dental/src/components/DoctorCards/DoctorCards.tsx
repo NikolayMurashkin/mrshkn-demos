@@ -7,17 +7,20 @@ import { photoOf } from '@/lib/photo';
 import type { Doctor } from '@/payload-types';
 import { Arrow } from '../Arrow';
 import styles from './DoctorCards.module.scss';
+import type { DoctorNameTag } from './types';
 
 type DoctorCardsProps = {
   doctors: Doctor[];
+  nameTag?: DoctorNameTag;
 };
 
 /**
  * Врачи сеткой 3/3/3/3: портрет 4:5 (врач без кадра — плашка с инициалами), имя, специальность и строка со стрелкой.
  * Вся ячейка — ссылка: имя растянуто на нее. У портрета пустой `alt`: имя стоит рядом текстом, диктор не читает его
- * дважды, а в режиме «без картинок» на месте кадра ничего нет.
+ * дважды, а в режиме «без картинок» на месте кадра ничего нет. Имя — `h3` под H2 раздела; на странице, где списку
+ * не предшествует H2, — `nameTag="h2"`, чтобы уровни заголовков шли без пропуска.
  */
-export const DoctorCards = ({ doctors }: DoctorCardsProps) => (
+export const DoctorCards = ({ doctors, nameTag: Name = 'h3' }: DoctorCardsProps) => (
   <ul className={styles.list}>
     {doctors.map((doctor) => {
       const photo = photoOf(doctor.photo);
@@ -43,7 +46,7 @@ export const DoctorCards = ({ doctors }: DoctorCardsProps) => (
             </span>
           )}
           <div className={styles.body}>
-            <h3 className={styles.name}>
+            <Name className={styles.name}>
               <Link
                 className={styles.link}
                 href={`/doctors/${doctor.slug}`}
@@ -51,7 +54,7 @@ export const DoctorCards = ({ doctors }: DoctorCardsProps) => (
               >
                 {doctor.name}
               </Link>
-            </h3>
+            </Name>
             <p className={styles.position}>{typograph(doctor.position)}</p>
             <div className={styles.foot}>
               <p className={styles.since}>{practiceSinceText(doctor.practiceSince)}</p>

@@ -24,7 +24,10 @@ const DoctorsPage = async () => {
         label="Список"
         wide
       >
-        <DoctorCards doctors={doctors} />
+        <DoctorCards
+          doctors={doctors}
+          nameTag="h2"
+        />
       </Section>
     </>
   );

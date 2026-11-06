@@ -41,7 +41,8 @@
     box-shadow var(--duration-fast) var(--ease-out),
     background-color var(--duration-fast) var(--ease-out);
 
-  &:hover {
+  &:hover,
+  &:active {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-floating);
   }

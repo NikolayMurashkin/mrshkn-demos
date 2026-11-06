@@ -37,7 +37,8 @@
     transition: transform var(--duration-base) var(--ease-out);
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:active svg {
     transform: translateX(3px);
   }
 }
@@ -104,7 +105,8 @@
     color: var(--accent-ink);
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:active svg {
     transform: translateX(3px);
   }
 }

@@ -42,7 +42,8 @@
   text-underline-offset: 4px;
 }
 
-.row a:hover {
+.row a:hover,
+.row a:active {
   color: var(--demo-accent);
 }
 

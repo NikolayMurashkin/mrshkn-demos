@@ -31,7 +31,8 @@
     box-shadow: var(--shadow-floating);
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:active svg {
     transform: translateX(4px);
   }
 

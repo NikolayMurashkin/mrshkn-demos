@@ -33,7 +33,8 @@
 
   white-space: nowrap;
 
-  &:hover {
+  &:hover,
+  &:active {
     color: var(--ink);
   }
 }

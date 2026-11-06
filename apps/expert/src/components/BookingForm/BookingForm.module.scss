@@ -45,7 +45,8 @@
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-out);
 
-  &:hover {
+  &:hover,
+  &:active {
     border-color: var(--ink);
   }
 

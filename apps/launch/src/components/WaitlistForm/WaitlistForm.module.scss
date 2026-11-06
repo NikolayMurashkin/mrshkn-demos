@@ -117,7 +117,8 @@
   align-self: flex-start;
 
   &:disabled,
-  &:disabled:hover {
+  &:disabled:hover,
+  &:disabled:active {
     border-color: var(--line);
     background: var(--surface-soft);
     color: var(--muted);

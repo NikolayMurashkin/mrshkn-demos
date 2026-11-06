@@ -54,7 +54,8 @@
   text-decoration: none;
 }
 
-.langLink:hover {
+.langLink:hover,
+.langLink:active {
   color: var(--demo-fg);
 }
 

@@ -33,11 +33,13 @@
   }
 
   &:hover .title,
+  &:active .title,
   &:focus-within .title {
     color: var(--accent-ink);
   }
 
   &:hover .title a,
+  &:active .title a,
   &:focus-within .title a {
     text-decoration: underline;
     text-decoration-thickness: var(--border-width);

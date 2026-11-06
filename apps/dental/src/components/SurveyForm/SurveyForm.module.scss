@@ -81,7 +81,8 @@
     border-color var(--duration-fast) var(--ease-in-out);
 }
 
-.option:hover {
+.option:hover,
+.option:active {
   border-color: var(--ink);
 }
 
