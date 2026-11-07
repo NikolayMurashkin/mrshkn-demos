@@ -1,0 +1,164 @@
+@use './media';
+
+:root {
+  --bg: #0e0a12;
+  --surface: #1a1320;
+  --surface-soft: #251b2e;
+  --ink: #fbf4f8;
+  --ink-inverse: #0e0a12;
+  --muted: #bfafc4;
+  --line: #3a2c44;
+  --line-strong: #7e6a86;
+  --accent: #ff5c9e;
+  --accent-ink: #ff5c9e;
+  --accent-contrast: #0e0a12;
+  --lilac: #b79cff;
+  --lilac-ink: #b79cff;
+  --peach-ink: #ffb38a;
+  --juice-1: #ff5c9e;
+  --juice-2: #ff7f8a;
+  --juice-3: #ffb38a;
+  --cherry: #7a1846;
+  --drop-hi: rgba(255, 255, 255, 0.92);
+  --gloss: rgba(255, 255, 255, 0.28);
+  --gloss-end: rgba(255, 255, 255, 0);
+  --sheen: rgba(255, 255, 255, 0.55);
+  --glass: rgba(14, 10, 18, 0.9);
+  --glass-solid: #0e0a12;
+  --tap-highlight: transparent;
+
+  --n-juice: linear-gradient(100deg, var(--juice-1) 0%, var(--juice-2) 55%, var(--juice-3) 100%);
+  --n-juice-diag: linear-gradient(135deg, var(--juice-1) 0%, var(--juice-2) 50%, var(--juice-3) 100%);
+  --n-gloss: linear-gradient(180deg, var(--gloss) 0%, var(--gloss-end) 55%);
+
+  --font-display: var(--font-face-dela-gothic-one), var(--font-face-commissioner), 'Arial Black', Arial, sans-serif;
+  --font-text: var(--font-face-commissioner), 'Helvetica Neue', Arial, sans-serif;
+
+  --font-size-hero-title: min(clamp(36px, 6vw, 92px), 8.4cqi);
+  --font-size-section-title: clamp(32px, 4.6vw, 64px);
+  --font-size-page-title: clamp(30px, 4.4vw, 60px);
+  --font-size-plate-title: clamp(26px, 3.4vw, 48px);
+  --font-size-group-title: clamp(22px, 2vw, 28px);
+  --font-size-card-title: clamp(20px, 1.7vw, 24px);
+  --font-size-booking-title: 26px;
+  --font-size-price: 22px;
+  --font-size-wordmark: 22px;
+  --font-size-lead: clamp(17px, 1.4vw, 20px);
+  --font-size-quote: 17px;
+  --font-size-button: 16px;
+  --font-size-button-lg: 17px;
+  --font-size-button-sm: 15px;
+  --font-size-body: 16px;
+  --font-size-nav: 15px;
+  --font-size-small: 15px;
+  --font-size-label: 14px;
+  --font-size-caption: 13px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --n-gutter: clamp(20px, 5.6vw, 96px);
+  --n-column-gap: var(--space-32);
+  --n-section-y: var(--space-96);
+  --n-head-gap: var(--space-48);
+  --n-header-h: 72px;
+
+  --radius-pill: 999px;
+  --radius-plate: 40px;
+  --radius-card: 28px;
+  --radius-tile: 20px;
+  --radius-field: 16px;
+  --radius-check: 6px;
+  --radius-drop-a: 58% 42% 55% 45% / 52% 46% 54% 48%;
+  --radius-drop-b: 46% 54% 42% 58% / 56% 44% 56% 44%;
+  --radius-round: 50%;
+
+  --shadow-floating: 0 24px 56px -20px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 12px 32px -10px rgba(255, 92, 158, 0.55);
+  --shadow-drop: 0 48px 80px -36px rgba(122, 24, 70, 0.9);
+  --shadow-inset-gloss: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  --border-width: 1px;
+  --border-width-mark: 2px;
+  --glass-blur: 18px;
+
+  --duration-fast: 160ms;
+  --duration-base: 260ms;
+  --duration-sheen: 720ms;
+  --duration-reveal: 900ms;
+  --duration-stagger: 90ms;
+  --duration-drift: 3.4s;
+  --duration-drift-slow: 3.6s;
+  --ease-out: cubic-bezier(0.2, 0.7, 0, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-drift: cubic-bezier(0.37, 0, 0.63, 1);
+
+  --demo-bg: var(--bg);
+  --demo-fg: var(--ink);
+  --demo-fg-inverse: var(--ink-inverse);
+  --demo-muted: var(--muted);
+  --demo-surface: var(--bg);
+  --demo-surface-soft: var(--surface-soft);
+  --demo-border: var(--line);
+  --demo-border-strong: var(--line-strong);
+  --demo-accent: var(--accent);
+  --demo-accent-fg: var(--accent-contrast);
+  --demo-accent-ink: var(--accent-ink);
+  --demo-danger: var(--accent-ink);
+  --demo-focus: var(--accent-ink);
+  --demo-focus-width: var(--border-width-mark);
+  --demo-focus-offset: 3px;
+  --demo-field-focus-offset: 2px;
+  --demo-border-width: var(--border-width);
+  --demo-border-width-strong: var(--border-width-mark);
+  --demo-radius: var(--radius-field);
+  --demo-shadow: var(--shadow-floating);
+  --demo-font-display: var(--font-display);
+  --demo-control-height: 52px;
+  --demo-control-height-sm: 44px;
+  --demo-button-padding-x: var(--space-28);
+  --demo-button-font-size: var(--font-size-button);
+  --demo-button-font-weight: 600;
+  --demo-label-size: var(--font-size-label);
+  --demo-label-weight: 600;
+  --demo-label-tracking: normal;
+  --demo-label-case: none;
+  --demo-title-size: var(--font-size-section-title);
+  --demo-title-weight: 400;
+  --demo-title-leading: 1.1;
+  --demo-title-tracking: -0.015em;
+  --demo-section-gap: var(--space-48);
+  --demo-gutter: var(--n-gutter);
+  --demo-duration: var(--duration-fast);
+  --demo-duration-move: var(--duration-base);
+  --demo-ease: var(--ease-out);
+  --demo-ease-move: var(--ease-out);
+}
+
+@include media.max-1080 {
+  :root {
+    --n-section-y: var(--space-80);
+  }
+}
+
+@include media.max-720 {
+  :root {
+    --n-column-gap: var(--space-24);
+    --n-section-y: var(--space-64);
+    --n-head-gap: var(--space-32);
+    --n-header-h: 64px;
+    --demo-section-gap: var(--space-32);
+  }
+}

@@ -7,7 +7,7 @@ const REPO_ROOT = path.resolve(import.meta.dirname, '../..');
 const CREDITS_FILE = path.join(REPO_ROOT, 'docs/photo-credits.md');
 
 /** Демо с кадрами людей и еды; папки приложения еще может не быть — тогда кадров в нем нет. */
-const PHOTO_APPS = ['dental', 'expert', 'coffee', 'event'];
+const PHOTO_APPS = ['dental', 'expert', 'coffee', 'event', 'salon'];
 
 const HEADER = '| Файл | Кадр | Автор | Лицензия | Приложение | Место |';
 

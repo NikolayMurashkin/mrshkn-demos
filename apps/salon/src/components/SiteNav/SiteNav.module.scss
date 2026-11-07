@@ -1,0 +1,55 @@
+@use '@/styles/media';
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0 auto;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--space-16);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  font-size: var(--font-size-nav);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out);
+
+  &:hover,
+  &:active {
+    background: var(--surface-soft);
+  }
+
+  &[aria-current]::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 16px;
+    height: var(--border-width-mark);
+    border-radius: var(--radius-pill);
+    background: var(--accent-ink);
+    transform: translateX(-50%);
+  }
+}
+
+@include media.max-1080 {
+  .link {
+    padding: 0 var(--space-12);
+  }
+}
+
+@include media.max-720 {
+  .nav {
+    order: 3;
+    flex: 1 1 100%;
+    margin: 0 0 0 calc(var(--space-12) * -1);
+  }
+}

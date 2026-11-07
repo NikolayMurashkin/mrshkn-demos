@@ -79,6 +79,15 @@ export type LeadRouteOptions = {
 
 export type LeadFormStatus = 'idle' | 'sending' | 'sent' | 'invalid' | 'failed';
 
+/** Поле формы заявки, которое сервер отклоняет: пустое имя, пустой способ связи, нет согласия. */
+export type LeadFormField = 'name' | 'contact' | 'consent';
+
+/**
+ * Раскладка подвала: `default` — ссылка на политику в строке подписи; `colophon` — ссылку ставит колофон демо
+ * (`children`), строка подписи отделена чертой с отступами колофона.
+ */
+export type DemoFooterLayout = 'default' | 'colophon';
+
 /** Форма сайта, которая собирает данные посетителя: заявка ядра, список ожидания или форм нет. */
 export type PolicyForm = 'lead' | 'waitlist' | 'none';
 

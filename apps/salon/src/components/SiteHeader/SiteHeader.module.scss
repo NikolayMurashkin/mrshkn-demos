@@ -1,0 +1,79 @@
+@use '@/styles/media';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: var(--border-width) solid var(--line);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header {
+    background: var(--glass-solid);
+  }
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  min-height: var(--n-header-h);
+  padding: var(--space-12) var(--n-gutter);
+}
+
+.mark {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  border-radius: var(--radius-field);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--font-size-wordmark);
+  line-height: 1.1;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.kind {
+  color: var(--muted);
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.mark:hover .name,
+.mark:active .name {
+  color: var(--accent-ink);
+}
+
+@include media.max-1080 {
+  .bar {
+    gap: var(--space-16);
+  }
+}
+
+@include media.max-720 {
+  .bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: var(--space-8);
+  }
+}
+
+@include media.max-480 {
+  .bar {
+    gap: var(--space-12);
+  }
+
+  .name {
+    font-size: 19px;
+  }
+}

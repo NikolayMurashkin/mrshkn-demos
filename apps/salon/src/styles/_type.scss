@@ -1,0 +1,59 @@
+@mixin backend-text {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+@mixin display($size, $leading: 1.1, $tracking: -0.015em) {
+  font-family: var(--font-display);
+  font-size: var($size);
+  font-weight: 400;
+  line-height: $leading;
+  letter-spacing: $tracking;
+}
+
+@mixin section-title {
+  @include display(--font-size-section-title);
+
+  text-wrap: balance;
+}
+
+@mixin page-title {
+  @include display(--font-size-page-title);
+
+  text-wrap: balance;
+}
+
+@mixin card-title {
+  @include display(--font-size-card-title, 1.2, normal);
+}
+
+@mixin lead {
+  max-width: 56ch;
+  font-size: var(--font-size-lead);
+  line-height: 1.55;
+  font-variation-settings: 'FLAR' 40;
+  color: var(--ink);
+}
+
+@mixin note {
+  max-width: 66ch;
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+@mixin label {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+@mixin price {
+  font-family: var(--font-display);
+  font-size: var(--font-size-price);
+  font-weight: 400;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

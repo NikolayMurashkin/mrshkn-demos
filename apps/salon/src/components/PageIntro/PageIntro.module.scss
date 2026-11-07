@@ -1,0 +1,24 @@
+@use '@/styles/media';
+@use '@/styles/type';
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-20);
+  max-width: 880px;
+}
+
+.title {
+  @include type.page-title;
+}
+
+.lead {
+  @include type.lead;
+}
+
+@include media.max-480 {
+  .title {
+    font-size: clamp(22px, 7.2vw, 60px);
+  }
+}

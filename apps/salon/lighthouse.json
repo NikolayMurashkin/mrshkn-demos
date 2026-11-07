@@ -1,0 +1,4 @@
+{
+  "paths": ["/", "/prices", "/masters", "/masters/alina", "/reviews", "/contacts", "/booking"],
+  "minScores": { "accessibility": 1 }
+}

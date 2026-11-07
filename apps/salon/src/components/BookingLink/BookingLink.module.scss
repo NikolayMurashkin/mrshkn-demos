@@ -1,0 +1,20 @@
+@use '@/styles/button';
+
+.sm,
+.lg {
+  display: contents;
+
+  > a {
+    @include button.primary;
+  }
+}
+
+.sm > a {
+  @include button.sm;
+
+  flex: none;
+}
+
+.lg > a {
+  @include button.lg;
+}

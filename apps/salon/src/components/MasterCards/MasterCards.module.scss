@@ -1,0 +1,83 @@
+@use '@/styles/media';
+@use '@/styles/type';
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-24);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.name {
+  @include type.card-title;
+
+  a {
+    border-radius: var(--radius-field);
+    color: var(--ink);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+}
+
+.role {
+  color: var(--muted);
+  font-size: var(--font-size-small);
+}
+
+.years {
+  @include type.label;
+
+  color: var(--lilac-ink);
+}
+
+.card:hover,
+.card:active,
+.card:focus-within {
+  .name a {
+    color: var(--accent-ink);
+  }
+}
+
+.card:hover,
+.card:active {
+  .photo::before {
+    transform: translate3d(-6px, 6px, 0);
+  }
+}
+
+@include media.max-1080 {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@include media.max-720 {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include media.max-480 {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

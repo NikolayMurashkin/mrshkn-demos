@@ -10,7 +10,7 @@ import {
   NAME_MAX_LENGTH,
 } from '../../consts';
 import { CORE_TEXTS } from '../../texts';
-import type { DemoLang, LeadFormStatus } from '../../types';
+import type { DemoLang, LeadFormField, LeadFormStatus } from '../../types';
 import styles from './LeadForm.module.scss';
 
 type LeadFormProps = {
@@ -18,10 +18,25 @@ type LeadFormProps = {
   lang?: DemoLang;
 };
 
+const isBlank = (value: FormDataEntryValue | null) => typeof value !== 'string' || value.trim() === '';
+
+/** Поля, из-за которых сервер отклонит заявку: те же правила, что у разбора заявки на сервере. */
+const rejectedFields = (data: FormData): LeadFormField[] => [
+  ...(isBlank(data.get('name')) ? (['name'] as const) : []),
+  ...(isBlank(data.get('contact')) ? (['contact'] as const) : []),
+  ...(data.get('consent') === 'on' ? [] : (['consent'] as const)),
+];
+
 export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
   const id = useId();
   const [status, setStatus] = useState<LeadFormStatus>('idle');
+  const [invalid, setInvalid] = useState<LeadFormField[]>([]);
   const texts = CORE_TEXTS[lang].leadForm;
+  const errorId = `${id}-error`;
+
+  /** Ошибка поля — `aria-invalid` и текст ошибки формы через `aria-describedby`. */
+  const fieldState = (field: LeadFormField) =>
+    invalid.includes(field) ? { 'aria-invalid': true, 'aria-describedby': errorId } : {};
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +44,7 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
     const data = new FormData(event.currentTarget);
 
     setStatus('sending');
+    setInvalid([]);
 
     try {
       const response = await fetch(LEAD_ENDPOINT, {
@@ -45,6 +61,7 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
 
       if (response.status === 422) {
         setStatus('invalid');
+        setInvalid(rejectedFields(data));
 
         return;
       }
@@ -84,6 +101,7 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
         autoComplete="name"
         maxLength={NAME_MAX_LENGTH}
         required
+        {...fieldState('name')}
       />
       <label
         className={styles.label}
@@ -99,6 +117,7 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
         spellCheck={CONTACT_INPUT[lang].spellCheck}
         maxLength={CONTACT_MAX_LENGTH}
         required
+        {...fieldState('contact')}
       />
       <label
         className={styles.label}
@@ -129,6 +148,7 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
           name="consent"
           type="checkbox"
           required
+          {...fieldState('consent')}
         />
         <label htmlFor={`${id}-consent`}>
           {texts.consent}
@@ -144,7 +164,8 @@ export const LeadForm = ({ policyHref, lang = 'ru' }: LeadFormProps) => {
       </button>
       <p
         className={styles.status}
-        role="status"
+        id={errorId}
+        role="alert"
       >
         {status === 'invalid' || status === 'failed' ? texts[status] : ''}
       </p>

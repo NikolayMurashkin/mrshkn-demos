@@ -1,0 +1,1 @@
+export { MasterPhoto } from './MasterPhoto';

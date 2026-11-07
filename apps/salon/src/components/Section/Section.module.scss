@@ -1,0 +1,43 @@
+@use '@/styles/button';
+@use '@/styles/media';
+@use '@/styles/type';
+
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: var(--n-section-y) var(--n-gutter);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-16) var(--space-48);
+  margin-bottom: var(--n-head-gap);
+}
+
+.title {
+  @include type.section-title;
+}
+
+.note {
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+}
+
+.more {
+  @include button.arrow-link;
+
+  align-self: flex-start;
+  margin-top: var(--space-32);
+}
+
+@include media.max-720 {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

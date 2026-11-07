@@ -44,6 +44,23 @@
   text-decoration-thickness: 2px;
 }
 
+.colophon {
+  padding-top: 48px;
+}
+
+.colophon .inner {
+  gap: 32px;
+}
+
+.colophon .inner > * + .meta {
+  padding: 20px 16px 0;
+}
+
+.colophon a {
+  text-decoration-color: var(--demo-accent-ink);
+  text-underline-offset: 0.22em;
+}
+
 .footer a:focus-visible {
   outline: var(--demo-focus-width) solid var(--demo-focus);
   outline-offset: var(--demo-focus-offset);

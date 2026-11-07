@@ -1,0 +1,214 @@
+@use '@/styles/media';
+
+@mixin drop {
+  position: absolute;
+  display: block;
+  border-radius: var(--radius-drop-a);
+  box-shadow: var(--shadow-drop);
+  animation:
+    drop-in var(--duration-reveal) var(--ease-out) both,
+    drift var(--duration-drift) var(--ease-drift) var(--duration-reveal) 1 forwards;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 4% 8% 48% 10%;
+    border-radius: var(--radius-drop-b);
+    background: var(--n-gloss);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 16%;
+    left: 22%;
+    width: 14%;
+    height: 9%;
+    border-radius: var(--radius-round);
+    background: var(--drop-hi);
+    transform: rotate(-28deg);
+  }
+}
+
+.stage,
+.small {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stage {
+  inset: 0 0 0 42%;
+}
+
+.small {
+  inset: 0 0 auto auto;
+  width: 280px;
+  height: 160px;
+}
+
+.main {
+  @include drop;
+
+  top: 8%;
+  right: 10%;
+  width: min(440px, 34vw);
+  aspect-ratio: 1 / 0.92;
+  background: radial-gradient(
+    120% 120% at 30% 22%,
+    var(--juice-3) 0%,
+    var(--juice-2) 28%,
+    var(--juice-1) 58%,
+    var(--cherry) 100%
+  );
+  animation-delay: 0s, var(--duration-reveal);
+
+  &::after {
+    top: 12%;
+    left: 60%;
+    transform: rotate(24deg);
+  }
+}
+
+.cherry {
+  @include drop;
+
+  top: 46%;
+  right: 34%;
+  width: min(300px, 22vw);
+  aspect-ratio: 1 / 1.06;
+  border-radius: var(--radius-drop-b);
+  background: radial-gradient(110% 110% at 34% 24%, var(--juice-1) 0%, var(--cherry) 62%, var(--bg) 120%);
+  animation-name: drop-in, drift-b;
+  animation-duration: var(--duration-reveal), var(--duration-drift-slow);
+  animation-delay: var(--duration-stagger), calc(var(--duration-reveal) + var(--duration-stagger));
+}
+
+.peach {
+  @include drop;
+
+  top: 2%;
+  right: 46%;
+  width: min(190px, 14vw);
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-drop-b);
+  background: radial-gradient(
+    120% 120% at 32% 24%,
+    var(--drop-hi) 0%,
+    var(--juice-3) 22%,
+    var(--juice-2) 70%,
+    var(--juice-1) 100%
+  );
+  animation-name: drop-in, drift-b;
+  animation-duration: var(--duration-reveal), var(--duration-drift);
+  animation-delay: calc(var(--duration-stagger) * 2), calc(var(--duration-reveal) + var(--duration-stagger) * 2);
+}
+
+.dot {
+  @include drop;
+
+  right: 6%;
+  bottom: 14%;
+  width: min(72px, 7vw);
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-round);
+  background: radial-gradient(120% 120% at 30% 25%, var(--juice-2) 0%, var(--juice-1) 60%, var(--cherry) 100%);
+  animation-duration: var(--duration-reveal), var(--duration-drift-slow);
+  animation-delay: calc(var(--duration-stagger) * 3), calc(var(--duration-reveal) + var(--duration-stagger) * 3);
+}
+
+.small .main {
+  top: -50px;
+  right: 40px;
+  width: 140px;
+}
+
+.small .peach {
+  top: 30px;
+  right: 190px;
+  width: 54px;
+}
+
+.small .cherry,
+.small .dot {
+  display: none;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(-7px, 9px, 0) rotate(1.5deg);
+  }
+}
+
+@keyframes drift-b {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(6px, -8px, 0) rotate(-2deg);
+  }
+}
+
+@include media.max-720 {
+  .stage {
+    position: relative;
+    inset: auto;
+    height: 240px;
+    margin: 0 calc(var(--n-gutter) * -1);
+  }
+
+  .stage .main {
+    top: 6%;
+    right: 8%;
+    width: 230px;
+  }
+
+  .stage .cherry {
+    top: 40%;
+    right: 46%;
+    width: 150px;
+  }
+
+  .stage .peach {
+    top: 4%;
+    right: 66%;
+    width: 92px;
+  }
+
+  .stage .dot {
+    right: 4%;
+    bottom: 4%;
+    width: 44px;
+  }
+
+  .small {
+    height: 120px;
+  }
+
+  .small .main {
+    top: -60px;
+    right: 8px;
+    width: 110px;
+  }
+
+  .small .peach {
+    display: none;
+  }
+}
