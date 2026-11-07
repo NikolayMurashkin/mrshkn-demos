@@ -1,6 +1,7 @@
 import { BookingLink } from '@/components/BookingLink';
+import { BotNote } from '@/components/BotNote';
 import { Drops } from '@/components/Drops';
-import { BOT_NOTE, PLATE } from '@/consts';
+import { PLATE } from '@/consts';
 import { DEMO } from '@/demo.config';
 import styles from './SitePlate.module.scss';
 
@@ -19,7 +20,7 @@ export const SitePlate = () => (
     </h2>
     <div className={styles.actions}>
       <BookingLink />
-      {DEMO.miniAppUrl && <p className={styles.note}>{BOT_NOTE}</p>}
+      {DEMO.miniAppUrl && <BotNote className={styles.note} />}
     </div>
   </section>
 );

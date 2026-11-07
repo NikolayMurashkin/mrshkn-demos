@@ -40,6 +40,12 @@ export const NAV: NavItem[] = [
 /** Подпись под кнопкой записи — только когда кнопка ведет в бота. */
 export const BOT_NOTE = typograph('Откроется бот салона в Telegram: выберите услугу, мастера и свободное время.');
 
+/** Ссылка на форму заявки за подписью о боте: с ботом все «Записаться» ведут в Telegram, гостю без него — сюда. */
+export const NO_TELEGRAM = {
+  lead: `Нет${NBSP}Telegram?`,
+  link: typograph('Оставьте заявку'),
+};
+
 export const HERO = {
   title: typograph('Маникюр, брови, ресницы и волосы в одном салоне'),
   lead: typograph(

@@ -1,6 +1,7 @@
 import { BookingLink } from '@/components/BookingLink';
+import { BotNote } from '@/components/BotNote';
 import { Drops } from '@/components/Drops';
-import { BOT_NOTE, HERO, PRICES_HREF } from '@/consts';
+import { HERO, PRICES_HREF } from '@/consts';
 import { DEMO } from '@/demo.config';
 import styles from './Hero.module.scss';
 
@@ -28,7 +29,7 @@ export const Hero = () => (
           {HERO.prices}
         </a>
       </div>
-      {DEMO.miniAppUrl && <p className={styles.note}>{BOT_NOTE}</p>}
+      {DEMO.miniAppUrl && <BotNote className={styles.note} />}
     </div>
     <ul className={styles.facts}>
       {HERO.facts.map((fact) => (
